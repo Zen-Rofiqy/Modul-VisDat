@@ -99,6 +99,10 @@ Klik ikon git di samping kiri VS-Code, lalu klik `+` paling atas jika anda ingin
 
 ![alt text](images/image-11.png)
 
+Lalu klik Sync Change untuk Push atau Publish Branch
+
+![alt text](images/image-12.png)
+
 ---
 
 ## 🌐 **Akses Modul Secara Online**
