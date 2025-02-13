@@ -1,9 +1,4 @@
 ---
-title: "Modul Praktikum Visualisasi Data"
-author: 
-  - name: "[Angga Fathan Rofiqy](https://www.linkedin.com/in/angga-fathan-rofiqy/)"
-  - name: "[Nabil Naufal](https://www.linkedin.com/in/nabilnaufal/)"
-date: today
 format:
   html:
     theme: default
