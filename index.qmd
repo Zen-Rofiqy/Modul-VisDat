@@ -1,0 +1,26 @@
+---
+title: "Modul Praktikum Visualisasi Data"
+author: "Tim Pengajar STA222"
+date: today
+format:
+  html:
+    theme: default
+    toc: true
+    css: style.css
+    number-sections: true
+    code-fold: true
+    code-overflow: wrap
+    code-tools: true
+execute:
+  echo: true
+---
+
+# Pendahuluan
+
+Buku ini adalah modul praktikum untuk **STA 222: Visualisasi Data**. 
+Modul ini membahas teori dan praktik dalam visualisasi data menggunakan **R**.
+
+## Tujuan
+- Memahami konsep dasar visualisasi data.
+- Menggunakan **R** untuk membuat grafik yang menarik.
+- Mengeksplorasi berbagai teknik visualisasi dalam analisis data.
