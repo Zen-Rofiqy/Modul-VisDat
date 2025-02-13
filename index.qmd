@@ -26,9 +26,13 @@ Materi praktikum dirancang agar mahasiswa tidak hanya memahami teknik visualisas
 
 ## Struktur Praktikum
 
--   **Sesi UTS**: Mahasiswa akan diberikan tugas akhir berupa **pembuatan poster visualisasi data**. Visualisasi utama akan dibuat menggunakan **R**, tetapi mahasiswa juga diperbolehkan menggunakan sumber lain.
+-   **📝 Sesi UTS** → **Tugas akhir berupa poster visualisasi data**\
+    *Visualisasi utama dibuat menggunakan **R**, tetapi mahasiswa juga diperbolehkan menggunakan sumber lain seperti Tableau.*
 
--   **Sesi UAS**: Mahasiswa akan diberikan tugas akhir berupa **pembuatan dashboard interaktif**, menggunakan **Tableau** sebagai tools utama.
+<!-- -->
+
+-   **📊 Sesi UAS** → **Tugas akhir berupa dashboard interaktif**\
+    *Mahasiswa akan menggunakan **Tableau** sebagai tools utama untuk membangun dashboard.*
 
 ## Tujuan
 
@@ -48,15 +52,21 @@ Mata kuliah ini akan mendiskusikan teknik visualisasi data, yang diperoleh dari 
 
 Materi yang dibahas meliputi:
 
--   **Visualisasi sebaran data**
+-   **Membandingkan Kategori**
 
--   **Visualisasi nilai dan proporsi**
+-   **Visualisasi Waktu**
 
--   **Visualisasi hubungan antar peubah**
+-   **Distribusi**
 
--   **Visualisasi tren**
+-   **Geospasial**
 
--   **Visualisasi spasial (peta data)**
+-   **Hubungan Antar Peubah**
+
+-   **Proporsi dan Komposisi**
+
+-   **Visualisasi Kualitatif**
+
+-   **Penyajian Data dalam Bentuk Tabel**
 
 Selain itu, penggunaan **paket komputer secara intensif** akan didiskusikan untuk menghasilkan berbagai bentuk visualisasi, termasuk **animasi**, sebagai cara memperoleh informasi lebih pada data berdimensi besar.
 
