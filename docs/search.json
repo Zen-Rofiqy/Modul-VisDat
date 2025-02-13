@@ -1,0 +1,42 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Modul Praktikum Visualisasi Data",
+    "section": "",
+    "text": "1 Pendahuluan\nBuku ini adalah modul praktikum untuk STA 222: Visualisasi Data. Modul ini membahas teori dan praktik dalam visualisasi data menggunakan R.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Modul Praktikum Visualisasi Data</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#tujuan",
+    "href": "index.html#tujuan",
+    "title": "Modul Praktikum Visualisasi Data",
+    "section": "1.1 Tujuan",
+    "text": "1.1 Tujuan\n\nMemahami konsep dasar visualisasi data.\nMenggunakan R untuk membuat grafik yang menarik.\nMengeksplorasi berbagai teknik visualisasi dalam analisis data.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Modul Praktikum Visualisasi Data</span>"
+    ]
+  },
+  {
+    "objectID": "02-tears.html",
+    "href": "02-tears.html",
+    "title": "2  Bab 2 - The Pool of Tears",
+    "section": "",
+    "text": "3 The Pool of Tears\nKonten praktikum untuk bab ini membahas…",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Bab 2 - The Pool of Tears</span>"
+    ]
+  },
+  {
+    "objectID": "03-race.html",
+    "href": "03-race.html",
+    "title": "3  Bab 3 - A Caucus-race and a Long Tale",
+    "section": "",
+    "text": "4 A Caucus-race and a Long Tale\nMateri dalam bab ini membahas…",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Bab 3 - A Caucus-race and a Long Tale</span>"
+    ]
+  }
+]
