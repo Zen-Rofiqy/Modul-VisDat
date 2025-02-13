@@ -1,0 +1,25 @@
+project:
+  type: book
+
+book:
+  title: "Modul Praktikum Visualisasi Data"
+  author: "Tim Pengajar STA222"
+  date: today
+  chapters:
+    - index.qmd
+    - 02-tears.qmd
+    - 03-race.qmd
+  downloads: [pdf, epub]
+  site-url: "https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME"
+  repo-url: "https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME"
+  repo-actions: [edit, issue]
+
+format:
+  html:
+    theme: default
+    css: style.css
+    toc: true
+    number-sections: true
+    code-fold: true
+    code-overflow: wrap
+    code-tools: true
