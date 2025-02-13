@@ -4,15 +4,17 @@ project:
 
 book:
   title: "Modul Praktikum Visualisasi Data"
-  author: "Tim Pengajar STA222"
+  author:
+    - name: "[Angga Fathan Rofiqy](https://www.linkedin.com/in/angga-fathan-rofiqy/)"
+    - name: "[Nabil Naufal](https://www.linkedin.com/in/nabilnaufal/)"
   date: today
   chapters:
     - index.qmd
-    - 02-tears.qmd
-    - 03-race.qmd
+    - 01-Bab-1.qmd
+    - 02-Bab-2.qmd
   downloads: [pdf, epub]
-  site-url: "https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME"
-  repo-url: "https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME"
+  site-url: "https://zen-rofiqy.github.io/Modul-VisDat/"
+  repo-url: "https://github.com/Zen-Rofiqy/Modul-VisDat"
   repo-actions: [edit, issue]
 
 format:
@@ -26,3 +28,12 @@ format:
     code-overflow: wrap
     code-tools: true
     sidebar: navigation
+
+language:
+  label:
+    fig: "Gambar "
+  ui:
+    chapter_name: "Bab "
+
+execute:
+  pre-render: _setup.R
