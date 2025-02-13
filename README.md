@@ -91,7 +91,11 @@ quarto render
 
 Atau gunakan short-cut `Ctrl + Shift + B`
 
-Hasilnya akan disimpan di folder `docs/`, yang dapat diakses melalui **GitHub Pages**.
+Hasilnya akan disimpan di folder `docs/`. Jika ingin melihat hasilnya, tinggal double click file `index.html` pada folder `docs`.
+
+![alt text](images/image-18.png)
+
+![alt text](images/image-19.png)
 
 ### 🔹 **6. Commit Change**
 
@@ -102,6 +106,27 @@ Klik ikon git di samping kiri VS-Code, lalu klik `+` paling atas jika anda ingin
 Lalu klik Sync Change untuk Push atau Publish Branch
 
 ![alt text](images/image-12.png)
+
+Jika semua tugas atau bagian anda selesai, selanjutnya anda Pull Request (untuk merge ke Main) dengan klik tanda ini:
+
+![alt text](images/image-13.jpg)
+
+Pastikan Base nya adalah branch main. Tambah judul pull request dan deskripsi jika perlu. Lalu create.
+
+![alt text](images/image-14.jpg)
+
+Jika perlu di review owner atau contributor lainnya, anda bisa comment. Jika sudah di acc oleh yang lain dan tidak ada konflik saat merge nya, klik Merge Pull Request & Create
+Merge Commit.
+
+![alt text](images/image-15.jpg)
+
+![alt text](images/image-16.jpg)
+
+Cek repo GitHub, apakah sudah berhasil terbaharui atau blm.
+
+![alt text](images/image-17.jpg)
+
+Selamat, anda sudah berhasil berkontribusi di Repository GitHub Modul-VisDat
 
 ---
 
