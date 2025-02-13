@@ -34,6 +34,3 @@ language:
     fig: "Gambar "
   ui:
     chapter_name: "Bab "
-
-execute:
-  pre-render: _setup.R
