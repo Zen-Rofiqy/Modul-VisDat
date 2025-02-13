@@ -132,12 +132,9 @@ Selamat, anda sudah berhasil berkontribusi di Repository GitHub Modul-VisDat
 
 ## 🌐 **Akses Modul Secara Online**
 
-Repository ini menggunakan **GitHub Pages** untuk menampilkan buku secara online.  
-🔗 **[Lihat Modul Praktikum Visualisasi Data](https://YOUR_GITHUB_USERNAME.github.io/Modul-VisDat/)**
+Untuk cek modul di GitHub pages, link nya ada di samping kanan Repo GitHub nya. Atau bisa cek di deployments.
 
-Jika belum aktif, pastikan GitHub Pages telah dikonfigurasi dengan:
-
-- **Settings → Pages** → Source: `main`, Folder: `/docs/`
+![alt text](images/image-20.png)
 
 ---
 
@@ -157,8 +154,8 @@ Quarto adalah platform modern untuk pembuatan **buku, laporan, dan presentasi** 
 
 ## 📝 **Lisensi**
 
-📜 **MIT License** – Modul ini dapat digunakan secara bebas sesuai dengan ketentuan lisensi.
+📜 [**MIT License**](LICENSE) – Modul ini dapat digunakan secara bebas sesuai dengan ketentuan lisensi.
 
 ---
 
-🚀 **Dikembangkan oleh Tim Pengajar STA1262** | Fakultas XYZ | 2025
+🚀 **Dikembangkan oleh Tim Pengajar STA1262** | Statistika dan Sains Data | 2025
