@@ -1,6 +1,8 @@
 ---
 title: "Modul Praktikum Visualisasi Data"
-author: "Tim Pengajar STA222"
+author: 
+  - name: "[Angga Fathan Rofiqy](https://www.linkedin.com/in/angga-fathan-rofiqy/)"
+  - name: "[Nabil Naufal](https://www.linkedin.com/in/nabilnaufal/)"
 date: today
 format:
   html:
@@ -15,12 +17,52 @@ execute:
   echo: true
 ---
 
-# Pendahuluan
+# Pendahuluan {.unnumbered}
 
-Buku ini adalah modul praktikum untuk **STA 222: Visualisasi Data**. 
-Modul ini membahas teori dan praktik dalam visualisasi data menggunakan **R**.
+Buku ini adalah modul praktikum untuk **STA1262: Visualisasi Data**.\
+Modul ini membahas teori dan praktik dalam visualisasi data menggunakan **R** serta berbagai tools lain seperti **Tableau**.
+
+Materi praktikum dirancang agar mahasiswa tidak hanya memahami teknik visualisasi data dari sisi analisis, tetapi juga dapat mengimplementasikannya secara efektif menggunakan berbagai perangkat lunak.
+
+## Struktur Praktikum
+
+-   **Sesi UTS**: Mahasiswa akan diberikan tugas akhir berupa **pembuatan poster visualisasi data**. Visualisasi utama akan dibuat menggunakan **R**, tetapi mahasiswa juga diperbolehkan menggunakan sumber lain.
+
+-   **Sesi UAS**: Mahasiswa akan diberikan tugas akhir berupa **pembuatan dashboard interaktif**, menggunakan **Tableau** sebagai tools utama.
 
 ## Tujuan
-- Memahami konsep dasar visualisasi data.
-- Menggunakan **R** untuk membuat grafik yang menarik.
-- Mengeksplorasi berbagai teknik visualisasi dalam analisis data.
+
+-   Memahami konsep dasar visualisasi data berdasarkan **persepsi grafis manusia**.
+
+<!-- -->
+
+-   Menggunakan **R** dan **Tableau** untuk membuat visualisasi yang informatif dan menarik.
+
+-   Mengeksplorasi berbagai teknik visualisasi, termasuk **visualisasi interaktif dan animasi**.
+
+-   Menghasilkan **poster visualisasi** dan **dashboard interaktif** yang dapat menyampaikan informasi secara efektif.
+
+## Deskripsi Mata Kuliah
+
+Mata kuliah ini akan mendiskusikan teknik visualisasi data, yang diperoleh dari hasil proses analisis. Didasarkan pada **persepsi grafis manusia**, akan dibicarakan berbagai teknik visualisasi **tradisional dan modern**.
+
+Materi yang dibahas meliputi:
+
+-   **Visualisasi sebaran data**
+
+-   **Visualisasi nilai dan proporsi**
+
+-   **Visualisasi hubungan antar peubah**
+
+-   **Visualisasi tren**
+
+-   **Visualisasi spasial (peta data)**
+
+Selain itu, penggunaan **paket komputer secara intensif** akan didiskusikan untuk menghasilkan berbagai bentuk visualisasi, termasuk **animasi**, sebagai cara memperoleh informasi lebih pada data berdimensi besar.
+
+## Referensi
+
+Materi praktikum ini mengadaptasi berbagai konsep dari buku:\
+📖 [**Better Data Visualizations**](https://www.amazon.com/Better-Data-Visualizations-Scholars-Researchers/dp/0231193114) - [*Jonathan Schwabish*](https://www.amazon.com/stores/Jonathan-Schwabish/author/B01L9OXP3E)
+
+![](images/clipboard-135804932.png){width="234"}
