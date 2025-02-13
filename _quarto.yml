@@ -16,10 +16,12 @@ book:
 
 format:
   html:
-    theme: default
-    css: style.css
+    theme:
+      light: cosmo
+      dark: [cosmo, theme-dark.scss]
     toc: true
     number-sections: true
     code-fold: true
     code-overflow: wrap
     code-tools: true
+    sidebar: navigation
