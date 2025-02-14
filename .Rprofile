@@ -37,3 +37,4 @@ library(fmsb)         # Membuat radar chart dan analisis statistik sederhana
 library(devtools)     # Digunakan untuk mengembangkan dan menginstal package dari GitHub
 
 library(treemapify)
+library(ggwordcloud)
