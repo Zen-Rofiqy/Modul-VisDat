@@ -1,9 +1,4 @@
 ---
-title: "Modul Praktikum Visualisasi Data"
-author: 
-  - name: "[Angga Fathan Rofiqy](https://www.linkedin.com/in/angga-fathan-rofiqy/)"
-  - name: "[Nabil Naufal](https://www.linkedin.com/in/nabilnaufal/)"
-date: today
 format:
   html:
     theme: default
@@ -24,7 +19,7 @@ Modul ini membahas teori dan praktik dalam visualisasi data menggunakan **R** se
 
 Materi praktikum dirancang agar mahasiswa tidak hanya memahami teknik visualisasi data dari sisi analisis, tetapi juga dapat mengimplementasikannya secara efektif menggunakan berbagai perangkat lunak.
 
-## Struktur Praktikum
+## Struktur Praktikum {.unnumbered}
 
 -   **📝 Sesi UTS** → **Tugas akhir berupa poster visualisasi data**\
     *Visualisasi utama dibuat menggunakan **R**, tetapi mahasiswa juga diperbolehkan menggunakan sumber lain seperti Tableau.*
@@ -34,7 +29,7 @@ Materi praktikum dirancang agar mahasiswa tidak hanya memahami teknik visualisas
 -   **📊 Sesi UAS** → **Tugas akhir berupa dashboard interaktif**\
     *Mahasiswa akan menggunakan **Tableau** sebagai tools utama untuk membangun dashboard.*
 
-## Tujuan
+## Tujuan {.unnumbered}
 
 -   Memahami konsep dasar visualisasi data berdasarkan **persepsi grafis manusia**.
 
@@ -46,31 +41,24 @@ Materi praktikum dirancang agar mahasiswa tidak hanya memahami teknik visualisas
 
 -   Menghasilkan **poster visualisasi** dan **dashboard interaktif** yang dapat menyampaikan informasi secara efektif.
 
-## Deskripsi Mata Kuliah
+## Deskripsi Mata Kuliah {.unnumbered}
 
 Mata kuliah ini akan mendiskusikan teknik visualisasi data, yang diperoleh dari hasil proses analisis. Didasarkan pada **persepsi grafis manusia**, akan dibicarakan berbagai teknik visualisasi **tradisional dan modern**.
 
 Materi yang dibahas meliputi:
 
--   **Membandingkan Kategori**
-
--   **Visualisasi Waktu**
-
--   **Distribusi**
-
--   **Geospasial**
-
--   **Hubungan Antar Peubah**
-
--   **Proporsi dan Komposisi**
-
--   **Visualisasi Kualitatif**
-
--   **Penyajian Data dalam Bentuk Tabel**
+1.  **Membandingkan Kategori**
+2.  **Visualisasi Waktu**
+3.  **Distribusi**
+4.  **Geospasial**
+5.  **Hubungan Antar Peubah**
+6.  **Proporsi dan Komposisi**
+7.  **Visualisasi Kualitatif**
+8.  **Penyajian Data dalam Bentuk Tabel**
 
 Selain itu, penggunaan **paket komputer secara intensif** akan didiskusikan untuk menghasilkan berbagai bentuk visualisasi, termasuk **animasi**, sebagai cara memperoleh informasi lebih pada data berdimensi besar.
 
-## Referensi
+## Referensi {.unnumbered}
 
 Materi praktikum ini mengadaptasi berbagai konsep dari buku:\
 📖 [**Better Data Visualizations**](https://www.amazon.com/Better-Data-Visualizations-Scholars-Researchers/dp/0231193114) - [*Jonathan Schwabish*](https://www.amazon.com/stores/Jonathan-Schwabish/author/B01L9OXP3E)
