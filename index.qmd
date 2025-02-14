@@ -48,7 +48,7 @@ Mata kuliah ini akan mendiskusikan teknik visualisasi data, yang diperoleh dari 
 Materi yang dibahas meliputi:
 
 1.  **Membandingkan Kategori**
-2.  **Visualisasi Waktu**
+2.  **Deret Waktu**
 3.  **Distribusi**
 4.  **Geospasial**
 5.  **Hubungan Antar Peubah**
