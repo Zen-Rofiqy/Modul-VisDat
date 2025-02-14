@@ -409,7 +409,7 @@ Diagram yang digunakan untuk menunjukkan hubungan antara beberapa kategori yang 
 
 -   `install.packages("C:/Users/NAMA_USER/Downloads/circlize_0.4.16.zip", repos = NULL, type = "win.binary")`
 
-```{r, warning= false}
+```{r, warning=FALSE}
 # Install dan load library jika belum ada
 # install.packages("circlize")
 # Kalo gak bisa, coba ini
