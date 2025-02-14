@@ -421,10 +421,6 @@ df <- data.frame(x, y, dist = dist)
 ```
 
 ```{r}
-# install.packages("ggvoronoi")
-# devtools::install_github("garretrc/ggvoronoi")
-library(ggvoronoi)
-
 ggplot(df, aes(x, y)) +
   stat_voronoi(geom = "path") 
 ```

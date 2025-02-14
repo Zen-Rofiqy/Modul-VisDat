@@ -1,4 +1,4 @@
-# **Deret Waktu** {#deret-waktu}
+# Deret Waktu {#deret-waktu}
 
 ```{r setup, include=FALSE}
 # Set Working Directory

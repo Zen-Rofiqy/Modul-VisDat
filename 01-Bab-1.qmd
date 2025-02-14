@@ -1,4 +1,4 @@
-# **Perbandingan Kategori** {#perbandingan-kategori}
+# Perbandingan Kategori {#perbandingan-kategori}
 
 ```{r setup, include=FALSE}
 # Set Working Directory
@@ -28,6 +28,7 @@ Diagram batang digunakan untuk membandingkan kategori.
 
 ![](images/clipboard-792151592.png){width="169"}
 
+::: panel-tabset
 ### Advanced
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -91,6 +92,7 @@ ggplot(data_ev_sorted,
   geom_bar(stat = "identity", width = 0.8, fill = "steelblue") +
   coord_flip()
 ```
+:::
 
 ## Lolipop Chart {.tabset}
 

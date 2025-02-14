@@ -38,3 +38,8 @@ library(devtools)     # Digunakan untuk mengembangkan dan menginstal package dar
 
 library(treemapify)
 library(ggwordcloud)
+library(circlize)
+
+# Cara install
+# devtools::install_github("garretrc/ggvoronoi")
+library(ggvoronoi)
