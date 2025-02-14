@@ -12,6 +12,12 @@ book:
     - index.qmd
     - 01-Bab-1.qmd
     - 02-Bab-2.qmd
+    - 03-Bab-3.qmd
+    - 04-Bab-4.qmd
+    - 05-Bab-5.qmd
+    - 06-Bab-6.qmd
+    - 07-Bab-7.qmd
+    - 08-Bab-8.qmd
   downloads: [pdf, epub]
   site-url: "https://zen-rofiqy.github.io/Modul-VisDat/"
   repo-url: "https://github.com/Zen-Rofiqy/Modul-VisDat"
