@@ -35,3 +35,5 @@ library(calendR)      # Membuat kalender visual untuk data berbasis waktu
 # ---- [Statistical Analysis & Modeling] ----
 library(fmsb)         # Membuat radar chart dan analisis statistik sederhana
 library(devtools)     # Digunakan untuk mengembangkan dan menginstal package dari GitHub
+
+library(treemapify)
