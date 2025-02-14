@@ -15,7 +15,7 @@ Visualisasi data kualitatif membantu menyampaikan informasi yang lebih deskripti
 
 Menampilkan distribusi kata dalam teks berdasarkan frekuensi penggunaannya.
 
-```{r, message=false}
+```{r, message=FALSE}
 df <- tibble(
   iso_639_3 = c("zho", "wuu", "vie", "urd", "tur", "tha",
                 "tgl", "tel", "tam", "swa", "spa", "rus",
