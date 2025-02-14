@@ -40,5 +40,6 @@ library(treemapify)
 library(ggwordcloud)
 library(circlize)
 
+# Cara install
 # devtools::install_github("garretrc/ggvoronoi")
 library(ggvoronoi)
