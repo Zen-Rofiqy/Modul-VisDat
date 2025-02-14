@@ -1,9 +1,9 @@
+# **Perbandingan Kategori** {#perbandingan-kategori}
+
 ```{r setup, include=FALSE}
 # Set Working Directory
 opts_knit$set(root.dir = normalizePath("./"))
 ```
-
-# **Perbandingan Kategori** {#perbandingan-kategori}
 
 ## Data
 
@@ -98,33 +98,12 @@ Variasi dari barchart
 
 ### Advanced
 
-```{r}
-# Cara alternatif
-data_ev_filtered <- as.data.frame(table(data_ev$Make)) %>%
-  rename(Make = Var1, n = Freq) %>%
-  filter(n > 2000) %>%
-  arrange(desc(n))
-```
-
-```{r}
-data_ev_filtered <- data_ev %>%
-  group_by(Make) %>%
-  summarise(n = n()) %>%
-  filter(n > 2000)
-```
-
-```{r}
-data_ev_filtered <- data_ev %>%
-  count(Make, name = "n") %>%
-  filter(n > 2000)
-```
-
 ```{r fig.height=5, fig.width=10, dpi=300}
 # Sort & Filter
 data_ev_filtered <- data_ev %>%
-  count(Make, name = "n") %>%
-  filter(n > 2000) %>%  
-  arrange(desc(n)) %>%
+  count(Make, name = "count") %>%
+  dplyr::filter(count > 2000) %>%  
+  arrange(desc(count)) %>%
   mutate(Make = str_to_title(Make))  
 
 # Top 3
@@ -247,7 +226,7 @@ Membandingkan dua set kategori yang terkait.
 ```{r fig.height=5, fig.width=12, dpi=300}
 data_ev_grouped <- data_ev %>%
   count(Make, Electric.Vehicle.Type, name = "count") %>%
-  filter(count > 1000) %>%
+  dplyr::filter(count > 1000) %>%
   arrange(desc(count)) %>%
   mutate(Make = str_to_title(Make))  # Kapitalisasi merek
 
@@ -309,7 +288,7 @@ ggsave("Chart/01_Bar_Paired.png", chart, dpi = 300, height = 5, width = 10)
 ```{r fig.height=5, fig.width=12, dpi=300}
 data_ev_grouped <- data_ev %>%
   count(Make, CAFV.Eligibility.Simple, name = "count") %>%
-  filter(count > 1000) %>%
+  dplyr::filter(count > 1000) %>%
   arrange(desc(count)) %>%
   mutate(Make = str_to_title(Make))  # Kapitalisasi merek
 
@@ -387,7 +366,7 @@ Menampilkan perbandingan komposisi antar kategori.
 ```{r fig.height=5, fig.width=10, dpi=300}
 data_ev_grouped <- data_ev %>%
   count(Make, CAFV.Eligibility.Simple, name = "count") %>%
-  filter(count > 1000) %>%
+  dplyr::filter(count > 1000) %>%
   arrange(desc(count)) %>%
   mutate(Make = str_to_title(Make))  # Kapitalisasi merek
 
@@ -450,7 +429,7 @@ ggsave("Chart/01_Bar_Paired.png", chart, dpi = 300, height = 5, width = 10)
 ```{r fig.height=5, fig.width=10, dpi=300}
 data_ev_grouped <- data_ev %>%
   count(Make, CAFV.Eligibility.Simple, name = "count") %>%
-  filter(sum(count) > 1000, .by = Make) %>%  # Pastikan hanya merek dengan total >1000 kendaraan
+  dplyr::filter(sum(count) > 1000, .by = Make) %>%  # Pastikan hanya merek dengan total >1000 kendaraan
   arrange(desc(count)) %>%
   mutate(Make = str_to_title(Make))  # Kapitalisasi merek
 
@@ -543,7 +522,7 @@ data_survey <- data_survey %>%
 data_survey_cleaned <- data_survey %>%
   
   # Filter hanya respon valid (hapus Not Applicable dan data kosong)
-  filter(Response.Text != "Not Applicable", Response.Text != "") %>%
+  dplyr::filter(Response.Text != "Not Applicable", Response.Text != "") %>%
   
   # Ubah Response.Text menjadi angka
   mutate(Response.Value = case_when(
@@ -564,7 +543,7 @@ data_survey_cleaned <- data_survey_cleaned %>%
 # Ubah sisi negatif untuk visualisasi divergen
 data_survey_cleaned <- data_survey_cleaned %>%
   mutate(Count = ifelse(Response.Value < 0, -Count, Count)) %>%
-  filter(Question != "Q.12") %>%
+  dplyr::filter(Question != "Q.12") %>%
   mutate(Question = factor(Question, levels = rev(unique(Question))))
 ```
 
@@ -669,7 +648,7 @@ unit_chart_data <- bind_rows(unit_2000, unit_2015)
 
 # Plot Unit Chart
 ggplot(unit_chart_data, aes(x = x, y = y, fill = Year)) +
-  geom_tile(color = "white", size = 0.5) +
+  geom_tile(color = "white", linewidth = 0.5) +
   scale_fill_manual(values = c("2000" = "orange", "2015" = "blue")) +
   labs(title = "Unit Chart: Poverty Reduction",
        subtitle = "Each square represents 1 million people",
