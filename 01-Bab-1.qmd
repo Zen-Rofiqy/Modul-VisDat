@@ -102,7 +102,7 @@ Variasi dari barchart
 # Sort & Filter
 data_ev_filtered <- data_ev %>%
   count(Make, name = "count") %>%
-  filter(count > 2000) %>%  
+  dplyr::filter(count > 2000) %>%  
   arrange(desc(count)) %>%
   mutate(Make = str_to_title(Make))  
 
