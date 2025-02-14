@@ -98,12 +98,33 @@ Variasi dari barchart
 
 ### Advanced
 
+```{r}
+# Cara alternatif
+data_ev_filtered <- as.data.frame(table(data_ev$Make)) %>%
+  rename(Make = Var1, n = Freq) %>%
+  filter(n > 2000) %>%
+  arrange(desc(n))
+```
+
+```{r}
+data_ev_filtered <- data_ev %>%
+  group_by(Make) %>%
+  summarise(n = n()) %>%
+  filter(n > 2000)
+```
+
+```{r}
+data_ev_filtered <- data_ev %>%
+  count(Make, name = "n") %>%
+  filter(n > 2000)
+```
+
 ```{r fig.height=5, fig.width=10, dpi=300}
 # Sort & Filter
 data_ev_filtered <- data_ev %>%
-  count(Make, name = "count") %>%
-  filter(count > 2000) %>%  
-  arrange(desc(count)) %>%
+  count(Make, name = "n") %>%
+  filter(n > 2000) %>%  
+  arrange(desc(n)) %>%
   mutate(Make = str_to_title(Make))  
 
 # Top 3
