@@ -34,7 +34,7 @@
     "href": "index.html#deskripsi-mata-kuliah",
     "title": "Modul Praktikum Visualisasi Data",
     "section": "Deskripsi Mata Kuliah",
-    "text": "Deskripsi Mata Kuliah\nMata kuliah ini akan mendiskusikan teknik visualisasi data, yang diperoleh dari hasil proses analisis. Didasarkan pada persepsi grafis manusia, akan dibicarakan berbagai teknik visualisasi tradisional dan modern.\nMateri yang dibahas meliputi:\n\nMembandingkan Kategori\nVisualisasi Waktu\nDistribusi\nGeospasial\nHubungan Antar Peubah\nProporsi dan Komposisi\nVisualisasi Kualitatif\nPenyajian Data dalam Bentuk Tabel\n\nSelain itu, penggunaan paket komputer secara intensif akan didiskusikan untuk menghasilkan berbagai bentuk visualisasi, termasuk animasi, sebagai cara memperoleh informasi lebih pada data berdimensi besar.",
+    "text": "Deskripsi Mata Kuliah\nMata kuliah ini akan mendiskusikan teknik visualisasi data, yang diperoleh dari hasil proses analisis. Didasarkan pada persepsi grafis manusia, akan dibicarakan berbagai teknik visualisasi tradisional dan modern.\nMateri yang dibahas meliputi:\n\nMembandingkan Kategori\nDeret Waktu\nDistribusi\nGeospasial\nHubungan Antar Peubah\nProporsi dan Komposisi\nVisualisasi Kualitatif\nPenyajian Data dalam Bentuk Tabel\n\nSelain itu, penggunaan paket komputer secara intensif akan didiskusikan untuk menghasilkan berbagai bentuk visualisasi, termasuk animasi, sebagai cara memperoleh informasi lebih pada data berdimensi besar.",
     "crumbs": [
       "Pendahuluan"
     ]
@@ -56,7 +56,7 @@
     "section": "",
     "text": "1.1 Data\nCode\ndata_ev &lt;- read.csv(\"Data/EV_Population.csv\")\ndata_survey &lt;- read.csv(\"Data/employee-survey.csv\", sep=\"|\")",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -66,7 +66,7 @@
     "section": "",
     "text": "Placement Prediction Dataset\nMobile Apps ScreenTime Analysis\nElectric Vehicle Population\nS&P 500, ETF, FX & Crypto (Daily updated)\nDiscover Perspectives: HR Analytics Employee",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -76,7 +76,7 @@
     "section": "1.2 Bar Charts",
     "text": "1.2 Bar Charts\nDiagram batang digunakan untuk membandingkan kategori.\n\n\n1.2.1 Advanced\n\n\nCode\n# Sort\ndata_ev_sorted &lt;- data_ev %&gt;%\n  count(Make, name = \"count\") %&gt;%\n  arrange(desc(count)) %&gt;%\n  mutate(Make = str_to_title(Make))\n\n# Top 3\ntop3 &lt;- head(data_ev_sorted$Make, 3)\n\n# Viz\nchart &lt;- \n  ggplot(data_ev_sorted, \n         aes(x = reorder(Make, count), y = count, \n             fill = ifelse(Make %in% top3, \"steelblue\", \"gray50\"))) +\n  # Bar chart\n  geom_bar(stat = \"identity\", width = 0.8) + \n  scale_fill_identity() +  # Apply warna tanpa legend\n  \n  # Label ujung bar\n  geom_text(aes(label = count), hjust = -0.2, size = 2.5) +\n  \n  # Settings\n  geom_hline(yintercept = -0.3, color = \"black\", linewidth = 0.5) +  \n  coord_flip() +\n  theme_minimal() +\n  \n  labs(title = \"Dominasi Tesla dalam Pasar Kendaraan Listrik\",\n       subtitle = \"Frekuensi Pendaftaran Kendaraan Listrik dari Berbagai Brand\",\n       x = \"\", \n       y = \"\") +\n  theme(axis.text.y = element_text(size = 8, hjust = 1, face = \"bold\", \n                                   margin = margin(r = -25)),\n        plot.title = element_text(hjust = -0.17, size = 14, face = \"bold\"),\n        plot.subtitle = element_text(hjust = -0.13, size = 8),\n        panel.grid.major.y = element_blank(),\n        panel.grid.major.x = element_line(linetype = \"dashed\"),\n        panel.grid.minor.x = element_line(linetype = \"dashed\")\n  )\n\nchart\n\n\n\n\n\n\n\n\n\nCode\n# Save Chart\nggsave(\"Chart/01_Bar.png\", chart, dpi = 300, height = 5, width = 10)\n\n\n\n\n1.2.2 Sederhana\n\n\nCode\nggplot(data_ev, aes(x = Make)) +\n  # Bar chart\n  geom_bar(fill = \"#f1bb68\")\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data_ev_sorted, \n       aes(x = reorder(Make, count), y = count)) +\n  # Bar chart\n  geom_bar(stat = \"identity\", width = 0.8, fill = \"steelblue\") +\n  coord_flip()",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -86,7 +86,7 @@
     "section": "1.3 Lolipop Chart",
     "text": "1.3 Lolipop Chart\nVariasi dari barchart\n\n1.3.1 Advanced\n\n\nCode\n# Sort & Filter\ndata_ev_filtered &lt;- data_ev %&gt;%\n  count(Make, name = \"count\") %&gt;%\n  dplyr::filter(count &gt; 2000) %&gt;%  \n  arrange(desc(count)) %&gt;%\n  mutate(Make = str_to_title(Make))  \n\n# Top 3\ntop3 &lt;- head(data_ev_filtered$Make, 3)\n\nchart &lt;-\n  ggplot(data_ev_filtered, aes(x = reorder(Make, count), y = count)) +\n  \n  # Lolipop Stick\n  geom_segment(aes(xend = Make, y = 0, yend = count), \n               color = ifelse(data_ev_filtered$Make %in% top3, \n                              \"steelblue\", \"gray50\"),\n               linewidth = 1.5) +\n  \n  # Lolipop Head\n  geom_point(size = 10, \n             pch = 19, \n             color = ifelse(data_ev_filtered$Make %in% top3, \n                            \"steelblue\", \"gray50\")) +\n  \n  # Label\n  geom_text(aes(label = count), color = \"white\", size = 2.5, fontface = \"bold\") +\n  \n  # Tema dan layout\n  coord_flip() +\n  theme_minimal() +\n  scale_color_identity() +  # Apply warna tanpa legend\n  geom_hline(yintercept = -0.3, color = \"black\", linewidth = 0.5) +  \n  \n  labs(title = \"Dominasi tesla dalam pasar kendaraan listrik\",\n       subtitle = \"Hanya menampilkan brand dengan lebih 2000 kendaraan terdaftar\",\n       x = \"\", \n       y = \"\") +\n  \n  theme(axis.text.y = element_text(size = 8, hjust = 1, face = \"bold\", \n                                   margin = margin(r = -25)),\n        plot.title = element_text(hjust = -0.05, size = 14, face = \"bold\"),\n        plot.subtitle = element_text(hjust = -0.04, size = 8),\n        panel.grid.major.y = element_blank(),\n        panel.grid.major.x = element_line(linetype = \"dashed\"),\n        panel.grid.minor.x = element_line(linetype = \"dashed\")\n  )\n\nchart\n\n\n\n\n\n\n\n\n\nCode\n# Save Chart\nggsave(\"Chart/02_lolipop.png\", chart, dpi = 300, height = 5, width = 10)\n\n\n\n\n1.3.2 Size\n\n\nCode\nchart &lt;-\n  ggplot(data_ev_filtered, aes(x = reorder(Make, count), y = count)) +\n  \n  # Lolipop Stick\n  geom_segment(aes(xend = Make, y = 0, yend = count), \n               color = ifelse(data_ev_filtered$Make %in% top3, \"steelblue\", \"gray50\"),\n               linewidth = 1.5) +\n  \n  # Lolipop Head \n  geom_point(aes(size = count, \n                 color = ifelse(Make %in% top3, \"steelblue\", \"gray50\")), \n             pch = 19) +\n  \n  # Tema dan layout\n  coord_flip() +\n  theme_minimal() +\n  scale_color_identity() +  # Apply warna tanpa legend\n  scale_size_continuous(range = c(2, 14)) +  # Ukuran lebih besar\n  geom_hline(yintercept = -0.3, color = \"black\", linewidth = 0.5) +  \n  \n  labs(title = \"Dominasi Tesla dalam Pasar Kendaraan Listrik\",\n       subtitle = \"Hanya Menampilkan Brand dengan Lebih 2000 Kendaraan Terdaftar\",\n       x = \"\", \n       y = \"\") +\n  \n  theme(axis.text.y = element_text(size = 8, hjust = 1, face = \"bold\", \n                                   margin = margin(r = -25)),\n        plot.title = element_text(hjust = -0.05, size = 14, face = \"bold\"),\n        plot.subtitle = element_text(hjust = -0.04, size = 8),\n        panel.grid.major.y = element_blank(),\n        panel.grid.major.x = element_line(linetype = \"dashed\"),\n        panel.grid.minor.x = element_line(linetype = \"dashed\"),\n        legend.position = \"none\"\n  )\n\nchart\n\n\n\n\n\n\n\n\n\nCode\n# Save Chart\nggsave(\"Chart/02_lolipop_var.png\", chart, dpi = 300, height = 5, width = 10)\n\n\n\n\n1.3.3 Sederhana\n\n\nCode\nchart &lt;-\n  ggplot(data_ev_filtered, aes(x = reorder(Make, count), y = count)) +\n  \n  # Lolipop Stick\n  geom_segment(aes(xend = Make, y = 0, yend = count), \n               color = \"steelblue\",\n               linewidth = 1.5) +\n  \n  # Lolipop Head \n  geom_point(size = 10, color = \"steelblue\", pch = 19) +\n  coord_flip()\n\nchart",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -96,7 +96,7 @@
     "section": "1.4 Paired Bar",
     "text": "1.4 Paired Bar\nMembandingkan dua set kategori yang terkait.\n\n\n1.4.1 Advanced 1\n\n\nCode\ndata_ev_grouped &lt;- data_ev %&gt;%\n  count(Make, Electric.Vehicle.Type, name = \"count\") %&gt;%\n  dplyr::filter(count &gt; 1000) %&gt;%\n  arrange(desc(count)) %&gt;%\n  mutate(Make = str_to_title(Make))  # Kapitalisasi merek\n\n# Top 3 merek berdasarkan total kendaraan\ntop3 &lt;- data_ev_grouped %&gt;%\n  group_by(Make) %&gt;%\n  summarise(total = sum(count)) %&gt;%\n  arrange(desc(total)) %&gt;%\n  head(3) %&gt;%\n  pull(Make)\n\n# Paired Bar Chart\nchart &lt;- ggplot(data_ev_grouped, \n                aes(x = reorder(Make, count), y = count, fill = Electric.Vehicle.Type)) +\n  \n  # Bar chart dengan posisi dodge untuk perbandingan antar kategori\n  geom_bar(stat = \"identity\", position = \"dodge\", width = 0.8) +\n  \n  # Label di ujung bar\n  geom_text(aes(label = count), position = position_dodge(width = 0.8), \n            hjust = -0.2, size = 3) +\n  \n  # Garis grid horizontal\n  geom_hline(yintercept = -0.3, color = \"black\", linewidth = 0.5) +\n  \n  coord_flip() +\n  theme_minimal() +\n  \n  # Warna berbeda untuk kategori kendaraan listrik\n  scale_fill_manual(values = c(\"BEV\" = \"#6a3f48\",\n                               \"PHEV\" = \"#caa847\")) +\n  \n  labs(title = \"Dominasi Tesla dalam Pasar Kendaraan Listrik\",\n       subtitle = \"Frekuensi Pendaftaran Kendaraan Listrik BEV dan PHEV dari Berbagai Merek\",\n       fill = \"Jenis Kendaraan\",  # Label legend\n       x = \"\", \n       y = \"\") +\n  \n  theme(axis.text.y = element_text(size = 8, hjust = 1, face = \"bold\", \n                                   margin = margin(r = -25)),\n        plot.title = element_text(hjust = -0.06, size = 14, face = \"bold\"),\n        plot.subtitle = element_text(hjust = -0.05, size = 8),\n        panel.grid.major.y = element_blank(),\n        panel.grid.major.x = element_line(linetype = \"dashed\"),\n        panel.grid.minor.x = element_line(linetype = \"dashed\"),\n        legend.text = element_text(size = 8),  \n        legend.title = element_text(size = 8), \n        legend.key.size = unit(0.5, \"cm\")     \n  )\n\nchart\n\n\n\n\n\n\n\n\n\nCode\n# Save Chart\nggsave(\"Chart/01_Bar_Paired.png\", chart, dpi = 300, height = 5, width = 10)\n\n\n\n\n1.4.2 Advanced 2\n\n\nCode\ndata_ev_grouped &lt;- data_ev %&gt;%\n  count(Make, CAFV.Eligibility.Simple, name = \"count\") %&gt;%\n  dplyr::filter(count &gt; 1000) %&gt;%\n  arrange(desc(count)) %&gt;%\n  mutate(Make = str_to_title(Make))  # Kapitalisasi merek\n\n# Top 3 merek berdasarkan total kendaraan\ntop3 &lt;- data_ev_grouped %&gt;%\n  group_by(Make) %&gt;%\n  summarise(total = sum(count)) %&gt;%\n  arrange(desc(total)) %&gt;%\n  head(3) %&gt;%\n  pull(Make)\n\n# Paired Bar Chart\nchart &lt;- ggplot(data_ev_grouped, \n                aes(x = reorder(Make, count), y = count, fill = CAFV.Eligibility.Simple)) +\n  \n  # Bar chart dengan posisi dodge untuk perbandingan antar kategori\n  geom_bar(stat = \"identity\", position = \"dodge\", width = 0.8) +\n  \n  # Label di ujung bar\n  geom_text(aes(label = count), position = position_dodge(width = 0.8), \n            hjust = -0.2, size = 3) +\n  \n  # Garis grid horizontal\n  geom_hline(yintercept = -0.3, color = \"black\", linewidth = 0.5) +\n  \n  coord_flip() +\n  theme_minimal() +\n  \n  # Warna berbeda untuk kategori kendaraan listrik\n  scale_fill_manual(values = c(\"Eligible\" = \"#88b07e\",\n                               \"Not Eligible\" = \"#9c3b66\")) +\n  \n  labs(title = \"Dominasi Tesla dalam Pasar Kendaraan Listrik\",\n       subtitle = \"Perbandingan Kelayakan Kendaraan Listrik di Berbagai Merek\",\n       fill = \"Jenis Kendaraan\",  # Label legend\n       x = \"\", \n       y = \"\") +\n  \n  theme(axis.text.y = element_text(size = 8, hjust = 1, face = \"bold\", \n                                   margin = margin(r = -25)),\n        plot.title = element_text(hjust = -0.06, size = 14, face = \"bold\"),\n        plot.subtitle = element_text(hjust = -0.05, size = 8),\n        panel.grid.major.y = element_blank(),\n        panel.grid.major.x = element_line(linetype = \"dashed\"),\n        panel.grid.minor.x = element_line(linetype = \"dashed\"),\n        legend.text = element_text(size = 8),  \n        legend.title = element_text(size = 8), \n        legend.key.size = unit(0.5, \"cm\")     \n  )\n\nchart\n\n\n\n\n\n\n\n\n\nCode\n# Save Chart\nggsave(\"Chart/01_Bar_Paired.png\", chart, dpi = 300, height = 5, width = 10)\n\n\n\n\n1.4.3 Sederhana\n\n\nCode\nggplot(data_ev, \n       aes(x = Make, fill=Electric.Vehicle.Type)) +\n  # Bar chart\n  geom_bar(position=\"dodge\") +\n  coord_flip()",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -106,7 +106,7 @@
     "section": "1.5 Stacked Bar",
     "text": "1.5 Stacked Bar\nMenampilkan perbandingan komposisi antar kategori.\n\n\n1.5.1 Advanced Freq\n\n\nCode\ndata_ev_grouped &lt;- data_ev %&gt;%\n  count(Make, CAFV.Eligibility.Simple, name = \"count\") %&gt;%\n  dplyr::filter(count &gt; 1000) %&gt;%\n  arrange(desc(count)) %&gt;%\n  mutate(Make = str_to_title(Make))  # Kapitalisasi merek\n\n# Top 3 merek berdasarkan total kendaraan\ntop3 &lt;- data_ev_grouped %&gt;%\n  group_by(Make) %&gt;%\n  summarise(total = sum(count)) %&gt;%\n  arrange(desc(total)) %&gt;%\n  head(3) %&gt;%\n  pull(Make)\n\n# Paired Bar Chart\nchart &lt;- ggplot(data_ev_grouped, \n                aes(x = reorder(Make, count), y = count, fill = CAFV.Eligibility.Simple)) +\n  \n  # Bar chart dengan posisi dodge untuk perbandingan antar kategori\n  geom_bar(stat = \"identity\", position = \"stack\", width = 0.8) +\n  \n  # Label di ujung bar\n  geom_text(aes(label = count), \n            position = position_stack(vjust = 0.5), \n            size = 3, color = \"white\", fontface = \"bold\") +\n  \n  # Garis grid horizontal\n  geom_hline(yintercept = -0.3, color = \"black\", linewidth = 0.5) +\n  \n  coord_flip() +\n  theme_minimal() +\n  \n  # Warna berbeda untuk kategori kendaraan listrik\n  scale_fill_manual(values = c(\"Eligible\" = \"#88b07e\",\n                               \"Not Eligible\" = \"#9c3b66\")) +\n  \n  labs(title = \"Dominasi Tesla dalam Pasar Kendaraan Listrik\",\n       subtitle = \"Perbandingan Kelayakan Kendaraan Listrik di Berbagai Merek\",\n       fill = \"Jenis Kendaraan\",  # Label legend\n       x = \"\", \n       y = \"\") +\n  \n  theme(axis.text.y = element_text(size = 8, hjust = 1, face = \"bold\", \n                                   margin = margin(r = -25)),\n        plot.title = element_text(hjust = -0.06, size = 14, face = \"bold\"),\n        plot.subtitle = element_text(hjust = -0.05, size = 8),\n        panel.grid.major.y = element_blank(),\n        panel.grid.major.x = element_line(linetype = \"dashed\"),\n        panel.grid.minor.x = element_line(linetype = \"dashed\"),\n        legend.text = element_text(size = 8),  \n        legend.title = element_text(size = 8), \n        legend.key.size = unit(0.5, \"cm\")     \n  )\n\nchart\n\n\n\n\n\n\n\n\n\nCode\n# Save Chart\nggsave(\"Chart/01_Bar_Paired.png\", chart, dpi = 300, height = 5, width = 10)\n\n\n\n\n1.5.2 Advanced %\n\n\nCode\ndata_ev_grouped &lt;- data_ev %&gt;%\n  count(Make, CAFV.Eligibility.Simple, name = \"count\") %&gt;%\n  dplyr::filter(sum(count) &gt; 1000, .by = Make) %&gt;%  # Pastikan hanya merek dengan total &gt;1000 kendaraan\n  arrange(desc(count)) %&gt;%\n  mutate(Make = str_to_title(Make))  # Kapitalisasi merek\n\n# Hitung proporsi dalam setiap merek\ndata_ev_grouped &lt;- data_ev_grouped %&gt;%\n  group_by(Make) %&gt;%\n  mutate(percentage = count / sum(count)) %&gt;%\n  ungroup()\n\n# Stacked Bar Chart dengan Persentase\nchart &lt;- ggplot(data_ev_grouped, \n                aes(x = Make, y = percentage, fill = CAFV.Eligibility.Simple)) +\n  \n  # Bar chart full persentase\n  geom_bar(stat = \"identity\", position = \"fill\", width = 0.8) +\n  \n  # Label di tengah bar dalam format persen\n  geom_text(aes(label = scales::percent(percentage, accuracy = 1)), \n            position = position_fill(vjust = 0.5), \n            size = 3, color = \"white\", fontface = \"bold\") +\n  \n  # Grid horizontal\n  geom_hline(yintercept = 0, color = \"black\", linewidth = 0.5) +\n  \n  coord_flip() +\n  theme_minimal() +\n  \n  # Warna berbeda untuk kategori eligibility\n  scale_fill_manual(values = c(\"Not Eligible\" = \"#9c3b66\",\n                               \"Eligible\" = \"#88b07e\")) +\n  \n  labs(title = \"Dominasi Tesla dalam Pasar Kendaraan Listrik\",\n       subtitle = \"Distribusi Persentase Kelayakan Kendaraan Listrik di Berbagai Merek\",\n       fill = \"Jenis Kendaraan\",\n       x = \"\", \n       y = \"Persentase\") +\n  \n  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +  # Pastikan sumbu Y dalam persen\n  \n  theme(axis.text.y = element_text(size = 8, hjust = 1, face = \"bold\", \n                                   margin = margin(r = -25)),\n        plot.title = element_text(hjust = -0.07, size = 14, face = \"bold\"),\n        plot.subtitle = element_text(hjust = -0.06, size = 8),\n        panel.grid.major.y = element_blank(),\n        panel.grid.major.x = element_line(linetype = \"dashed\"),\n        panel.grid.minor.x = element_line(linetype = \"dashed\"),\n        legend.text = element_text(size = 8),  \n        legend.key.size = unit(0.5, \"cm\"),\n        legend.position = \"top\",\n        legend.direction = \"horizontal\",\n        legend.justification = c(-0.055, 0.5)\n  ) +\n  guides(fill = guide_legend(title = NULL))\n\nchart\n\n\n\n\n\n\n\n\n\nCode\n# Save Chart\nggsave(\"Chart/Stacked_Bar_Percentage.png\", chart, dpi = 300, height = 5, width = 10)\n\n\n\n\n1.5.3 Sederhana\n\n\nCode\nggplot(data_ev, \n       aes(x = Make, fill=Electric.Vehicle.Type)) +\n  # Bar chart\n  geom_bar(position=\"stack\") +\n  coord_flip()",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -116,7 +116,7 @@
     "section": "1.6 Diverging Bar",
     "text": "1.6 Diverging Bar\nMenunjukkan distribusi kategori dengan skala positif-negatif.\n\n\n\nCode\n# Buat mapping unik untuk setiap pertanyaan\nquestion_map &lt;- data_survey %&gt;%\n  distinct(Question) %&gt;%\n  mutate(Q_Label = paste0(\"Q.\", str_pad(row_number(), 2, pad = \"0\")))  # Ubah ke dua digit\n\n# Gabungkan kembali ke data asli\ndata_survey &lt;- data_survey %&gt;%\n  left_join(question_map, by = \"Question\") %&gt;%\n  select(-Question) %&gt;%\n  rename(Question = Q_Label)  # Ganti dengan label baru\n\n# Konversi teks ke angka menggunakan mutate + case_when()\ndata_survey_cleaned &lt;- data_survey %&gt;%\n  \n  # Filter hanya respon valid (hapus Not Applicable dan data kosong)\n  dplyr::filter(Response.Text != \"Not Applicable\", Response.Text != \"\") %&gt;%\n  \n  # Ubah Response.Text menjadi angka\n  mutate(Response.Value = case_when(\n    Response.Text == \"Strongly Agree\" ~ 2,\n    Response.Text == \"Agree\" ~ 1,\n    Response.Text == \"Disagree\" ~ -1,\n    Response.Text == \"Strongly Disagree\" ~ -2\n  )) %&gt;%\n  \n  # Hitung jumlah masing-masing respons per pertanyaan\n  count(Question, Response.Text, Response.Value, name = \"Count\")\n\n# Pastikan faktor dalam urutan yang benar\ndata_survey_cleaned &lt;- data_survey_cleaned %&gt;%\n  mutate(Response.Text = factor(Response.Text, \n                                levels = c(\"Strongly Agree\", \"Agree\", \"Disagree\", \"Strongly Disagree\")))\n\n# Ubah sisi negatif untuk visualisasi divergen\ndata_survey_cleaned &lt;- data_survey_cleaned %&gt;%\n  mutate(Count = ifelse(Response.Value &lt; 0, -Count, Count)) %&gt;%\n  dplyr::filter(Question != \"Q.12\") %&gt;%\n  mutate(Question = factor(Question, levels = rev(unique(Question))))\n\n\n\n\nCode\n# Warna divergen\ncolor_palette &lt;- c(\"Strongly Agree\" = \"#08306b\",\n                   \"Agree\" = \"#6baed6\",\n                   \"Disagree\" = \"#fcae91\",\n                   \"Strongly Disagree\" = \"#cb181d\")\n\n# Plot diverging bar chart dengan label frekuensi\nggplot(data_survey_cleaned, aes(x = Question, y = Count, fill = Response.Text)) +\n  geom_bar(stat = \"identity\", position = \"stack\", width = 0.8) +\n  scale_fill_manual(values = color_palette) +\n  \n  # Tambahkan label frekuensi di dalam bar\n  geom_text(aes(label = abs(Count)), \n            position = position_stack(vjust = 0.5), \n            size = 3, color = \"white\", fontface = \"bold\") +\n\n  coord_flip() +\n  theme_minimal() +\n  \n  labs(title = \"Survey Responses - Diverging Bar Chart\",\n       subtitle = \"Distribusi Sentimen Responden Berdasarkan Pertanyaan\",\n       x = \"\", \n       y = \"\") +\n  \n  scale_y_continuous(breaks = seq(-50, 50, 10), labels = abs(seq(-50, 50, 10))) +  # Pastikan label y tetap positif\n  theme(panel.grid.major.y = element_blank(),\n        panel.grid.minor.y = element_blank(),\n        panel.grid.major.x = element_line(linetype = \"dashed\"),\n        legend.position = \"top\",\n        legend.direction = \"horizontal\",\n        legend.title = element_blank())  # Hilangkan judul legend",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -126,7 +126,7 @@
     "section": "1.7 Dot Plot",
     "text": "1.7 Dot Plot\nDigunakan untuk menunjukkan distribusi atau perbandingan antar kategori.\n\n\n\nCode\n# Buat dataset PISA\ndata_pisa &lt;- data.frame(\n  Country = c(\"Japan\", \"Switzerland\", \"Denmark\", \"France\", \"Australia\", \n              \"United States\", \"Turkey\", \"Greece\", \"Chile\", \"Mexico\"),\n  Math = c(532, 520, 509, 495, 503, 487, 454, 437, 423, 408), \n  Reading = c(520, 506, 497, 493, 499, 480, 460, 440, 420, 405)\n)\n\n# Ubah data ke format long untuk visualisasi dot plot\ndata_pisa_long &lt;- data_pisa %&gt;%\n  pivot_longer(cols = c(Math, Reading), names_to = \"Subject\", values_to = \"Score\")\n\n# Warna untuk kategori Math dan Reading\ncolor_palette &lt;- c(\"Math\" = \"#1f77b4\", \"Reading\" = \"#d62728\")\n\n# Plot dot plot\nggplot(data_pisa_long, aes(x = Score, y = reorder(Country, Score), color = Subject)) +\n  geom_point(size = 4) +  # Titik\n  geom_line(aes(group = Country), color = \"black\") +  # Garis penghubung antara dua titik\n  scale_color_manual(values = color_palette) +  # Warna kategori\n  theme_minimal() +\n  labs(title = \"PISA Scores for Math and Reading among 10 OECD Countries\",\n       x = \"PISA Score\",\n       y = \"\",\n       color = \"Subject\") +\n  theme(legend.position = \"top\",\n        legend.direction = \"horizontal\",\n        plot.title = element_text(size = 14, face = \"bold\"),\n        axis.text.y = element_text(face = \"bold\"))",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -136,7 +136,7 @@
     "section": "1.8 Marimekko and Mosaic Charts",
     "text": "1.8 Marimekko and Mosaic Charts\nVisualisasi untuk membandingkan proporsi dua variabel kategori.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -146,7 +146,7 @@
     "section": "1.9 Unit, Isotype, and Waffle Charts",
     "text": "1.9 Unit, Isotype, and Waffle Charts\nDigunakan untuk menampilkan proporsi dalam bentuk ikon atau blok.\n  \n\n1.9.1 Unit Chart\n\n\nCode\n# Buat dataset grid untuk tahun 2000 (100 kotak) dan tahun 2015 (57 kotak)\nunit_2000 &lt;- expand.grid(x = 1:10, y = 1:10) %&gt;% \n  mutate(Year = \"2000\") %&gt;% \n  slice(1:100)  # Ambil hanya 100 unit\n\nunit_2015 &lt;- expand.grid(x = 1:10, y = 1:10) %&gt;% \n  mutate(Year = \"2015\") %&gt;% \n  slice(1:57)  # Ambil hanya 57 unit\n\n# Gabungkan dataset\nunit_chart_data &lt;- bind_rows(unit_2000, unit_2015)\n\n# Plot Unit Chart\nggplot(unit_chart_data, aes(x = x, y = y, fill = Year)) +\n  geom_tile(color = \"white\", linewidth = 0.5) +\n  scale_fill_manual(values = c(\"2000\" = \"orange\", \"2015\" = \"blue\")) +\n  labs(title = \"Unit Chart: Poverty Reduction\",\n       subtitle = \"Each square represents 1 million people\",\n       x = \"\", y = \"\") +\n  facet_wrap(~Year, scales = \"free\") +  # Pisahkan per Tahun\n  theme_void() +\n  theme(legend.position = \"none\")  # Sembunyikan legend\n\n\n\n\n\n\n\n\n\n\n\n1.9.2 Waffle Chart\n\n\nCode\n# Buat data proporsi\npoverty_data &lt;- c(\"Nigeria (54%)\" = 54, \"Ethiopia (27%)\" = 27, \"Others\" = 19)\n\n# Waffle Chart\nwaffle(poverty_data, rows = 10, colors = c(\"#E15759\", \"#F28E2B\", \"#BAB0AC\")) +\n  labs(title = \"Waffle Chart: Poverty Distribution\",\n       subtitle = \"Percentage of People in Extreme Poverty\") +\n  theme_minimal()",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -156,7 +156,7 @@
     "section": "1.10 Heatmap",
     "text": "1.10 Heatmap\nVisualisasi matriks yang menggunakan warna untuk mewakili nilai numerik.\n\n\n\nCode\n# Membuat data untuk 3 bulan (Januari-Maret 2024)\ndates &lt;- seq(as.Date(\"2024-01-01\"), as.Date(\"2024-03-31\"), by = \"day\")\nset.seed(123)\ndata &lt;- data.frame(\n  date = dates,\n  value = runif(length(dates), 0, 100)\n)\n\n# Menambahkan informasi hari dan minggu\ndata &lt;- data %&gt;%\n  mutate(\n    weekday = wday(date, week_start = 1), # 1 = Senin sebagai awal minggu\n    week = week(date),\n    month = format(date, \"%B\"),\n    monthweek = as.numeric(format(date, \"%W\")) - \n                as.numeric(format(as.Date(paste0(format(date, \"%Y-%m\"), \"-01\")), \"%W\")) + 1\n  )\n\n# Membuat plot\nggplot(data, aes(x = weekday, y = monthweek, fill = value)) +\n  geom_tile(color = \"white\", size = 0.1) +\n  scale_fill_gradient(low = \"#e5f5f9\", high = \"#2ca25f\") +\n  facet_wrap(~month, ncol = 3, scales = \"free\") +\n  scale_x_continuous(\n    breaks = 1:7,\n    labels = c(\"Su\", \"Mo\", \"Tu\", \"We\", \"Th\", \"Fr\", \"Sa\"),\n    expand = c(0, 0)\n  ) +\n  scale_y_reverse(expand = c(0, 0)) +\n  theme_minimal() +\n  theme(\n    axis.title = element_blank(),\n    panel.grid = element_blank(),\n    legend.position = \"none\",\n    strip.text = element_text(size = 12, face = \"bold\"),\n    plot.background = element_rect(fill = \"white\", color = NA),\n    panel.background = element_rect(fill = \"white\", color = NA)\n  ) +\n  labs(title = \"Calendar Heatmap\")\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Alternative menggunakan package calendR\n# Membuat tiga kalender terpisah\ncalendR(year = 2024, month = 1, \n        special.days = runif(31, 0, 100),\n        gradient = TRUE,\n        low.col = \"#e5f5f9\",\n        special.col = \"#2ca25f\",\n        title = \"January 2024\")\n\n\n\n\n\n\n\n\n\nCode\ncalendR(year = 2024, month = 2, \n        special.days = runif(29, 0, 100),\n        gradient = TRUE,\n        low.col = \"#e5f5f9\",\n        special.col = \"#2ca25f\",\n        title = \"February 2024\")\n\n\n\n\n\n\n\n\n\nCode\ncalendR(year = 2024, month = 3, \n        special.days = runif(31, 0, 100),\n        gradient = TRUE,\n        low.col = \"#e5f5f9\",\n        special.col = \"#2ca25f\",\n        title = \"March 2024\")",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -166,7 +166,7 @@
     "section": "1.11 Gauge and Bullet Charts",
     "text": "1.11 Gauge and Bullet Charts\nMenampilkan pengukuran dalam format indikator atau skala.\n\n\n\nCode\n# Buat Data Bullet Chart\nbullet_data &lt;- data.frame(\n  Category = c(\"ALL\", \"Furniture\", \"Office Supplies\", \"Technology\"),\n  Target = c(1400000, 500000, 400000, 500000),\n  Actual = c(900000, 350000, 300000, 400000),\n  Range1 = c(500000, 200000, 150000, 250000),\n  Range2 = c(1000000, 400000, 300000, 450000)\n)\n\n# Plot Bullet Chart\nggplot(bullet_data, aes(y = Category)) +\n  geom_bar(aes(x = Target), stat = \"identity\", fill = \"#D5E5A3\", width = 0.6) +  \n  geom_bar(aes(x = Range2), stat = \"identity\", fill = \"#F4D03F\", width = 0.6) +  \n  geom_bar(aes(x = Range1), stat = \"identity\", fill = \"#E74C3C\", width = 0.6) +  \n  geom_bar(aes(x = Actual), stat = \"identity\", fill = \"black\", width = 0.2) +  \n  theme_minimal() +\n  labs(title = \"Bullet Chart: Target vs Actual\", x = \"Nilai (K)\", y = \"\") +\n  scale_x_continuous(labels = scales::comma)",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -176,7 +176,7 @@
     "section": "1.12 Bubble Comparison and Nested Bubbles",
     "text": "1.12 Bubble Comparison and Nested Bubbles\nDigunakan untuk menunjukkan hierarki atau hubungan antar data.\n \n\n\nCode\n# Buat data contoh\nbubble_data &lt;- data.frame(\n  Country = c(\"India\", \"Nigeria\", \"China\", \"Congo\", \"Indonesia\", \"Tanzania\", \"Kenya\"),\n  Population = c(208.1, 64.8, 100, 53.2, 15.1, 24.1, 17.8),\n  PovertyRate = c(15, 16, 12, 18, 14, 17, 15)\n)\n\n# Warna berdasarkan tingkat kemiskinan\nbubble_data$Color &lt;- ifelse(bubble_data$PovertyRate &gt;= 14.5, \"orange\", \"blue\")\n\n# Plot Bubble Comparison\nggplot(bubble_data, aes(x = Population, y = PovertyRate, size = Population, fill = Color)) +\n  geom_point(shape = 21, alpha = 0.7, color = \"black\") +\n  scale_size(range = c(5, 25)) +\n  scale_fill_manual(values = c(\"orange\" = \"orange\", \"blue\" = \"blue\")) +\n  geom_text(aes(label = Country), vjust = 1, color = \"black\", size = 5) +\n  theme_minimal() +\n  labs(title = \"Bubble Comparison: Number of People in Poverty\",\n       subtitle = \"Orange: Poverty rate &gt; 14.5%, Blue: Poverty rate &lt; 14.5%\",\n       x = \"Population (millions)\",\n       y = \"Poverty Rate (%)\") +\n  theme(legend.position = \"none\")",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -186,7 +186,7 @@
     "section": "1.13 Sankey Diagram",
     "text": "1.13 Sankey Diagram\nDiagram aliran yang menunjukkan hubungan antar kategori.\n \n\n\nCode\n# Contoh data untuk aliran dukungan keuangan\nsankey_data &lt;- data.frame(\n  Source = c(\"Germany\", \"Germany\", \"Germany\", \"Germany\", \"Germany\", \n             \"UK\", \"UK\", \"UK\", \"UK\", \"UK\", \n             \"US\", \"US\", \"US\", \"US\", \"US\"),\n  Target = c(\"Sub-Saharan Africa\", \"Southern and Central Asia\", \"Other Asia and Oceania\", \n             \"Middle East and North Africa\", \"Europe\",\n             \"Sub-Saharan Africa\", \"Southern and Central Asia\", \"Other Asia and Oceania\", \n             \"Latin America and Caribbean\", \"Europe\",\n             \"Sub-Saharan Africa\", \"Southern and Central Asia\", \"Middle East and North Africa\", \n             \"Latin America and Caribbean\", \"Europe\"),\n  Value = c(10, 15, 20, 30, 25, 12, 18, 14, 28, 28, 22, 16, 19, 23, 20)\n)\n\n# Plot Sankey Diagram menggunakan ggalluvial\nggplot(sankey_data, aes(axis1 = Source, axis2 = Target, y = Value)) +\n  geom_alluvium(aes(fill = Source), width = 1/12) +\n  geom_stratum(width = 1/12, fill = \"gray\") +\n  geom_text(stat = \"stratum\", aes(label = after_stat(stratum)), size = 5) +\n  theme_minimal() +\n  labs(title = \"Aliran Dukungan Keuangan\",\n       subtitle = \"Dari Jerman, Inggris, dan AS ke Berbagai Wilayah Dunia\",\n       x = NULL, y = \"Persentase Dukungan\") +\n  theme(legend.position = \"none\")",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -196,7 +196,7 @@
     "section": "1.14 Waterfall Chart",
     "text": "1.14 Waterfall Chart\nMenunjukkan perubahan nilai dalam urutan kumulatif.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
@@ -206,17 +206,457 @@
     "section": "1.15 Conclusion",
     "text": "1.15 Conclusion\nRingkasan konsep perbandingan kategori.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Set Working Directory</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>**Perbandingan Kategori**</span>"
     ]
   },
   {
     "objectID": "02-Bab-2.html",
     "href": "02-Bab-2.html",
-    "title": "2  A Caucus-race and a Long Tale",
+    "title": "2  Deret Waktu",
+    "section": "",
+    "text": "2.1 Data\nCode\n# Data\ndata_ev &lt;- read.csv(\"Data/EV_Population.csv\")\nhead(data_ev)\n\n\n  State Model.Year      Make Electric.Vehicle.Type Electric.Range Base.MSRP\n1    WA       2020     TESLA                   BEV            266         0\n2    WA       2024       BMW                  PHEV             39         0\n3    WA       2024       BMW                  PHEV             39         0\n4    WA       2018     TESLA                   BEV            215         0\n5    WA       2012 CHEVROLET                  PHEV             35         0\n6    WA       2020     TESLA                   BEV            308         0\n  Legislative.District CAFV.Eligibility.Simple\n1                   46                Eligible\n2                   46                Eligible\n3                   43                Eligible\n4                    1                Eligible\n5                   35                Eligible\n6                   23                Eligible",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#line-chart",
+    "href": "02-Bab-2.html#line-chart",
+    "title": "2  Deret Waktu",
+    "section": "2.2 Line Chart",
+    "text": "2.2 Line Chart\nGrafik garis untuk menunjukkan perubahan data dalam rentang waktu tertentu.\n\n\n\nCode\n# Buat Data Contoh\ndata_dual &lt;- data.frame(\n  Year = seq(2000, 2018, by = 1),\n  Housing_Debt = c(10, 10.2, 10.5, 10.8, 11.2, 11.5, 11.8, 12.3, 12.8, 13.1, 13.4, 13.2, 12.8, 12.3, 11.7, 11.2, 10.8, 10.5, 10.3),\n  Unemployment_Rate = c(4, 4.2, 5.0, 5.5, 5.8, 6.0, 6.5, 7.0, 9.0, 10.0, 9.8, 9.5, 8.5, 7.5, 6.3, 5.5, 4.8, 4.2, 3.9)\n)\n\n# Reshape data untuk ggplot\ndata_long &lt;- data_dual %&gt;%\n  pivot_longer(cols = c(\"Housing_Debt\", \"Unemployment_Rate\"),\n               names_to = \"Variable\", values_to = \"Value\")\n\n# Plot\nggplot(data_long, aes(x = Year, y = Value, color = Variable)) +\n  geom_line(linewidth = 1.2) +\n  scale_y_continuous(\n    name = \"Housing Debt (%)\",\n    sec.axis = sec_axis(~ ., name = \"Unemployment Rate (%)\")\n  ) +\n  scale_color_manual(values = c(\"Housing_Debt\" = \"blue\", \"Unemployment_Rate\" = \"gold\")) +\n  labs(title = \"The Economic Climate for Consumers in 2017 and 2018\",\n       subtitle = \"Comparison of Housing Debt and Unemployment Rate\",\n       x = \"Year\",\n       y = \"Housing Debt (%)\") +\n  theme_minimal() +\n  theme(legend.title = element_blank())",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#circular-line-chart",
+    "href": "02-Bab-2.html#circular-line-chart",
+    "title": "2  Deret Waktu",
+    "section": "2.3 Circular Line Chart",
+    "text": "2.3 Circular Line Chart\nVersi melingkar dari grafik garis, sering digunakan untuk data musiman.\n\n\n\nCode\n# Buat Data Simulasi\nset.seed(123)\ndata_circular &lt;- expand.grid(\n  Month = month.abb, \n  Year = c(2014, 2015, 2016, 2017)\n) %&gt;%\n  mutate(ER_Visits = runif(nrow(.), 1, 6))  # Simulasi data kunjungan IGD\n\n# Konversi Bulan ke Faktor agar sesuai urutan\ndata_circular$Month &lt;- factor(data_circular$Month, levels = month.abb)\n\n# Plot Circular Line Chart\nggplot(data_circular, aes(x = Month, y = ER_Visits, group = Year, color = as.factor(Year))) +\n  geom_line(linewidth = 1) +\n  scale_y_continuous(limits = c(0, 7)) +\n  coord_polar(start = 3.14) +  # Mengatur agar Januari dimulai dari atas\n  scale_color_manual(values = c(\"2014\" = \"blue\", \"2015\" = \"orange\", \"2016\" = \"gray\", \"2017\" = \"black\")) +\n  labs(title = \"Percent of ER Visits for the Flu (2014–2017)\", \n       subtitle = \"Circular Line Chart Representation\",\n       x = \"\", y = \"Percent ER Visits\", color = \"Year\") +\n  theme_minimal() +\n  theme(axis.text.x = element_text(size = 10, face = \"bold\"),\n        legend.position = \"top\")\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Buat Data Simulasi (Sama seperti sebelumnya)\nset.seed(123)\ndata_line &lt;- expand.grid(\n  Month = month.abb, \n  Year = c(2014, 2015, 2016, 2017)\n) %&gt;%\n  mutate(ER_Visits = runif(nrow(.), 1, 6))  # Simulasi data kunjungan IGD\n\n# Konversi Bulan ke Faktor agar sesuai urutan\ndata_line$Month &lt;- factor(data_line$Month, levels = month.abb)\n\n# Plot Line Chart Standar\nggplot(data_line, aes(x = Month, y = ER_Visits, group = Year, color = as.factor(Year))) +\n  geom_line(size = 1) +\n  geom_point(size = 2) +  # Tambahkan titik di setiap bulan\n  scale_y_continuous(limits = c(0, 7)) +\n  scale_color_manual(values = c(\"2014\" = \"blue\", \"2015\" = \"orange\", \"2016\" = \"gray\", \"2017\" = \"black\")) +\n  labs(title = \"Percent of ER Visits for the Flu (2014–2017)\", \n       subtitle = \"Line Chart Representation\",\n       x = \"Month\", y = \"Percent ER Visits\", color = \"Year\") +\n  theme_minimal() +\n  theme(axis.text.x = element_text(size = 10, face = \"bold\", angle = 45, hjust = 1),\n        legend.position = \"top\")\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#slope-chart",
+    "href": "02-Bab-2.html#slope-chart",
+    "title": "2  Deret Waktu",
+    "section": "2.4 Slope Chart",
+    "text": "2.4 Slope Chart\nMenunjukkan perubahan data antara dua titik waktu.\n\n\n\nCode\n# Buat Data Simulasi\nslope_data &lt;- data.frame(\n  State = c(\"Montana\", \"Hawaii\", \"Idaho\", \"Michigan\", \"North Carolina\", \"Connecticut\"),\n  Unemployment_2000 = c(5.1, 4.7, 4.6, 3.3, 3.3, 2.8),  # Data tahun 2000\n  Unemployment_2018 = c(4.5, 4.2, 3.8, 4.2, 3.0, 2.3)   # Data tahun 2018\n) %&gt;%\n  tidyr::pivot_longer(cols = starts_with(\"Unemployment\"), \n                      names_to = \"Year\", values_to = \"Rate\") %&gt;%\n  mutate(Year = recode(Year, \n                       \"Unemployment_2000\" = \"January 2000\", \n                       \"Unemployment_2018\" = \"January 2018\"))\n\n# Plot Slope Chart\nggplot(slope_data, aes(x = Year, y = Rate, group = State, color = State)) +\n  geom_line(size = 1.2) +  \n  geom_point(size = 3) +  \n  geom_text(data = slope_data %&gt;% dplyr::filter(Year == \"January 2000\"), \n            aes(label = paste0(State, \" \", Rate, \"%\")), \n            hjust = 1.1, size = 4) +  \n  geom_text(data = slope_data %&gt;% dplyr::filter(Year == \"January 2018\"), \n            aes(label = paste0(Rate, \"%\")), \n            hjust = -0.1, size = 4) +  \n  scale_x_discrete(expand = expansion(mult = c(0.2, 0.2))) +  \n  scale_y_continuous(limits = c(2, 6)) +\n  labs(title = \"Biggest Changes in the Unemployment Rate\",\n       subtitle = \"Between January 2000 and January 2018\",\n       x = \"\", y = \"Unemployment Rate (%)\") +\n  theme_minimal() +\n  theme(legend.position = \"none\",\n        axis.text.x = element_text(size = 12, face = \"bold\"),\n        axis.text.y = element_text(size = 10),\n        plot.title = element_text(size = 14, face = \"bold\"),\n        plot.subtitle = element_text(size = 12))",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#sparklines",
+    "href": "02-Bab-2.html#sparklines",
+    "title": "2  Deret Waktu",
+    "section": "2.5 Sparklines",
+    "text": "2.5 Sparklines\nGaris kecil yang menunjukkan tren singkat dalam dataset.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#bump-chart",
+    "href": "02-Bab-2.html#bump-chart",
+    "title": "2  Deret Waktu",
+    "section": "2.6 Bump Chart",
+    "text": "2.6 Bump Chart\nMenampilkan perubahan peringkat suatu kategori seiring waktu.\n\n\n\nCode\n# Buat Data Simulasi\nbump_data &lt;- data.frame(\n  Year = rep(seq(2000, 2015, 5), each = 8),  # Tahun dalam interval 5 tahun\n  Country = rep(c(\"United States\", \"Switzerland\", \"Germany\", \"France\", \"Sweden\",\n                  \"Japan\", \"Netherlands\", \"Canada\"), times = 4),\n  Rank = c(1, 2, 3, 4, 5, 6, 7, 8,\n           1, 2, 4, 3, 6, 5, 8, 7,\n           1, 2, 3, 5, 4, 7, 6, 8,\n           1, 2, 3, 4, 5, 6, 7, 8)  # Peringkat tiap negara\n)\n\n# Plot Bump Chart\nggplot(bump_data, aes(x = Year, y = Rank, group = Country, color = Country)) +\n  geom_bump(size = 1.5) +  # Garis smooth bump chart\n  geom_point(size = 3) +  # Titik pada setiap peringkat\n  geom_text(aes(label = Country), data = bump_data %&gt;% \n              dplyr::filter(Year == max(Year)), \n            hjust = -0.2, size = 4, fontface = \"bold\") +  # Label negara di akhir\n  scale_y_reverse(breaks = 1:8) +  # Mengurutkan peringkat dari atas ke bawah\n  scale_x_continuous(breaks = seq(2000, 2015, 5)) +\n  labs(title = \"Ranks of Health Care Spending Among Major Countries\",\n       x = \"Year\", y = \"Rank\") +\n  theme_minimal() +\n  theme(legend.position = \"none\", \n        panel.grid.major.x = element_blank(),\n        panel.grid.minor.x = element_blank(),\n        axis.text.x = element_text(size = 10),\n        axis.text.y = element_text(size = 10))",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#cycle-chart",
+    "href": "02-Bab-2.html#cycle-chart",
+    "title": "2  Deret Waktu",
+    "section": "2.7 Cycle Chart",
+    "text": "2.7 Cycle Chart\nCycle Chart adalah grafik yang digunakan untuk membandingkan pola data dalam unit waktu kecil (minggu, bulan, dll.) dalam jangka waktu multi-tahun. Grafik ini berguna untuk menampilkan tren musiman dalam data.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#area-chart",
+    "href": "02-Bab-2.html#area-chart",
+    "title": "2  Deret Waktu",
+    "section": "2.8 Area Chart",
+    "text": "2.8 Area Chart\nArea Chart adalah varian dari line chart di mana area di bawah garis diisi dengan warna untuk memberikan bobot visual yang lebih jelas pada data. Grafik ini digunakan untuk menunjukkan tren perubahan nilai numerik dari waktu ke waktu.\n\n\n\nCode\n# Buat Data Simulasi\nset.seed(123)\ndata &lt;- data.frame(\n  x = seq(0, 10, by = 1),\n  y = cumsum(runif(11, min = -50, max = 100)) + 200  # Nilai kumulatif agar ada pola naik-turun\n)\n\n# Plot Area Chart\nggplot(data, aes(x = x, y = y)) +\n  geom_area(fill = \"red\", alpha = 0.8) +  # Area dengan warna merah\n  theme_minimal() +\n  labs(title = \"Area Chart\", x = \"\", y = \"\")",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#stacked-area-chart",
+    "href": "02-Bab-2.html#stacked-area-chart",
+    "title": "2  Deret Waktu",
+    "section": "2.9 Stacked Area Chart",
+    "text": "2.9 Stacked Area Chart\n\nStacked Area Chart adalah varian dari area chart yang digunakan untuk menampilkan beberapa seri data secara simultan, di mana setiap area saling ditumpuk sehingga nilai totalnya dapat terlihat dengan jelas. Grafik ini sering digunakan untuk menunjukkan perubahan distribusi data seiring waktu.\n\n\nCode\n# Buat Data Simulasi\nset.seed(123)\ndata &lt;- data.frame(\n  x = rep(seq(0, 10, by = 1), 3),   # Sumbu X yang sama untuk semua kategori\n  y = cumsum(runif(11, min = 50, max = 150)),  # Seri 1\n  y2 = cumsum(runif(11, min = 40, max = 120)), # Seri 2\n  y3 = cumsum(runif(11, min = 30, max = 90))   # Seri 3\n)\n\n# Ubah Data ke Format Long\ndata_long &lt;- data %&gt;%\n  pivot_longer(cols = c(y, y2, y3), names_to = \"Category\", values_to = \"Value\")\n\n# Plot Stacked Area Chart\nggplot(data_long, aes(x = x, y = Value, fill = Category)) +\n  geom_area(alpha = 0.8) +  # Area chart dengan transparansi\n  scale_fill_manual(values = c(\"#1C1F38\", \"#E63946\", \"#F76C5E\")) +  # Warna seperti di gambar\n  theme_minimal() +\n  labs(title = \"Stacked Area Chart\", x = \"\", y = \"\")",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#streamgraph",
+    "href": "02-Bab-2.html#streamgraph",
+    "title": "2  Deret Waktu",
+    "section": "2.10 Streamgraph",
+    "text": "2.10 Streamgraph\nMenampilkan perubahan dalam data kategorikal dengan bentuk yang mengalir.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#horizon-chart",
+    "href": "02-Bab-2.html#horizon-chart",
+    "title": "2  Deret Waktu",
+    "section": "2.11 Horizon Chart",
+    "text": "2.11 Horizon Chart\nHorizon Chart adalah varian dari Area Chart yang digunakan untuk menampilkan data deret waktu dengan cara yang lebih padat dan efisien. Grafik ini bekerja dengan membagi area chart menjadi beberapa band horizontal, lalu menumpuknya untuk mengurangi ruang yang digunakan.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#gantt-chart",
+    "href": "02-Bab-2.html#gantt-chart",
+    "title": "2  Deret Waktu",
+    "section": "2.12 Gantt Chart",
+    "text": "2.12 Gantt Chart\nGantt Chart adalah jenis grafik yang digunakan untuk menampilkan jadwal, proses, atau durasi tugas dengan menggunakan batang horizontal. Grafik ini sering digunakan dalam manajemen proyek, shift kerja, dan pelacakan jadwal produksi.\n\n\n\nCode\n# Buat dataset proyek simulasi\ngantt_data &lt;- data.frame(\n  Task = factor(paste(\"Task\", 1:10), levels = rev(paste(\"Task\", 1:10))),  # Nama tugas (dibalik untuk urutan yang lebih baik)\n  Start = seq(1, 40, by = 4),  # Hari mulai\n  Duration = c(3, 5, 6, 4, 8, 7, 6, 5, 4, 3)  # Durasi dalam hari\n)\n\n# Tambahkan kolom End (Hari selesai)\ngantt_data &lt;- gantt_data %&gt;%\n  mutate(End = Start + Duration)\n\n# Plot Gantt Chart\nggplot(gantt_data, aes(y = Task, xmin = Start, xmax = End, fill = Task)) +\n  geom_rect(aes(xmin = Start, xmax = End, ymin = as.numeric(Task) - 0.4, ymax = as.numeric(Task) + 0.4),\n            color = \"black\") +\n  scale_fill_viridis_d() +  \n  labs(title = \"Gantt Chart\",\n       x = \"Start on Day\",\n       y = \"Task\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#flow-chart",
+    "href": "02-Bab-2.html#flow-chart",
+    "title": "2  Deret Waktu",
+    "section": "2.13 Flow Charts and Timelines",
+    "text": "2.13 Flow Charts and Timelines\nFlow Charts dan Timelines adalah dua jenis visualisasi yang digunakan untuk menampilkan perubahan, proses, atau hierarki secara kronologis atau langkah demi langkah.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#connected-scatterplot",
+    "href": "02-Bab-2.html#connected-scatterplot",
+    "title": "2  Deret Waktu",
+    "section": "2.14 Connected Scatterplot",
+    "text": "2.14 Connected Scatterplot\nConnected Scatterplot adalah metode visualisasi yang digunakan untuk menunjukkan hubungan antara dua deret waktu dalam satu grafik, tanpa menggunakan dual-axis line chart.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "02-Bab-2.html#conclusion",
+    "href": "02-Bab-2.html#conclusion",
+    "title": "2  Deret Waktu",
+    "section": "2.15 Conclusion",
+    "text": "2.15 Conclusion\nRingkasan konsep visualisasi deret waktu.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>**Deret Waktu**</span>"
+    ]
+  },
+  {
+    "objectID": "03-Bab-3.html",
+    "href": "03-Bab-3.html",
+    "title": "3  Distribusi",
+    "section": "",
+    "text": "3.1 Data\nCode\n# Data\ndata_ev &lt;- read.csv(\"Data/EV_Population.csv\")\nhead(data_ev)\n\n\n  State Model.Year      Make Electric.Vehicle.Type Electric.Range Base.MSRP\n1    WA       2020     TESLA                   BEV            266         0\n2    WA       2024       BMW                  PHEV             39         0\n3    WA       2024       BMW                  PHEV             39         0\n4    WA       2018     TESLA                   BEV            215         0\n5    WA       2012 CHEVROLET                  PHEV             35         0\n6    WA       2020     TESLA                   BEV            308         0\n  Legislative.District CAFV.Eligibility.Simple\n1                   46                Eligible\n2                   46                Eligible\n3                   43                Eligible\n4                    1                Eligible\n5                   35                Eligible\n6                   23                Eligible",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
+    ]
+  },
+  {
+    "objectID": "03-Bab-3.html#histogram",
+    "href": "03-Bab-3.html#histogram",
+    "title": "3  Distribusi",
+    "section": "3.2 Histogram",
+    "text": "3.2 Histogram\nVisualisasi distribusi data berbasis frekuensi dalam bentuk batang.\n\n\n\nCode\n# Buat data simulasi\nset.seed(123)  # Untuk reproduksibilitas\ndata_hist &lt;- data.frame(\n  Value = rnorm(1000, mean = 80, sd = 5)  # 1000 sampel dengan distribusi normal\n)\n\n# Buat Histogram\nggplot(data_hist, aes(x = Value)) +\n  geom_histogram(binwidth = 2, fill = \"red\", color = \"white\") +  # Batang histogram\n  labs(title = \"Histogram Distribusi Data\", x = \"Nilai\", y = \"Frekuensi\") +\n  theme_minimal()",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
+    ]
+  },
+  {
+    "objectID": "03-Bab-3.html#pyramid-chart",
+    "href": "03-Bab-3.html#pyramid-chart",
+    "title": "3  Distribusi",
+    "section": "3.3 Pyramid Chart",
+    "text": "3.3 Pyramid Chart\nDigunakan untuk membandingkan distribusi kategori dua arah (misalnya populasi pria vs wanita).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
+    ]
+  },
+  {
+    "objectID": "03-Bab-3.html#statistical-uncertainty",
+    "href": "03-Bab-3.html#statistical-uncertainty",
+    "title": "3  Distribusi",
+    "section": "3.4 Visualizing Statistical Uncertainty with Charts",
+    "text": "3.4 Visualizing Statistical Uncertainty with Charts\nMetode visualisasi ketidakpastian statistik dalam data.\n\n3.4.1 Error Bars\n\n\n\n3.4.2 Confidence Interval\n\n\n\n3.4.3 Gradient Chart\n\n\n\n3.4.4 Fan Charts",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
+    ]
+  },
+  {
+    "objectID": "03-Bab-3.html#boxplot",
+    "href": "03-Bab-3.html#boxplot",
+    "title": "3  Distribusi",
+    "section": "3.5 Box-and-Whisker Plot",
+    "text": "3.5 Box-and-Whisker Plot\nMenampilkan lima ringkasan data: minimum, Q1, median, Q3, dan maksimum.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
+    ]
+  },
+  {
+    "objectID": "03-Bab-3.html#candlestick-chart",
+    "href": "03-Bab-3.html#candlestick-chart",
+    "title": "3  Distribusi",
+    "section": "3.6 Candlestick Chart",
+    "text": "3.6 Candlestick Chart\nDigunakan dalam analisis keuangan untuk menunjukkan harga tertinggi, terendah, pembukaan, dan penutupan.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
+    ]
+  },
+  {
+    "objectID": "03-Bab-3.html#violin-chart",
+    "href": "03-Bab-3.html#violin-chart",
+    "title": "3  Distribusi",
+    "section": "3.7 Violin Chart",
+    "text": "3.7 Violin Chart\nKombinasi antara boxplot dan density plot untuk memahami distribusi data.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
+    ]
+  },
+  {
+    "objectID": "03-Bab-3.html#ridgeline-plot",
+    "href": "03-Bab-3.html#ridgeline-plot",
+    "title": "3  Distribusi",
+    "section": "3.8 Ridgeline Plot",
+    "text": "3.8 Ridgeline Plot\nMenunjukkan distribusi data yang saling tumpang tindih dalam satu grafik.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
+    ]
+  },
+  {
+    "objectID": "03-Bab-3.html#uncertainty",
+    "href": "03-Bab-3.html#uncertainty",
+    "title": "3  Distribusi",
+    "section": "3.9 Showing the Data",
+    "text": "3.9 Showing the Data\n\n3.9.1 Strip Plot\n\n\n\n3.9.2 Beeswarm Plot\n \n\n\n3.9.3 Wilkinson Dot Plots and Wheat Plot\n \n\n\n3.9.4 Raincloud Plot",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
+    ]
+  },
+  {
+    "objectID": "03-Bab-3.html#stem-leaf",
+    "href": "03-Bab-3.html#stem-leaf",
+    "title": "3  Distribusi",
+    "section": "3.10 Stem-and-Leaf Plot",
+    "text": "3.10 Stem-and-Leaf Plot\nDigunakan untuk menampilkan distribusi angka dengan tetap mempertahankan nilai aslinya.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
+    ]
+  },
+  {
+    "objectID": "03-Bab-3.html#conclusion",
+    "href": "03-Bab-3.html#conclusion",
+    "title": "3  Distribusi",
+    "section": "3.11 Conclusion",
+    "text": "3.11 Conclusion\nRingkasan konsep visualisasi distribusi data.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
+    ]
+  },
+  {
+    "objectID": "05-Bab-5.html",
+    "href": "05-Bab-5.html",
+    "title": "5  Hubungan Antar Peubah",
+    "section": "",
+    "text": "5.1 Data\nData yang akan digunakan adalah\nCode\n# Add Google Fonts \nfont_add_google(\"Lato\", \"lato\")\nshowtext_auto()\n\n# Data\ndata_cars &lt;- mtcars %&gt;%\n  mutate(\n    cyl = as.factor(cyl),   \n    gear = as.factor(gear), \n    carb = as.factor(carb),\n    cc = disp * 16.3871, # konversi volume mesin ke cc\n    engine = factor(ifelse(vs == 0, \"V-Engine\", \"Inline\")),\n    trans = factor(ifelse(am == 0, \"Automatic\", \"Manual\"))\n  ) %&gt;% \n  rownames_to_column(var = \"car_name\") %&gt;% \n  select(-disp, -vs, -am) \n  \nhead(data_cars)\n\n\n           car_name  mpg cyl  hp drat    wt  qsec gear carb       cc   engine\n1         Mazda RX4 21.0   6 110 3.90 2.620 16.46    4    4 2621.936 V-Engine\n2     Mazda RX4 Wag 21.0   6 110 3.90 2.875 17.02    4    4 2621.936 V-Engine\n3        Datsun 710 22.8   4  93 3.85 2.320 18.61    4    1 1769.807   Inline\n4    Hornet 4 Drive 21.4   6 110 3.08 3.215 19.44    3    1 4227.872   Inline\n5 Hornet Sportabout 18.7   8 175 3.15 3.440 17.02    3    2 5899.356 V-Engine\n6           Valiant 18.1   6 105 2.76 3.460 20.22    3    1 3687.097   Inline\n      trans\n1    Manual\n2    Manual\n3    Manual\n4 Automatic\n5 Automatic\n6 Automatic",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Hubungan Antar Peubah</span>"
+    ]
+  },
+  {
+    "objectID": "05-Bab-5.html#scatterplot",
+    "href": "05-Bab-5.html#scatterplot",
+    "title": "5  Hubungan Antar Peubah",
+    "section": "6.1 Scatterplot",
+    "text": "6.1 Scatterplot\n\n\nScatterplot digunakan untuk menunjukkan hubungan antara dua variabel numerik.\n\n\nCode\n# Pilih 3 mobil yang akan di-highlight\nlabel_cars &lt;- bind_rows(\n  # Mobil paling irit\n  data_cars %&gt;% slice_max(mpg, n = 1, with_ties = FALSE), \n  \n  # Mobil menengah\n  data_cars %&gt;% \n    mutate(dist_to_median = abs(mpg - median(mpg))) %&gt;%   \n    slice_min(dist_to_median, n = 1, with_ties = FALSE) %&gt;%  \n    select(-dist_to_median),  \n  \n  # Mobil paling boros\n  data_cars %&gt;% slice_min(mpg, n = 1, with_ties = FALSE)  \n) %&gt;%\n  arrange(desc(mpg)) \n\ncolors &lt;- c(\"#21637b\", \"#967349\", \"#ad0c1b\")\n\n\n\n6.1.1 Advanced\n\n\nCode\n# viz\nchart &lt;-\nggplot(data_cars,\n       aes(x = cc, y = mpg, \n           fill = factor(cyl), color = factor(cyl), \n           shape = factor(trans), size = hp)) +  \n  \n  # Scatterplot\n  geom_point(stroke = 1, alpha = 0.5) +  \n  \n  # Aes\n  scale_shape_manual(values = c(21, 23)) +\n  scale_size_continuous(range = c(1, 10)) +\n  scale_fill_manual(values = colors) +  \n  scale_color_manual(values = colors) +\n  \n  # Label\n  geom_text_repel(\n    data = label_cars, aes(label = car_name), \n    size = 6, fontface = \"bold\", color = \"black\", \n    box.padding = 0.5, point.padding = 0.5, \n    nudge_x = 15, \n    nudge_y = 2,\n    segment.color = \"black\", segment.size = 0.5, \n    arrow = arrow(length = unit(0.01, \"npc\"))\n  ) +\n  \n  # Setting \n  labs(title = \"Efek Mesin & Transmisi terhadap Efisiensi BBM\",\n       subtitle = \"(Ukuran simbol menunjukkan tenaga mesin (hp))\",\n       x = \"Kapasitas Mesin (cc)\",\n       y = \"← Boros          Efisiensi BBM          Irit →\",\n       color = \"Jumlah Silinder\") +\n  \n  guides(\n    size = \"none\", \n    fill = \"none\",\n    shape = guide_legend(title = NULL)\n  ) + \n  \n  theme_minimal(base_size = 35) + # Global Font size\n  theme(\n    axis.title.y = element_text(size = 30, face = \"bold\"),\n    axis.text.y = element_text(hjust = 1, face = \"bold\", \n                               margin = margin(r = 1)),\n    plot.title = element_text(hjust = -0.2, face = \"bold\",\n                              margin = margin(b = 5)),\n    plot.subtitle = element_text(hjust = -0.115, size=25),\n    \n    # Garis\n    panel.grid.major.y = element_blank(),\n    panel.grid.minor.y = element_blank(),\n    panel.grid.major.x = element_blank(),\n    panel.grid.minor.x = element_blank(),\n    axis.line = element_line(linewidth = 0.5, colour = \"black\"),\n    \n    # Legend\n    legend.title = element_text(size = 30),\n    legend.position = \"top\",\n    legend.direction = \"horizontal\",\n    legend.justification = c(-0.25, 0),\n    legend.margin = margin(t = -10, b = -25), \n    legend.text = element_text(margin = margin(r = -1, l = -1))\n  ) \n\nchart\n\n\n\n\n\n\n\n\n\nCode\n# Simpan Chart\nggsave(\"Chart/01_Scatterplot.png\", chart, dpi = 300, height = 5, width = 9)\n\n\n\n\n6.1.2 Sederhana\n\n\nCode\nggplot(data_cars, aes(x = cc, y = mpg)) +  \n  # Scatterplot\n  geom_point() +\n  theme_gray(base_size = 35) #efek pake font google",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Hubungan Antar Peubah</span>"
+    ]
+  },
+  {
+    "objectID": "05-Bab-5.html#parallel-coordinates-plot",
+    "href": "05-Bab-5.html#parallel-coordinates-plot",
+    "title": "5  Hubungan Antar Peubah",
+    "section": "6.2 Parallel Coordinates Plot",
+    "text": "6.2 Parallel Coordinates Plot\n\nVisualisasi ini digunakan untuk menganalisis hubungan beberapa variabel numerik sekaligus.\n\n\nCode\n# Pilih kolom\nselected_columns &lt;- c(\"mpg\", \"hp\", \"drat\", \"wt\", \"qsec\", \"cc\")\n\nnew_labels &lt;- c(\"Efisiensi BBM\", \"Tenaga\", \"Rasio Driveshaft\", \n                \"Berat Mobil\", \"Waktu 1/4 Mil\", \"Kapasitas Mesin\")\n\n# HIGHTLIGHT---------------------------------\nhighlight_cars &lt;- function(data, col) {\n  selected &lt;- bind_rows(\n    # Mobil dengan nilai tertinggi\n    data %&gt;% slice_max({{col}}, n = 1, with_ties = FALSE),  \n    \n    # Mobil dengan nilai median terdekat\n    data %&gt;% mutate(dist_to_median = abs({{col}} - median({{col}}))) %&gt;% \n      slice_min(dist_to_median, n = 1, with_ties = FALSE) %&gt;% \n      select(-dist_to_median),  \n    \n    # Mobil dengan nilai terendah\n    data %&gt;% slice_min({{col}}, n = 1, with_ties = FALSE)  \n  ) %&gt;%\n    arrange(desc({{col}}))  \n  \n  return(selected)\n}\n\n# Pilih 3 mobil yang akan di-highlight\nlabel_cars &lt;- highlight_cars(data_cars, mpg)  # Berdasarkan efisiensi BBM\n\n# Tambahkan kolom highlight dan alpha transparansi\ndata_cars &lt;- data_cars %&gt;%\n  mutate(\n    highlight = ifelse(car_name %in% label_cars$car_name, car_name, \"Lainnya\"),\n    highlight = factor(highlight, levels = c(label_cars$car_name, \"Lainnya\")),\n    alpha_val = ifelse(highlight == \"Lainnya\", 0.2, 1)\n  )\n\n# Warna khusus: 3 mobil utama + lainnya dalam warna abu-abu\nhighlight_colors &lt;- c(\"#21637b\", \"#967349\", \"#ad0c1b\", \"#E8E8E8\")  \ncolor_mapping &lt;- setNames(highlight_colors, levels(data_cars$highlight))\n\n\n# NORMALISASI DATA ---------------------------------\n# **Normalisasi data ke skala 0-1 secara manual**\ndata_cars_norm &lt;- data_cars %&gt;%\n  mutate(across(all_of(selected_columns), rescale))\n\n# **Pastikan label_positions memiliki skala yang sudah dinormalisasi**\nlabel_positions &lt;- data_cars_norm %&gt;%\n  dplyr::filter(car_name %in% label_cars$car_name) %&gt;%\n  select(car_name, cc, highlight)  # Tambahkan highlight agar sesuai dengan warna\n\nx_max &lt;- length(selected_columns) + 0.3  # Posisi label di ujung sumbu\n\n\n\n6.2.1 Advanced 1\nHighlight 3 mobil berdasarkan Efisiensi bahan bakar.\n\n\nCode\n# PLOT\nchart &lt;- \nggparcoord(data_cars_norm, \n           columns = match(selected_columns, colnames(data_cars_norm)),   \n           groupColumn = \"highlight\",          \n           scale = \"uniminmax\",  \n           showPoints = TRUE,    \n           alphaLines = 0.6) +   \n  \n  # Warna\n  scale_color_manual(values = color_mapping, guide = \"none\") +  \n  scale_alpha_identity() +  \n  \n  # TEXT ----------------\n  # Judul\n  labs(title = \"Perbandingan Karakteristik Mobil Berdasarkan Efisiensi BBM\",\n       x = NULL,  \n       y = NULL) +\n  \n  # Ganti label sumbu x\n  scale_x_discrete(labels = new_labels) +\n\n  # **Tambahkan label di ujung garis & geser lebih ke kiri**\n  geom_text(data = label_positions, \n            aes(x = x_max - 0.2, y = cc, label = car_name, color = highlight), \n            fontface = \"bold\", size = 8, hjust = 0, inherit.aes = FALSE) +\n\n  \n  # THEME -------------------\n  # Hapus Legend\n  guides(color = \"none\") +\n\n  # **Styling tema**\n  theme_minimal(base_size = 35) +  \n  theme(\n    axis.title.y = element_text(size = 24, face = \"bold\"),\n    axis.text.y = element_text(hjust = 1, face = \"bold\", \n                               margin = margin(r = -30), size = 22),\n    plot.title = element_text(hjust = 0, face = \"bold\", size = 30),\n\n    # **Pertebal grid utama**\n    panel.grid.major = element_line(linewidth = 0.5),  \n    panel.grid.minor = element_line(linewidth = 0.3),\n    panel.grid.major.y = element_blank(),\n    panel.grid.minor.y = element_blank()\n  ) + \n  coord_cartesian(clip = \"off\")\n\nchart \n\n\n\n\n\n\n\n\n\nCode\n# Simpan Chart\nggsave(\"Chart/02_Paralell-Coordinates.png\", \n       chart, dpi = 300, height = 5, width = 9)\n\n\n\n\n6.2.2 Advanced 2\nHightlight mobil berdasarkan tenaga.\n\n\nCode\n# Pilih 3 mobil yang akan di-highlight\nlabel_cars &lt;- highlight_cars(data_cars, hp)  # Berdasarkan tenaga\n\n# Tambahkan kolom highlight dan alpha transparansi\ndata_cars &lt;- data_cars %&gt;%\n  mutate(\n    highlight = ifelse(car_name %in% label_cars$car_name, car_name, \"Lainnya\"),\n    highlight = factor(highlight, levels = c(label_cars$car_name, \"Lainnya\")),\n    alpha_val = ifelse(highlight == \"Lainnya\", 0.2, 1)\n  )\n\n# Warna khusus: 3 mobil utama + lainnya dalam warna abu-abu\nhighlight_colors &lt;- c(\"#21637b\", \"#967349\", \"#ad0c1b\", \"#E8E8E8\")  \ncolor_mapping &lt;- setNames(highlight_colors, levels(data_cars$highlight))\n\n\n# NORMALISASI DATA ---------------------------------\n# **Normalisasi data ke skala 0-1 secara manual**\ndata_cars_norm &lt;- data_cars %&gt;%\n  mutate(across(all_of(selected_columns), rescale))\n\n# **Pastikan label_positions memiliki skala yang sudah dinormalisasi**\nlabel_positions &lt;- data_cars_norm %&gt;%\n  dplyr::filter(car_name %in% label_cars$car_name) %&gt;%\n  select(car_name, cc, highlight)  # Tambahkan highlight agar sesuai dengan warna\n\nx_max &lt;- length(selected_columns) + 0.3  # Posisi label di ujung sumbu\n\n\n\n\nCode\n# PLOT\nchart &lt;- \nggparcoord(data_cars_norm, \n           columns = match(selected_columns, colnames(data_cars_norm)),   \n           groupColumn = \"highlight\",          \n           scale = \"uniminmax\",  \n           showPoints = TRUE,    \n           alphaLines = 0.6) +   \n  \n  # Warna\n  scale_color_manual(values = color_mapping, guide = \"none\") +  \n  scale_alpha_identity() +  \n  \n  # TEXT ----------------\n  # Judul\n  labs(title = \"Perbandingan Karakteristik Mobil Berdasarkan Tenaga\",\n       x = NULL,  \n       y = NULL) +\n  \n  # Ganti label sumbu x\n  scale_x_discrete(labels = new_labels) +\n\n  # **Tambahkan label di ujung garis & geser lebih ke kiri**\n  geom_text(data = label_positions, \n            aes(x = x_max - 0.2, y = cc, label = car_name, color = highlight), \n            fontface = \"bold\", size = 8, hjust = 0, inherit.aes = FALSE) +\n\n  \n  # THEME -------------------\n  # Hapus Legend\n  guides(color = \"none\") +\n\n  # **Styling tema**\n  theme_minimal(base_size = 35) +  \n  theme(\n    axis.title.y = element_text(size = 24, face = \"bold\"),\n    axis.text.y = element_text(hjust = 1, face = \"bold\", \n                               margin = margin(r = -30), size = 22),\n    plot.title = element_text(hjust = 0, face = \"bold\", size = 30),\n\n    # **Pertebal grid utama**\n    panel.grid.major = element_line(linewidth = 0.5),  \n    panel.grid.minor = element_line(linewidth = 0.3),\n    panel.grid.major.y = element_blank(),\n    panel.grid.minor.y = element_blank()\n  ) + \n  coord_cartesian(clip = \"off\")\n\nchart \n\n\n\n\n\n\n\n\n\nCode\n# Simpan chart\nggsave(\"Chart/02_Paralell-Coordinates-2.png\", \n       chart, dpi = 300, height = 5, width = 9)\n\n\n\n\n6.2.3 Sederhana\n\n\nCode\nggparcoord(data_cars, \n           columns = match(selected_columns, colnames(data_cars)),  \n           groupColumn = \"cyl\",\n           scale = \"uniminmax\") +\n  theme_gray(base_size = 35)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Hubungan Antar Peubah</span>"
+    ]
+  },
+  {
+    "objectID": "05-Bab-5.html#radar-charts",
+    "href": "05-Bab-5.html#radar-charts",
+    "title": "5  Hubungan Antar Peubah",
+    "section": "6.3 Radar Charts",
+    "text": "6.3 Radar Charts\n\nSering digunakan untuk membandingkan beberapa kategori dengan beberapa atribut dalam satu grafik.\n\n6.3.1 Sederhana\n\n\nCode\nggRadar(data=iris,aes(group=Species))\n\n\n\n\n\n\n\n\n\n\n\nCode\nggRadar(data=mtcars,interactive=TRUE)\n\n\n\n\n\n\n\n\nCode\nggRadar(data=mtcars,aes(colour=am,facet=cyl),interactive=TRUE)\n\n\n\n\n\n\n\n\nCode\nggRadar(iris, aes(x=c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width)))",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Hubungan Antar Peubah</span>"
+    ]
+  },
+  {
+    "objectID": "05-Bab-5.html#chord-diagram",
+    "href": "05-Bab-5.html#chord-diagram",
+    "title": "5  Hubungan Antar Peubah",
+    "section": "6.4 Chord Diagram",
+    "text": "6.4 Chord Diagram\n\nDiagram yang digunakan untuk menunjukkan hubungan antara beberapa kategori yang saling berhubungan.\n\nInstall Package Manual\n\n\nBuka link ini di browser:\n👉 https://cran.r-project.org/bin/windows/contrib/4.2/\nCari circlize_0.4.16.zip atau versi terbaru.\nDownload file tersebut ke komputer Anda.\ninstall.packages(\"C:/Users/NAMA_USER/Downloads/circlize_0.4.16.zip\", repos = NULL, type = \"win.binary\")\n\n\n\nCode\n# Install dan load library jika belum ada\n# install.packages(\"circlize\")\n# Kalo gak bisa, coba ini\n# install.packages(\"C:/Users/NAMA_USER/Downloads/circlize_0.4.16.zip\", repos = NULL, type = \"win.binary\")\n\nlibrary(circlize)\n\n\n========================================\ncirclize version 0.4.16\nCRAN page: https://cran.r-project.org/package=circlize\nGithub page: https://github.com/jokergoo/circlize\nDocumentation: https://jokergoo.github.io/circlize_book/book/\n\nIf you use it in published research, please cite:\nGu, Z. circlize implements and enhances circular visualization\n  in R. Bioinformatics 2014.\n\nThis message can be suppressed by:\n  suppressPackageStartupMessages(library(circlize))\n========================================\n\n\nCode\n# Load dataset\ndata(\"mtcars\")\n\n# Membuat data hubungan antara jumlah silinder dan jenis transmisi\nmtcars$group &lt;- as.character(mtcars$cyl)  # Mengubah cyl menjadi faktor karakter\nmtcars$transmission &lt;- ifelse(mtcars$am == 0, \"Automatic\", \"Manual\")\n\n# Hitung frekuensi kombinasi\nchord_data &lt;- as.data.frame(table(mtcars$group, mtcars$transmission))\n\n# Ubah nama kolom agar lebih mudah dipahami\ncolnames(chord_data) &lt;- c(\"Cylinders\", \"Transmission\", \"Count\")\n\n# Buat chord diagram\nchordDiagram(chord_data, transparency = 0.5, col = c(\"red\", \"blue\", \"green\"))",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Hubungan Antar Peubah</span>"
+    ]
+  },
+  {
+    "objectID": "05-Bab-5.html#arc-chart",
+    "href": "05-Bab-5.html#arc-chart",
+    "title": "5  Hubungan Antar Peubah",
+    "section": "6.5 Arc Chart",
+    "text": "6.5 Arc Chart\n\nMenampilkan koneksi antar elemen dalam dataset dengan menggunakan kurva.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Hubungan Antar Peubah</span>"
+    ]
+  },
+  {
+    "objectID": "05-Bab-5.html#correlation-matrix",
+    "href": "05-Bab-5.html#correlation-matrix",
+    "title": "5  Hubungan Antar Peubah",
+    "section": "6.6 Correlation Matrix",
+    "text": "6.6 Correlation Matrix\n\nDigunakan untuk menunjukkan hubungan antara banyak variabel dalam bentuk matriks.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Hubungan Antar Peubah</span>"
+    ]
+  },
+  {
+    "objectID": "05-Bab-5.html#network-diagrams",
+    "href": "05-Bab-5.html#network-diagrams",
+    "title": "5  Hubungan Antar Peubah",
+    "section": "6.7 Network Diagrams",
+    "text": "6.7 Network Diagrams\n\nVisualisasi hubungan antar entitas dalam bentuk jaringan.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Hubungan Antar Peubah</span>"
+    ]
+  },
+  {
+    "objectID": "05-Bab-5.html#tree-diagrams",
+    "href": "05-Bab-5.html#tree-diagrams",
+    "title": "5  Hubungan Antar Peubah",
+    "section": "6.8 Tree Diagrams",
+    "text": "6.8 Tree Diagrams\n\nMenampilkan hubungan hierarkis dalam data.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Hubungan Antar Peubah</span>"
+    ]
+  },
+  {
+    "objectID": "06-Bab-6.html",
+    "href": "06-Bab-6.html",
+    "title": "6  Proporsi dan Komposisi",
+    "section": "",
+    "text": "6.1 Pie Charts\nDiagram lingkaran yang digunakan untuk menunjukkan distribusi persentase suatu kategori.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>**Proporsi dan Komposisi**</span>"
+    ]
+  },
+  {
+    "objectID": "06-Bab-6.html#pie-charts",
+    "href": "06-Bab-6.html#pie-charts",
+    "title": "6  Proporsi dan Komposisi",
+    "section": "",
+    "text": "6.1.1 Pie\n\n\nCode\ndf &lt;- data.frame(value = c(15, 25, 32, 28),\n                 group = paste0(\"G\", 1:4))\n\n# Get the positions\ndf2 &lt;- df %&gt;% \n  mutate(csum = rev(cumsum(rev(value))), \n         pos = value/2 + lead(csum, 1),\n         pos = if_else(is.na(pos), value/2, pos))\n\nggplot(df, aes(x = \"\" , y = value, fill = fct_inorder(group))) +\n  geom_col(width = 1, color = 1) +\n  coord_polar(theta = \"y\") +\n  scale_fill_brewer(palette = \"Pastel1\") +\n  geom_label_repel(data = df2,\n                   aes(y = pos, label = paste0(value, \"%\")),\n                   size = 4.5, nudge_x = 1, show.legend = FALSE) +\n  guides(fill = guide_legend(title = \"Group\")) +\n  theme_void()\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Get the positions\ndf2 &lt;- df %&gt;% \n  mutate(csum = rev(cumsum(rev(value))), \n         pos = value/2 + lead(csum, 1),\n         pos = if_else(is.na(pos), value/2, pos))\n\nggplot(df, aes(x = \"\", y = value, fill = fct_inorder(group))) +\n  geom_col(width = 1, color = 1) +\n  geom_text(aes(label = value),\n            position = position_stack(vjust = 0.5)) +\n  coord_polar(theta = \"y\") +\n  guides(fill = guide_legend(title = \"Group\")) +\n  scale_y_continuous(breaks = df2$pos, labels = df$group) +\n  theme(axis.ticks = element_blank(),\n        axis.title = element_blank(),\n        axis.text = element_text(size = 15), \n        legend.position = \"none\", # Removes the legend\n        panel.background = element_rect(fill = \"white\"))\n\n\n\n\n\n\n\n\n\n\n\n6.1.2 Donut\n\n\nCode\ndf &lt;- data.frame(value = c(10, 30, 32, 28),\n                 group = paste0(\"G\", 1:4))\n\n# Increase the value to make the hole bigger\n# Decrease the value to make the hole smaller\nhsize &lt;- 4\n\ndf &lt;- df %&gt;% \n  mutate(x = hsize)\n\nggplot(df, aes(x = hsize, y = value, fill = group)) +\n  geom_col() +\n  coord_polar(theta = \"y\") +\n  xlim(c(0.2, hsize + 0.5))\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Hole size\nhsize &lt;- 3.5\n\ndf &lt;- df %&gt;% \n  mutate(x = hsize)\n\nggplot(df, aes(x = hsize, y = value, fill = group)) +\n  geom_col() +\n  geom_text(aes(label = value),\n            position = position_stack(vjust = 0.5)) +\n  coord_polar(theta = \"y\") +\n  xlim(c(0.2, hsize + 0.5))\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Hole size\nhsize &lt;- 3\n\ndf &lt;- df %&gt;% \n  mutate(x = hsize)\n\nggplot(df, aes(x = hsize, y = value, fill = group)) +\n  geom_col() +\n  geom_label(aes(label = value),\n             position = position_stack(vjust = 0.5),\n             show.legend = FALSE) +\n  coord_polar(theta = \"y\") +\n  xlim(c(0.2, hsize + 0.5))\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Hole size\nhsize &lt;- 3\n\ndf &lt;- df %&gt;% \n  mutate(x = hsize)\n\nggplot(df, aes(x = hsize, y = value, fill = group)) +\n  geom_col(color = \"black\") +\n  geom_label(aes(label = value),\n             position = position_stack(vjust = 0.5),\n             show.legend = FALSE) +\n  coord_polar(theta = \"y\") +\n  xlim(c(0.2, hsize + 0.5))\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Hole size\nhsize &lt;- 3\n\ndf &lt;- df %&gt;% \n  mutate(x = hsize)\n\nggplot(df, aes(x = hsize, y = value, fill = group)) +\n  geom_col(color = \"black\") +\n  coord_polar(theta = \"y\") +\n  scale_fill_manual(values = c(\"#FFF7FB\", \"#D0D1E6\",\n                               \"#74A9CF\", \"#0570B0\")) +\n  xlim(c(0.2, hsize + 0.5))\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Hole size\nhsize &lt;- 3\n\ndf &lt;- df %&gt;% \n  mutate(x = hsize)\n\nggplot(df, aes(x = hsize, y = value, fill = group)) +\n  geom_col(color = \"black\") +\n  geom_text(aes(label = value),\n             position = position_stack(vjust = 0.5)) +\n  coord_polar(theta = \"y\") +\n  scale_fill_brewer(palette = \"GnBu\") +\n  xlim(c(0.2, hsize + 0.5)) +\n  theme(panel.background = element_rect(fill = \"white\"),\n        panel.grid = element_blank(),\n        axis.title = element_blank(),\n        axis.ticks = element_blank(),\n        axis.text = element_blank())\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Hole size\nhsize &lt;- 3\n\ndf &lt;- df %&gt;% \n  mutate(x = hsize)\n\nggplot(df, aes(x = hsize, y = value, fill = group)) +\n  geom_col(color = \"black\") +\n  coord_polar(theta = \"y\") +\n  xlim(c(0.2, hsize + 0.5)) +\n  scale_fill_discrete(labels = c(\"A\", \"B\", \"C\", \"D\")) \n\n\n\n\n\n\n\n\n\n\n\nCode\n# Hole size\nhsize &lt;- 3\n\ndf &lt;- df %&gt;% \n  mutate(x = hsize)\n\nggplot(df, aes(x = hsize, y = value, fill = group)) +\n  geom_col(color = \"black\") +\n  coord_polar(theta = \"y\") +\n  xlim(c(0.2, hsize + 0.5)) +\n  guides(fill = guide_legend(title = \"Title\"))\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Hole size\nhsize &lt;- 3\n\ndf &lt;- df %&gt;% \n  mutate(x = hsize)\n\nggplot(df, aes(x = hsize, y = value, fill = group)) +\n  geom_col(color = \"black\") +\n  coord_polar(theta = \"y\") +\n  xlim(c(0.2, hsize + 0.5)) +\n  theme(legend.position = \"none\")",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>**Proporsi dan Komposisi**</span>"
+    ]
+  },
+  {
+    "objectID": "06-Bab-6.html#treemap",
+    "href": "06-Bab-6.html#treemap",
+    "title": "6  Proporsi dan Komposisi",
+    "section": "6.2 Treemap",
+    "text": "6.2 Treemap\n \nMenampilkan hierarki data dalam bentuk persegi panjang bersarang.\n\n\nCode\ngroup &lt;- paste(\"Group\", 1:9)\nsubgroup &lt;- c(\"A\", \"C\", \"B\", \"A\", \"A\",\n              \"C\", \"C\", \"B\", \"B\")\nvalue &lt;- c(7, 25, 50, 5, 16,\n           18, 30, 12, 41)\n\ndf &lt;- data.frame(group, subgroup, value) \n\n\n\n\nCode\nggplot(df, aes(area = value, fill = group)) +\n  geom_treemap()\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(area = value, fill = value)) +\n  geom_treemap()\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(area = value, fill = group, label = value)) +\n  geom_treemap() +\n  geom_treemap_text()\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(area = value, fill = group, label = value)) +\n  geom_treemap() +\n  geom_treemap_text(colour = \"white\",\n                    place = \"centre\",\n                    size = 15)\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(area = value, fill = group,\n               label = paste(group, value, sep = \"\\n\"))) +\n  geom_treemap() +\n  geom_treemap_text(colour = \"white\",\n                    place = \"centre\",\n                    size = 15) +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(area = value, fill = value, label = group)) +\n  geom_treemap() +\n  geom_treemap_text(colour = \"white\",\n                    place = \"centre\",\n                    size = 15)\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(area = value, fill = value, label = group)) +\n  geom_treemap() +\n  geom_treemap_text(colour = \"white\",\n                    place = \"centre\",\n                    size = 15,\n                    grow = TRUE)\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(area = value, fill = value,\n               label = group, subgroup = subgroup)) +\n  geom_treemap() +\n  geom_treemap_subgroup_border(colour = \"white\", size = 5) +\n  geom_treemap_subgroup_text(place = \"centre\", grow = TRUE,\n                             alpha = 0.25, colour = \"black\",\n                             fontface = \"italic\") +\n  geom_treemap_text(colour = \"white\", place = \"centre\",\n                    size = 15, grow = TRUE)\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(area = value, fill = value, label = group)) +\n  geom_treemap() +\n  geom_treemap_text(colour = c(rep(\"white\", 2),\n                               1, rep(\"white\", 6)),\n                    place = \"centre\", size = 15) +\n  scale_fill_viridis_c()\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(area = value, fill = group, label = value)) +\n  geom_treemap() +\n  geom_treemap_text(colour = \"white\",\n                    place = \"centre\",\n                    size = 15) +\n  scale_fill_brewer(palette = \"Blues\")",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>**Proporsi dan Komposisi**</span>"
+    ]
+  },
+  {
+    "objectID": "06-Bab-6.html#sunburst-diagram",
+    "href": "06-Bab-6.html#sunburst-diagram",
+    "title": "6  Proporsi dan Komposisi",
+    "section": "6.3 Sunburst Diagram",
+    "text": "6.3 Sunburst Diagram\n \nMirip dengan treemap, tetapi berbentuk melingkar untuk menunjukkan hierarki.\n\n\nCode\n# Create data\ndata &lt;- list(\n  label = c(\"A\", \"B\", \"C\", \"D\"),\n  parent = c(\"\", \"A\", \"A\", \"B\"),\n  value = c(10, 20, 30, 40)\n)\ndata&lt;-data.frame(data)\n# Create sunburst chart\nfig &lt;- plot_ly(data, ids = ~label, labels = ~label, \n               parents = ~parent, values = ~value,\n               type = 'sunburst')\nfig\n\n\n\n\n\n\n\n\nCode\n# Sample hierarchical data (Organization Structure)\ndata &lt;- list(\n  id = c(\"CEO\", \"HR\", \"HR-Manager\", \"HR-TeamLead\", \"HR-Staff\", \"Finance\", \n         \"Finance-Manager\", \"Finance-Accountant\", \"Finance-Analyst\", \"IT\", \n         \"IT-Manager\",\n         \"IT-Developer\", \"IT-QA\"),\n  parent = c(\"\", \"CEO\", \"HR\", \"HR\", \"HR\", \"CEO\", \"Finance\", \"Finance\", \n             \"Finance\", \"CEO\", \n             \"IT\", \"IT\", \"IT\"),\n  value = c(1, 1, 3, 10, 1, 1, 1, 4, 2, 1, 1, 6, 3)\n)\ndata&lt;-data.frame(data)\n# Create sunburst chart for organization structure\norganization_sunburst &lt;- plot_ly(data, ids = ~id, labels = ~id, parents = ~parent, \n                                 values = ~value, type = \"sunburst\")\n\n# Display the chart\norganization_sunburst\n\n\n\n\n\n\n\n\nCode\n# Sample hierarchical data (File System Usage)\ndata &lt;- list(\n  id = c(\"Root\", \"usr\", \"usr-bin\", \"usr-lib\", \"usr-local\", \"home\", \"home-user1\", \n         \"home-user2\", \"home-user3\", \"var\", \"var-log\", \"var-tmp\", \"var-cache\"),\n  parent = c(\"\", \"Root\", \"usr\", \"usr\", \"usr\", \"Root\", \"home\", \"home\", \"home\", \"Root\",\n             \"var\", \"var\", \"var\"),\n  value = c(100, 50, 30, 20, 10, 50, 20, 15, 15, 30, 25, 15, 10)\n)\ndata&lt;-data.frame(data)\n# Create sunburst chart for file system usage\nfile_system_sunburst &lt;- plot_ly(data, ids = ~id, labels = ~id, parents = ~parent, \n                                values = ~value, type = \"sunburst\")\n\n# Display the chart\nfile_system_sunburst",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>**Proporsi dan Komposisi**</span>"
+    ]
+  },
+  {
+    "objectID": "06-Bab-6.html#nightingale-chart",
+    "href": "06-Bab-6.html#nightingale-chart",
+    "title": "6  Proporsi dan Komposisi",
+    "section": "6.4 Nightingale Chart",
+    "text": "6.4 Nightingale Chart\n\nVariasi dari pie chart yang digunakan untuk menampilkan data dalam bentuk radial.\n\n\nCode\n# Simulasi data mirip dengan Nightingale dataset\nset.seed(123)\nnightingale_sim &lt;- data.frame(\n  Month = rep(month.abb, 2),  # 12 bulan, 2 periode\n  Year = rep(c(1854, 1855), each = 12),\n  Disease = sample(50:150, 24, replace = TRUE),  # Kematian karena penyakit\n  Wounds = sample(10:50, 24, replace = TRUE),    # Kematian karena luka\n  Other = sample(5:30, 24, replace = TRUE)       # Kematian lainnya\n)\n\n# Ubah data ke long format\nnightingale_long &lt;- nightingale_sim %&gt;%\n  pivot_longer(cols = c(Disease, Wounds, Other), names_to = \"Cause\", values_to = \"Rate\") %&gt;%\n  mutate(\n    Month = factor(Month, levels = month.abb),  # Urutan bulan\n    Period = ifelse(Year == 1854, \"April 1854 to March 1855\", \"April 1855 to March 1856\")\n  )\n\n# Plot Nightingale Chart (Coxcomb Chart)\nggplot(nightingale_long, aes(Month, Rate, fill = Cause)) + \n  geom_col(width = 1, position = \"identity\") + \n  coord_polar() + \n  facet_wrap(~Period) +\n  scale_fill_manual(values = c(\"skyblue3\", \"grey30\", \"firebrick\")) +\n  scale_y_sqrt() +\n  theme_void() +\n  theme(\n    axis.text.x = element_text(size = 9),\n    strip.text = element_text(size = 11),\n    legend.position = \"bottom\",\n    plot.background = element_rect(fill = alpha(\"cornsilk\", 0.5)),\n    plot.margin = unit(c(10, 10, 10, 10), \"pt\"),\n    plot.title = element_text(vjust = 5)\n  ) +\n  ggtitle(\"Simulated Nightingale Chart: Causes of Mortality in the Army\")",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>**Proporsi dan Komposisi**</span>"
+    ]
+  },
+  {
+    "objectID": "06-Bab-6.html#voronoi-diagram",
+    "href": "06-Bab-6.html#voronoi-diagram",
+    "title": "6  Proporsi dan Komposisi",
+    "section": "6.5 Voronoi Diagram",
+    "text": "6.5 Voronoi Diagram\n\nMembagi ruang menjadi wilayah berdasarkan kedekatan titik-titik data.\n\n\nCode\n# Data\nset.seed(1)\nx &lt;- sample(1:400, size = 100)\ny &lt;- sample(1:400, size = 100)\ndist &lt;- sqrt((x - 200) ^ 2 + (y - 200) ^ 2)\n\ndf &lt;- data.frame(x, y, dist = dist)\n\n\n\n\nCode\n# install.packages(\"ggvoronoi\")\n# devtools::install_github(\"garretrc/ggvoronoi\")\nlibrary(ggvoronoi)\n\nggplot(df, aes(x, y)) +\n  stat_voronoi(geom = \"path\") \n\n\nWarning: `fortify(&lt;SpatialPolygonsDataFrame&gt;)` was deprecated in ggplot2 3.4.4.\nℹ Please migrate to sf.\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(x, y)) +\n  stat_voronoi(geom = \"path\") +\n  geom_point() \n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(x, y)) +\n  stat_voronoi(geom = \"path\",\n               color = 4,      # Color of the lines\n               lwd = 0.7,      # Width of the lines\n               linetype = 1) + # Type of the lines\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(x, y, fill = dist)) +\n  geom_voronoi() +\n  geom_point() \n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(x, y, fill = dist)) +\n  geom_voronoi() +\n  stat_voronoi(geom = \"path\") +\n  geom_point() \n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(x, y, fill = dist)) +\n  geom_voronoi(alpha = 0.75) +\n  stat_voronoi(geom = \"path\") +\n  geom_point() \n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(x, y, fill = dist)) +\n  geom_voronoi() +\n  stat_voronoi(geom = \"path\") +\n  geom_point() +\n  scale_fill_gradient(low = \"#F9F9F9\",\n                      high = \"#312271\") \n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(df, aes(x, y, fill = dist)) +\n  geom_voronoi() +\n  stat_voronoi(geom = \"path\") +\n  geom_point() +\n  theme(legend.position = \"none\") \n\n\n\n\n\n\n\n\n\n\n6.5.1 Bounding box\n\n\nCode\n# Circle\ns &lt;- seq(0, 2 * pi, length.out = 3000)\ncircle &lt;- data.frame(x = 120 * (1 + cos(s)),\n                     y = 120 * (1 + sin(s)),\n                     group = rep(1, 3000))\n\nggplot(df, aes(x, y, fill = dist)) +\n  geom_voronoi(outline = circle,\n               color = 1, linewidth = 0.1) +\n  scale_fill_gradient(low = \"#B9DDF1\",\n                      high = \"#2A5783\",\n                      guide = FALSE) +\n  theme_void() +\n  coord_fixed()\n\n\nWarning: The `guide` argument in `scale_*()` cannot be `FALSE`. This was deprecated in\nggplot2 3.3.4.\nℹ Please use \"none\" instead.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>**Proporsi dan Komposisi**</span>"
+    ]
+  },
+  {
+    "objectID": "07-Bab-7.html",
+    "href": "07-Bab-7.html",
+    "title": "7  Visualisasi Kualitatif",
+    "section": "",
+    "text": "8 Qualitative\nVisualisasi data kualitatif membantu menyampaikan informasi yang lebih deskriptif.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualisasi Kualitatif</span>"
+    ]
+  },
+  {
+    "objectID": "07-Bab-7.html#word-clouds",
+    "href": "07-Bab-7.html#word-clouds",
+    "title": "7  Visualisasi Kualitatif",
+    "section": "8.1 Word Clouds and Specific Words",
+    "text": "8.1 Word Clouds and Specific Words\n\nMenampilkan distribusi kata dalam teks berdasarkan frekuensi penggunaannya.\n\n\nCode\ndf &lt;- tibble(\n  iso_639_3 = c(\"zho\", \"wuu\", \"vie\", \"urd\", \"tur\", \"tha\",\n                \"tgl\", \"tel\", \"tam\", \"swa\", \"spa\", \"rus\",\n                \"pus\", \"por\", \"pnb\", \"pan\", \"msa\", \"mar\",\n                \"kor\", \"kan\", \"jpn\", \"jav\", \"ita\", \"ind\",\n                \"hin\", \"hau\", \"guj\", \"fra\", \"fas\", \"eng\",\n                \"deu\", \"ben\", \"arz\", \"ara\"),\n  word = c(\"謝謝\", \"謝謝\", \"Cảm ơn ông\", \"بہت شکریہ\", \"Teşekkür ederim\", \"ขอบคุณ\",\n           \"Salamat\", \"ధన్యవాదాలు\", \"நன்றி\", \"Asante\", \"Gracias\", \"Спасибо!\",\n           \"شكرًا\", \"Obrigado\", \"شکریہ\", \"ਮੁਰਕੁਪਾ\", \"Terima kasih\", \"आभार आहे\",\n           \"감사합니다\", \"ಧನ್ಯವಾದಗಳು\", \"ありがとう\", \"Matur nuwun sanget\", \"Grazie\", \"Terima kasih\",\n           \"धन्यवाद\", \"Na gode\", \"આભાર\", \"Merci\", \"متشكرم\", \"Thank you\",\n           \"Danke\", \"ধন্যবাদ\", \"شكراً\", \"شكراً\"),\n  name = c(\"Chinese\", \"Wu Chinese\", \"Vietnamese\", \"Urdu\", \"Turkish\", \"Thai\",\n           \"Tagalog\", \"Telugu\", \"Tamil\", \"Swahili\", \"Spanish\", \"Russian\",\n           \"Pushto\", \"Portuguese\", \"Western Panjabi\", \"Panjabi\", \"Malay\", \"Marathi\",\n           \"Korean\", \"Kannada\", \"Japanese\", \"Javanese\", \"Italian\", \"Indonesian\",\n           \"Hindi\", \"Hausa\", \"Gujarati\", \"French\", \"Persian\", \"English\",\n           \"German\", \"Bengali\", \"Egyptian Arabic\", \"Arabic\"),\n  native_speakers = c(1200, 80, 75, 67, 78.5, 28,\n                      28, 81, 69, 8, 480, 154,\n                      55, 220, 120, 120, 77, 83,\n                      77.2, 69, 125, 82, 90, 43,\n                      322, 43.7, 55, 76.8, 60, 400,\n                      95, 260, 65, 245),\n  speakers = c(1200, 80, 75, 67, 88, 72,\n               73, 81, 77, 98, 555, 239,\n               55, 243, 120, 120, 277, 83,\n               77.2, 69, 125, 82, 114, 199,\n               442, 63.2, 55, 350.8, 110, 800,\n               107.5, 280, 65, 515)\n)\n\n\n\n\nCode\nset.seed(1)\nggplot(df, aes(label = word)) +\n  geom_text_wordcloud() +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\nCode\nset.seed(1)\nggplot(df, aes(label = word, size = speakers)) +\n  geom_text_wordcloud() +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\nCode\nset.seed(1)\nggwordcloud(words = df$word, freq = df$speakers)\n\n\n\n\n\n\n\n\n\n\n\nCode\nset.seed(1)\nggplot(df, aes(label = word, size = speakers)) +\n  geom_text_wordcloud() +\n  scale_size_area(max_size = 20) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\nCode\nset.seed(1)\nggplot(df, aes(label = word, size = speakers)) +\n  geom_text_wordcloud(rm_outside = TRUE) +\n  scale_size_area(max_size = 60) +\n  theme_minimal()\n\n\nWarning in wordcloud_boxes(data_points = points_valid_first, boxes = boxes, :\nSome words could not fit on page. They have been removed.\n\n\n\n\n\n\n\n\n\n\n\nCode\nset.seed(1)\n\n# Data\ndf &lt;- thankyou_words_small\ndf$angle &lt;- sample(c(0, 45, 60, 90, 120, 180), nrow(df), replace = TRUE)\n\nggplot(df, aes(label = word, size = speakers, angle = angle)) +\n  geom_text_wordcloud() +\n  scale_size_area(max_size = 20) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\nCode\nset.seed(1)\nggplot(df, aes(label = word, size = speakers)) +\n  geom_text_wordcloud(shape = \"diamond\") +\n  scale_size_area(max_size = 20) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\nCode\nset.seed(1)\nggplot(df, aes(label = word, size = speakers)) +\n  geom_text_wordcloud(shape = \"star\") +\n  scale_size_area(max_size = 20) +\n  theme_minimal()",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualisasi Kualitatif</span>"
+    ]
+  },
+  {
+    "objectID": "07-Bab-7.html#word-trees",
+    "href": "07-Bab-7.html#word-trees",
+    "title": "7  Visualisasi Kualitatif",
+    "section": "8.2 Word Trees",
+    "text": "8.2 Word Trees\n\nMenampilkan struktur hierarki dari kata atau frasa dalam teks.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualisasi Kualitatif</span>"
+    ]
+  },
+  {
+    "objectID": "08-Bab-8.html",
+    "href": "08-Bab-8.html",
+    "title": "8  Penyajian Data dalam Bentuk Tabel",
     "section": "",
     "text": "Materi dalam bab ini membahas…",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>A Caucus-race and a Long Tale</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Penyajian Data dalam Bentuk Tabel</span>"
     ]
   }
 ]
