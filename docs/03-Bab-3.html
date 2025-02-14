@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Angga Fathan Rofiqy">
-<meta name="author" content="Nabil Naufal">
-<meta name="dcterms.date" content="2025-02-14">
 
-<title>Modul Praktikum Visualisasi Data</title>
+<title>3&nbsp; Distribusi – Modul Praktikum Visualisasi Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,7 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-Bab-1.html" rel="next">
+<link href="./04-Bab-4.html" rel="next">
+<link href="./02-Bab-2.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -108,7 +106,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="style.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -120,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Pendahuluan</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-Bab-3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Distribusi</strong></span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -168,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Pendahuluan</span></a>
   </div>
 </li>
@@ -186,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-Bab-3.html" class="sidebar-item-text sidebar-link">
+  <a href="./03-Bab-3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Distribusi</strong></span></span></a>
   </div>
 </li>
@@ -230,42 +227,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#pendahuluan" id="toc-pendahuluan" class="nav-link active" data-scroll-target="#pendahuluan">Pendahuluan</a>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">3.1</span> Data</a></li>
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">3.2</span> Histogram</a></li>
+  <li><a href="#pyramid-chart" id="toc-pyramid-chart" class="nav-link" data-scroll-target="#pyramid-chart"><span class="header-section-number">3.3</span> Pyramid Chart</a></li>
+  <li><a href="#statistical-uncertainty" id="toc-statistical-uncertainty" class="nav-link" data-scroll-target="#statistical-uncertainty"><span class="header-section-number">3.4</span> <strong>Visualizing Statistical Uncertainty with Charts</strong></a>
   <ul class="collapse">
-  <li><a href="#struktur-praktikum" id="toc-struktur-praktikum" class="nav-link" data-scroll-target="#struktur-praktikum">Struktur Praktikum</a></li>
-  <li><a href="#tujuan" id="toc-tujuan" class="nav-link" data-scroll-target="#tujuan">Tujuan</a></li>
-  <li><a href="#deskripsi-mata-kuliah" id="toc-deskripsi-mata-kuliah" class="nav-link" data-scroll-target="#deskripsi-mata-kuliah">Deskripsi Mata Kuliah</a></li>
-  <li><a href="#referensi" id="toc-referensi" class="nav-link" data-scroll-target="#referensi">Referensi</a></li>
+  <li><a href="#error-bars" id="toc-error-bars" class="nav-link" data-scroll-target="#error-bars"><span class="header-section-number">3.4.1</span> Error Bars</a></li>
+  <li><a href="#confidence-interval" id="toc-confidence-interval" class="nav-link" data-scroll-target="#confidence-interval"><span class="header-section-number">3.4.2</span> Confidence Interval</a></li>
+  <li><a href="#gradient-chart" id="toc-gradient-chart" class="nav-link" data-scroll-target="#gradient-chart"><span class="header-section-number">3.4.3</span> Gradient Chart</a></li>
+  <li><a href="#fan-charts" id="toc-fan-charts" class="nav-link" data-scroll-target="#fan-charts"><span class="header-section-number">3.4.4</span> Fan Charts</a></li>
   </ul></li>
+  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><span class="header-section-number">3.5</span> Box-and-Whisker Plot</a></li>
+  <li><a href="#candlestick-chart" id="toc-candlestick-chart" class="nav-link" data-scroll-target="#candlestick-chart"><span class="header-section-number">3.6</span> Candlestick Chart</a></li>
+  <li><a href="#violin-chart" id="toc-violin-chart" class="nav-link" data-scroll-target="#violin-chart"><span class="header-section-number">3.7</span> Violin Chart</a></li>
+  <li><a href="#ridgeline-plot" id="toc-ridgeline-plot" class="nav-link" data-scroll-target="#ridgeline-plot"><span class="header-section-number">3.8</span> Ridgeline Plot</a></li>
+  <li><a href="#uncertainty" id="toc-uncertainty" class="nav-link" data-scroll-target="#uncertainty"><span class="header-section-number">3.9</span> <strong>Showing the Data</strong></a>
+  <ul class="collapse">
+  <li><a href="#strip-plot" id="toc-strip-plot" class="nav-link" data-scroll-target="#strip-plot"><span class="header-section-number">3.9.1</span> Strip Plot</a></li>
+  <li><a href="#beeswarm-plot" id="toc-beeswarm-plot" class="nav-link" data-scroll-target="#beeswarm-plot"><span class="header-section-number">3.9.2</span> Beeswarm Plot</a></li>
+  <li><a href="#wilkinson-dot-plots-and-wheat-plot" id="toc-wilkinson-dot-plots-and-wheat-plot" class="nav-link" data-scroll-target="#wilkinson-dot-plots-and-wheat-plot"><span class="header-section-number">3.9.3</span> Wilkinson Dot Plots and Wheat Plot</a></li>
+  <li><a href="#raincloud-plot" id="toc-raincloud-plot" class="nav-link" data-scroll-target="#raincloud-plot"><span class="header-section-number">3.9.4</span> Raincloud Plot</a></li>
+  </ul></li>
+  <li><a href="#stem-leaf" id="toc-stem-leaf" class="nav-link" data-scroll-target="#stem-leaf"><span class="header-section-number">3.10</span> Stem-and-Leaf Plot</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">3.11</span> Conclusion</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Zen-Rofiqy/Modul-VisDat/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Zen-Rofiqy/Modul-VisDat/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Zen-Rofiqy/Modul-VisDat/edit/main/03-Bab-3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Zen-Rofiqy/Modul-VisDat/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Modul Praktikum Visualisasi Data</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span id="distribusi" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><strong>Distribusi</strong></span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://www.linkedin.com/in/angga-fathan-rofiqy/">Angga Fathan Rofiqy</a> </p>
-             <p><a href="https://www.linkedin.com/in/nabilnaufal/">Nabil Naufal</a> </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 14, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -275,61 +275,137 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="pendahuluan" class="level1 unnumbered">
-<h1 class="unnumbered">Pendahuluan</h1>
-<p>Buku ini adalah modul praktikum untuk <strong>STA1262: Visualisasi Data</strong>.<br>
-Modul ini membahas teori dan praktik dalam visualisasi data menggunakan <strong>R</strong> serta berbagai tools lain seperti <strong>Tableau</strong>.</p>
-<p>Materi praktikum dirancang agar mahasiswa tidak hanya memahami teknik visualisasi data dari sisi analisis, tetapi juga dapat mengimplementasikannya secara efektif menggunakan berbagai perangkat lunak.</p>
-<section id="struktur-praktikum" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="struktur-praktikum">Struktur Praktikum</h2>
-<ul>
-<li><strong>📝 Sesi UTS</strong> → <strong>Tugas akhir berupa poster visualisasi data</strong><br>
-<em>Visualisasi utama dibuat menggunakan <strong>R</strong>, tetapi mahasiswa juga diperbolehkan menggunakan sumber lain seperti Tableau.</em></li>
-</ul>
-<!-- -->
-<ul>
-<li><strong>📊 Sesi UAS</strong> → <strong>Tugas akhir berupa dashboard interaktif</strong><br>
-<em>Mahasiswa akan menggunakan <strong>Tableau</strong> sebagai tools utama untuk membangun dashboard.</em></li>
-</ul>
+<section id="data" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="data"><span class="header-section-number">3.1</span> Data</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data_ev <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Data/EV_Population.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_ev)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  State Model.Year      Make Electric.Vehicle.Type Electric.Range Base.MSRP
+1    WA       2020     TESLA                   BEV            266         0
+2    WA       2024       BMW                  PHEV             39         0
+3    WA       2024       BMW                  PHEV             39         0
+4    WA       2018     TESLA                   BEV            215         0
+5    WA       2012 CHEVROLET                  PHEV             35         0
+6    WA       2020     TESLA                   BEV            308         0
+  Legislative.District CAFV.Eligibility.Simple
+1                   46                Eligible
+2                   46                Eligible
+3                   43                Eligible
+4                    1                Eligible
+5                   35                Eligible
+6                   23                Eligible</code></pre>
+</div>
+</div>
 </section>
-<section id="tujuan" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="tujuan">Tujuan</h2>
-<ul>
-<li>Memahami konsep dasar visualisasi data berdasarkan <strong>persepsi grafis manusia</strong>.</li>
-</ul>
-<!-- -->
-<ul>
-<li><p>Menggunakan <strong>R</strong> dan <strong>Tableau</strong> untuk membuat visualisasi yang informatif dan menarik.</p></li>
-<li><p>Mengeksplorasi berbagai teknik visualisasi, termasuk <strong>visualisasi interaktif dan animasi</strong>.</p></li>
-<li><p>Menghasilkan <strong>poster visualisasi</strong> dan <strong>dashboard interaktif</strong> yang dapat menyampaikan informasi secara efektif.</p></li>
-</ul>
+<section id="histogram" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="histogram"><span class="header-section-number">3.2</span> Histogram</h2>
+<p>Visualisasi distribusi data berbasis frekuensi dalam bentuk batang.</p>
+<p><img src="images/clipboard-1238374112.png" class="img-fluid" width="202"></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Buat data simulasi</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># Untuk reproduksibilitas</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data_hist <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">80</span>, <span class="at">sd =</span> <span class="dv">5</span>)  <span class="co"># 1000 sampel dengan distribusi normal</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Buat Histogram</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_hist, <span class="fu">aes</span>(<span class="at">x =</span> Value)) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span>  <span class="co"># Batang histogram</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram Distribusi Data"</span>, <span class="at">x =</span> <span class="st">"Nilai"</span>, <span class="at">y =</span> <span class="st">"Frekuensi"</span>) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03-Bab-3_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="3000"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="deskripsi-mata-kuliah" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="deskripsi-mata-kuliah">Deskripsi Mata Kuliah</h2>
-<p>Mata kuliah ini akan mendiskusikan teknik visualisasi data, yang diperoleh dari hasil proses analisis. Didasarkan pada <strong>persepsi grafis manusia</strong>, akan dibicarakan berbagai teknik visualisasi <strong>tradisional dan modern</strong>.</p>
-<p>Materi yang dibahas meliputi:</p>
-<ol type="1">
-<li><strong>Membandingkan Kategori</strong></li>
-<li><strong>Deret Waktu</strong></li>
-<li><strong>Distribusi</strong></li>
-<li><strong>Geospasial</strong></li>
-<li><strong>Hubungan Antar Peubah</strong></li>
-<li><strong>Proporsi dan Komposisi</strong></li>
-<li><strong>Visualisasi Kualitatif</strong></li>
-<li><strong>Penyajian Data dalam Bentuk Tabel</strong></li>
-</ol>
-<p>Selain itu, penggunaan <strong>paket komputer secara intensif</strong> akan didiskusikan untuk menghasilkan berbagai bentuk visualisasi, termasuk <strong>animasi</strong>, sebagai cara memperoleh informasi lebih pada data berdimensi besar.</p>
+<section id="pyramid-chart" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="pyramid-chart"><span class="header-section-number">3.3</span> Pyramid Chart</h2>
+<p>Digunakan untuk membandingkan distribusi kategori dua arah (misalnya populasi pria vs wanita).</p>
+<p><img src="images/clipboard-4158192479.png" class="img-fluid" width="198"></p>
 </section>
-<section id="referensi" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="referensi">Referensi</h2>
-<p>Materi praktikum ini mengadaptasi berbagai konsep dari buku:<br>
-📖 <a href="https://www.amazon.com/Better-Data-Visualizations-Scholars-Researchers/dp/0231193114"><strong>Better Data Visualizations</strong></a> - <a href="https://www.amazon.com/stores/Jonathan-Schwabish/author/B01L9OXP3E"><em>Jonathan Schwabish</em></a></p>
-<p><img src="images/clipboard-135804932.png" class="img-fluid" width="234"></p>
+<section id="statistical-uncertainty" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="statistical-uncertainty"><span class="header-section-number">3.4</span> <strong>Visualizing Statistical Uncertainty with Charts</strong></h2>
+<p>Metode visualisasi ketidakpastian statistik dalam data.</p>
+<section id="error-bars" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="error-bars"><span class="header-section-number">3.4.1</span> Error Bars</h3>
+<p><img src="images/clipboard-955379841.png" class="img-fluid" width="172"></p>
+</section>
+<section id="confidence-interval" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="confidence-interval"><span class="header-section-number">3.4.2</span> Confidence Interval</h3>
+<p><img src="images/clipboard-1134882823.png" class="img-fluid" width="229"></p>
+</section>
+<section id="gradient-chart" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="gradient-chart"><span class="header-section-number">3.4.3</span> Gradient Chart</h3>
+<p><img src="images/clipboard-1119979853.png" class="img-fluid" width="293"></p>
+</section>
+<section id="fan-charts" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="fan-charts"><span class="header-section-number">3.4.4</span> Fan Charts</h3>
+<p><img src="images/clipboard-673330419.png" width="254" height="201"></p>
+</section>
+</section>
+<section id="boxplot" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="boxplot"><span class="header-section-number">3.5</span> Box-and-Whisker Plot</h2>
+<p>Menampilkan lima ringkasan data: minimum, Q1, median, Q3, dan maksimum.</p>
+<p><img src="images/clipboard-3133313176.png" class="img-fluid" width="222"></p>
+</section>
+<section id="candlestick-chart" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="candlestick-chart"><span class="header-section-number">3.6</span> Candlestick Chart</h2>
+<p>Digunakan dalam analisis keuangan untuk menunjukkan harga tertinggi, terendah, pembukaan, dan penutupan.</p>
+<p><img src="images/clipboard-52418158.png" class="img-fluid" width="318"></p>
+</section>
+<section id="violin-chart" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="violin-chart"><span class="header-section-number">3.7</span> Violin Chart</h2>
+<p>Kombinasi antara boxplot dan density plot untuk memahami distribusi data.</p>
+<p><img src="images/clipboard-3558018633.png" width="194" height="194"></p>
+</section>
+<section id="ridgeline-plot" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="ridgeline-plot"><span class="header-section-number">3.8</span> Ridgeline Plot</h2>
+<p>Menunjukkan distribusi data yang saling tumpang tindih dalam satu grafik.</p>
+<p><img src="images/clipboard-3261482838.png" class="img-fluid" width="283"></p>
+</section>
+<section id="uncertainty" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="uncertainty"><span class="header-section-number">3.9</span> <strong>Showing the Data</strong></h2>
+<section id="strip-plot" class="level3" data-number="3.9.1">
+<h3 data-number="3.9.1" class="anchored" data-anchor-id="strip-plot"><span class="header-section-number">3.9.1</span> Strip Plot</h3>
+<p><img src="images/clipboard-2235031614.png" class="img-fluid" width="177"></p>
+</section>
+<section id="beeswarm-plot" class="level3" data-number="3.9.2">
+<h3 data-number="3.9.2" class="anchored" data-anchor-id="beeswarm-plot"><span class="header-section-number">3.9.2</span> Beeswarm Plot</h3>
+<p><img src="images/clipboard-1465558755.png" class="img-fluid" width="177"> <img src="images/clipboard-812578471.png" class="img-fluid" width="227"></p>
+</section>
+<section id="wilkinson-dot-plots-and-wheat-plot" class="level3" data-number="3.9.3">
+<h3 data-number="3.9.3" class="anchored" data-anchor-id="wilkinson-dot-plots-and-wheat-plot"><span class="header-section-number">3.9.3</span> Wilkinson Dot Plots and Wheat Plot</h3>
+<p><img src="images/clipboard-2521164228.png" width="161" height="89"> <img src="images/clipboard-2082311084.png" class="img-fluid" width="315"></p>
+</section>
+<section id="raincloud-plot" class="level3" data-number="3.9.4">
+<h3 data-number="3.9.4" class="anchored" data-anchor-id="raincloud-plot"><span class="header-section-number">3.9.4</span> Raincloud Plot</h3>
+<p><img src="images/clipboard-67481014.png" class="img-fluid" width="327"></p>
+</section>
+</section>
+<section id="stem-leaf" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="stem-leaf"><span class="header-section-number">3.10</span> Stem-and-Leaf Plot</h2>
+<p>Digunakan untuk menampilkan distribusi angka dengan tetap mempertahankan nilai aslinya.</p>
+<p><img src="images/clipboard-1702212809.png" class="img-fluid"></p>
+</section>
+<section id="conclusion" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">3.11</span> Conclusion</h2>
+<p>Ringkasan konsep visualisasi distribusi data.</p>
 
 
 <!-- -->
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -950,83 +1026,134 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./02-Bab-2.html" class="pagination-link" aria-label="**Deret Waktu**">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><strong>Deret Waktu</strong></span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-Bab-1.html" class="pagination-link" aria-label="**Perbandingan Kategori**">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><strong>Perbandingan Kategori</strong></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./04-Bab-4.html" class="pagination-link" aria-label="Geospasial">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Geospasial</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: default</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    css: style.css</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu"># Pendahuluan {.unnumbered}</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Buku ini adalah modul praktikum untuk **STA1262: Visualisasi Data**.\</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Modul ini membahas teori dan praktik dalam visualisasi data menggunakan **R** serta berbagai tools lain seperti **Tableau**.</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Materi praktikum dirancang agar mahasiswa tidak hanya memahami teknik visualisasi data dari sisi analisis, tetapi juga dapat mengimplementasikannya secara efektif menggunakan berbagai perangkat lunak.</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Struktur Praktikum {.unnumbered}</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**📝 Sesi UTS** → **Tugas akhir berupa poster visualisasi data**\</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    *Visualisasi utama dibuat menggunakan **R**, tetapi mahasiswa juga diperbolehkan menggunakan sumber lain seperti Tableau.*</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- --&gt;</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**📊 Sesi UAS** → **Tugas akhir berupa dashboard interaktif**\</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    *Mahasiswa akan menggunakan **Tableau** sebagai tools utama untuk membangun dashboard.*</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tujuan {.unnumbered}</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Memahami konsep dasar visualisasi data berdasarkan **persepsi grafis manusia**.</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- --&gt;</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Menggunakan **R** dan **Tableau** untuk membuat visualisasi yang informatif dan menarik.</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Mengeksplorasi berbagai teknik visualisasi, termasuk **visualisasi interaktif dan animasi**.</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Menghasilkan **poster visualisasi** dan **dashboard interaktif** yang dapat menyampaikan informasi secara efektif.</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deskripsi Mata Kuliah {.unnumbered}</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>Mata kuliah ini akan mendiskusikan teknik visualisasi data, yang diperoleh dari hasil proses analisis. Didasarkan pada **persepsi grafis manusia**, akan dibicarakan berbagai teknik visualisasi **tradisional dan modern**.</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>Materi yang dibahas meliputi:</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Membandingkan Kategori**</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Deret Waktu**</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Distribusi**</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Geospasial**</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Hubungan Antar Peubah**</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>**Proporsi dan Komposisi**</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>**Visualisasi Kualitatif**</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">8.  </span>**Penyajian Data dalam Bentuk Tabel**</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>Selain itu, penggunaan **paket komputer secara intensif** akan didiskusikan untuk menghasilkan berbagai bentuk visualisasi, termasuk **animasi**, sebagai cara memperoleh informasi lebih pada data berdimensi besar.</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## Referensi {.unnumbered}</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>Materi praktikum ini mengadaptasi berbagai konsep dari buku:\</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>📖 <span class="co">[</span><span class="ot">**Better Data Visualizations**</span><span class="co">](https://www.amazon.com/Better-Data-Visualizations-Scholars-Researchers/dp/0231193114)</span> - <span class="co">[</span><span class="ot">*Jonathan Schwabish*</span><span class="co">](https://www.amazon.com/stores/Jonathan-Schwabish/author/B01L9OXP3E)</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-135804932.png)</span>{width="234"}</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># **Distribusi** {#distribusi}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in"># Set Working Directory</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="in">opts_knit$set(root.dir = normalizePath("./"))</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>data_ev <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Data/EV_Population.csv"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_ev)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Histogram {#histogram}</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>Visualisasi distribusi data berbasis frekuensi dalam bentuk batang.</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1238374112.png)</span>{width="202"}</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fig.height=3.5, fig.width=10, dpi=300}</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="in"># Buat data simulasi</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="in">set.seed(123)  # Untuk reproduksibilitas</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="in">data_hist &lt;- data.frame(</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="in">  Value = rnorm(1000, mean = 80, sd = 5)  # 1000 sampel dengan distribusi normal</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="in"># Buat Histogram</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(data_hist, aes(x = Value)) +</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram(binwidth = 2, fill = "red", color = "white") +  # Batang histogram</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(title = "Histogram Distribusi Data", x = "Nilai", y = "Frekuensi") +</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pyramid Chart {#pyramid-chart}</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>Digunakan untuk membandingkan distribusi kategori dua arah (misalnya populasi pria vs wanita).</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-4158192479.png)</span>{width="198"}</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Visualizing Statistical Uncertainty with Charts** {#statistical-uncertainty}</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>Metode visualisasi ketidakpastian statistik dalam data.</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Error Bars</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-955379841.png)</span>{width="172"}</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Confidence Interval</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1134882823.png)</span>{width="229"}</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Gradient Chart</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1119979853.png)</span>{width="293"}</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fan Charts</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-673330419.png)</span>{width="254" height="201"}</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Box-and-Whisker Plot {#boxplot}</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>Menampilkan lima ringkasan data: minimum, Q1, median, Q3, dan maksimum.</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-3133313176.png)</span>{width="222"}</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Candlestick Chart {#candlestick-chart}</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>Digunakan dalam analisis keuangan untuk menunjukkan harga tertinggi, terendah, pembukaan, dan penutupan.</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-52418158.png)</span>{width="318"}</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="fu">## Violin Chart {#violin-chart}</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>Kombinasi antara boxplot dan density plot untuk memahami distribusi data.</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-3558018633.png)</span>{width="194" height="194"}</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ridgeline Plot {#ridgeline-plot}</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>Menunjukkan distribusi data yang saling tumpang tindih dalam satu grafik.</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-3261482838.png)</span>{width="283"}</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Showing the Data** {#uncertainty}</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="fu">### Strip Plot</span></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-2235031614.png)</span>{width="177"}</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="fu">### Beeswarm Plot</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1465558755.png)</span>{width="177"} <span class="al">![](images/clipboard-812578471.png)</span>{width="227"}</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="fu">### Wilkinson Dot Plots and Wheat Plot</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-2521164228.png)</span>{width="161" height="89"} <span class="al">![](images/clipboard-2082311084.png)</span>{width="315"}</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="fu">### Raincloud Plot</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-67481014.png)</span>{width="327"}</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stem-and-Leaf Plot {#stem-leaf}</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>Digunakan untuk menampilkan distribusi angka dengan tetap mempertahankan nilai aslinya.</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1702212809.png)</span></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>Ringkasan konsep visualisasi distribusi data.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Zen-Rofiqy/Modul-VisDat/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Zen-Rofiqy/Modul-VisDat/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Zen-Rofiqy/Modul-VisDat/edit/main/03-Bab-3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Zen-Rofiqy/Modul-VisDat/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
