@@ -10,6 +10,10 @@ opts_knit$set(root.dir = normalizePath("./"))
 Data yang akan digunakan adalah
 
 ```{r}
+# Add Google Fonts 
+font_add_google("Lato", "lato")
+showtext_auto()
+
 # Data
 data_cars <- mtcars %>%
   mutate(
@@ -198,7 +202,7 @@ data_cars_norm <- data_cars %>%
 
 # **Pastikan label_positions memiliki skala yang sudah dinormalisasi**
 label_positions <- data_cars_norm %>%
-  filter(car_name %in% label_cars$car_name) %>%
+  dplyr::filter(car_name %in% label_cars$car_name) %>%
   select(car_name, cc, highlight)  # Tambahkan highlight agar sesuai dengan warna
 
 x_max <- length(selected_columns) + 0.3  # Posisi label di ujung sumbu
@@ -292,7 +296,7 @@ data_cars_norm <- data_cars %>%
 
 # **Pastikan label_positions memiliki skala yang sudah dinormalisasi**
 label_positions <- data_cars_norm %>%
-  filter(car_name %in% label_cars$car_name) %>%
+  dplyr::filter(car_name %in% label_cars$car_name) %>%
   select(car_name, cc, highlight)  # Tambahkan highlight agar sesuai dengan warna
 
 x_max <- length(selected_columns) + 0.3  # Posisi label di ujung sumbu
@@ -405,7 +409,7 @@ Diagram yang digunakan untuk menunjukkan hubungan antara beberapa kategori yang 
 
 -   `install.packages("C:/Users/NAMA_USER/Downloads/circlize_0.4.16.zip", repos = NULL, type = "win.binary")`
 
-```{r}
+```{r, warning= false}
 # Install dan load library jika belum ada
 # install.packages("circlize")
 # Kalo gak bisa, coba ini
