@@ -1,3 +1,6 @@
-# A Caucus-race and a Long Tale
+# Geospasial
 
-Materi dalam bab ini membahas...
+```{r setup, include=FALSE}
+# Set Working Directory
+opts_knit$set(root.dir = normalizePath("./"))
+```
