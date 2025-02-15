@@ -27,7 +27,7 @@ data_cars <- mtcars %>%
   rownames_to_column(var = "car_name") %>% 
   select(-disp, -vs, -am) 
   
-head(data_cars)
+datatable(data_cars)
 ```
 
 ------------------------------------------------------------------------

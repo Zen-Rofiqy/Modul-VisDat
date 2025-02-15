@@ -10,7 +10,11 @@ opts_knit$set(root.dir = normalizePath("./"))
 ```{r}
 # Data
 data_ev <- read.csv("Data/EV_Population.csv")
-head(data_ev)
+
+cat("Jumlah Baris:",nrow(data_ev),
+    "\nJumlah Kolom:", ncol(data_ev))
+
+datatable(data_ev %>% head(100))
 ```
 
 ## Line Chart {#line-chart}

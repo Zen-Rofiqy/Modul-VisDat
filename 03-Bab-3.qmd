@@ -1,4 +1,4 @@
-# **Distribusi** {#distribusi}
+# Distribusi {#distribusi}
 
 ```{r setup, include=FALSE}
 # Set Working Directory
@@ -10,7 +10,11 @@ opts_knit$set(root.dir = normalizePath("./"))
 ```{r}
 # Data
 data_ev <- read.csv("Data/EV_Population.csv")
-head(data_ev)
+
+cat("Jumlah Baris:",nrow(data_ev),
+    "\nJumlah Kolom:", ncol(data_ev))
+
+datatable(data_ev %>% head(100))
 ```
 
 ## Histogram {#histogram}
@@ -40,7 +44,7 @@ Digunakan untuk membandingkan distribusi kategori dua arah (misalnya populasi pr
 
 ![](images/clipboard-4158192479.png){width="198"}
 
-## **Visualizing Statistical Uncertainty with Charts** {#statistical-uncertainty}
+## Visualizing Statistical Uncertainty with Charts {#statistical-uncertainty}
 
 Metode visualisasi ketidakpastian statistik dalam data.
 
@@ -84,7 +88,7 @@ Menunjukkan distribusi data yang saling tumpang tindih dalam satu grafik.
 
 ![](images/clipboard-3261482838.png){width="283"}
 
-## **Showing the Data** {#uncertainty}
+## Showing the Data {#uncertainty}
 
 ### Strip Plot
 
