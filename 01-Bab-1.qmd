@@ -98,6 +98,7 @@ ggplot(data_ev_sorted,
 
 Variasi dari barchart
 
+::: panel-tabset
 ### Advanced
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -216,6 +217,7 @@ chart <-
 
 chart
 ```
+:::
 
 ## Paired Bar {#paired-bar .tabset}
 
@@ -223,6 +225,7 @@ Membandingkan dua set kategori yang terkait.
 
 ![](images/clipboard-1762406163.png){width="170"}
 
+::: panel-tabset
 ### Advanced 1
 
 ```{r fig.height=5, fig.width=12, dpi=300}
@@ -356,6 +359,7 @@ ggplot(data_ev,
   geom_bar(position="dodge") +
   coord_flip()
 ```
+:::
 
 ## Stacked Bar {#stacked-bar .tabset}
 
@@ -363,6 +367,7 @@ Menampilkan perbandingan komposisi antar kategori.
 
 ![](images/clipboard-1485803542.png){width="174"}
 
+::: panel-tabset
 ### Advanced Freq
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -501,6 +506,7 @@ ggplot(data_ev,
   geom_bar(position="stack") +
   coord_flip()
 ```
+:::
 
 ## Diverging Bar {#diverging-bar}
 
