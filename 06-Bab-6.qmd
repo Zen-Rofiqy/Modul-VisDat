@@ -1,4 +1,4 @@
-# **Proporsi dan Komposisi** {#proporsi-dan-komposisi}
+# Proporsi dan Komposisi {#proporsi-dan-komposisi}
 
 ```{r setup, include=FALSE}
 # Set Working Directory
