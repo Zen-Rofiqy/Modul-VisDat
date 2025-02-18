@@ -1,11 +1,14 @@
-# **Perbandingan Kategori** {#perbandingan-kategori}
+# Perbandingan Kategori {#perbandingan-kategori}
 
 ```{r setup, include=FALSE}
 # Set Working Directory
 opts_knit$set(root.dir = normalizePath("./"))
 ```
 
-## Data
+Perbandingan antar kategori dalam data dapat divisualisasikan dengan berbagai jenis chart untuk mempermudah analisis dan interpretasi. **Bar Chart** adalah metode paling umum, sementara variasi seperti **Stacked Bar**, **Paired Bar**, dan **Diverging Bar** menawarkan pendekatan berbeda tergantung pada kebutuhan. Bab ini membahas berbagai chart untuk perbandingan kategori, beserta kondisi data yang sesuai, tujuan visualisasi, serta kelebihan dan kekurangannya.
+
+::: panel-tabset
+## Data {.unnumbered}
 
 -   [Placement Prediction Dataset](https://www.kaggle.com/datasets/ruchikakumbhar/placement-prediction-dataset)
 
@@ -22,12 +25,33 @@ data_ev <- read.csv("Data/EV_Population.csv")
 data_survey <- read.csv("Data/employee-survey.csv", sep="|")
 ```
 
-## Bar Charts {#barchart .tabset}
+## Ringkasan Chart {.unnumbered}
+
+| Jenis Chart | Kondisi Data | Tujuan Visualisasi | Kelebihan | Kekurangan |
+|---------------|---------------|---------------|---------------|---------------|
+| [Bar Chart](#Bar-Chart) | Kategori | Perbandingan antar kategori | Mudah dipahami, fleksibel | Kurang efektif untuk banyak kategori |
+| [Lollipop Chart](#Lollipop-Chart) | Kategori | Variasi dari bar chart, lebih ringan | Visual lebih bersih, menyoroti perbedaan kecil | Kurang dikenal, kurang informatif untuk data kompleks |
+| [Paired Bar](#Paired-Bar) | Kategori | Membandingkan dua set kategori terkait | Memudahkan perbandingan langsung | Sulit dibaca jika terlalu banyak kategori |
+| [Stacked Bar](#Stacked-Bar) | Kategori + Numerik | Menampilkan komposisi dalam kategori | Menghemat ruang, menampilkan distribusi | Sulit membandingkan sub-kategori |
+| [Diverging Bar](#Diverging-Bar) | Kategori + Numerik | Distribusi dengan skala positif-negatif | Menampilkan keseimbangan atau perbedaan ekstrem | Sulit diinterpretasi jika terlalu banyak kategori |
+| [Dot Plot](#Dot-Plot) | Kategori + Numerik | Distribusi atau perbandingan | Lebih ringkas dari bar chart, menyoroti perbedaan kecil | Kurang umum digunakan |
+| [Marimekko/Mosaic](#Marimekko-and-Mosaic-Charts) | Dua Kategori | Proporsi dua variabel kategori | Efektif untuk melihat hubungan antar kategori | Sulit dibuat dan diinterpretasi |
+| [Unit Chart](#Unit-Chart) | Kategori + Proporsi | Menampilkan proporsi dengan ikon | Menarik secara visual | Kurang akurat untuk proporsi kecil |
+| [Waffle Chart](#Waffle-Chart) | Kategori + Proporsi | Menampilkan proporsi dalam bentuk grid | Lebih estetis dari pie chart | Kurang akurat untuk nilai kecil |
+| [Heatmap](#Heatmap) | Matriks (Kategori + Numerik) | Representasi warna dari nilai numerik | Sangat efektif untuk data besar | Sulit untuk interpretasi nilai absolut |
+| [Gauge/Bullet](#Gauge-and-Bullet-Charts) | Numerik | Menampilkan indikator atau target | Bagus untuk KPI atau performa | Kurang efektif untuk perbandingan |
+| [Bubble Chart](#Bubble-Comparison-and-Nested-Bubbles) | Kategori + Numerik | Menampilkan hierarki atau hubungan | Mampu menunjukkan lebih dari dua dimensi | Sulit dibaca jika ada banyak data |
+| [Sankey Diagram](#Sankey-Diagram) | Kategori + Hubungan | Menampilkan aliran data antar kategori | Sangat efektif untuk alur proses | Sulit dibuat dan diinterpretasi |
+| [Waterfall Chart](#Waterfall-Chart) | Numerik | Menampilkan perubahan kumulatif | Bagus untuk analisis finansial | Tidak cocok untuk banyak kategori |
+:::
+
+## Bar Charts {#Bar-Chart .tabset}
 
 Diagram batang digunakan untuk membandingkan kategori.
 
 ![](images/clipboard-792151592.png){width="169"}
 
+::: panel-tabset
 ### Advanced
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -91,11 +115,13 @@ ggplot(data_ev_sorted,
   geom_bar(stat = "identity", width = 0.8, fill = "steelblue") +
   coord_flip()
 ```
+:::
 
-## Lolipop Chart {.tabset}
+## Lolipop Chart {#Lollipop-Chart .tabset}
 
 Variasi dari barchart
 
+::: panel-tabset
 ### Advanced
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -214,13 +240,15 @@ chart <-
 
 chart
 ```
+:::
 
-## Paired Bar {#paired-bar .tabset}
+## Paired Bar {#Paired-Bar .tabset}
 
 Membandingkan dua set kategori yang terkait.
 
 ![](images/clipboard-1762406163.png){width="170"}
 
+::: panel-tabset
 ### Advanced 1
 
 ```{r fig.height=5, fig.width=12, dpi=300}
@@ -354,13 +382,15 @@ ggplot(data_ev,
   geom_bar(position="dodge") +
   coord_flip()
 ```
+:::
 
-## Stacked Bar {#stacked-bar .tabset}
+## Stacked Bar {#Stacked-Bar .tabset}
 
 Menampilkan perbandingan komposisi antar kategori.
 
 ![](images/clipboard-1485803542.png){width="174"}
 
+::: panel-tabset
 ### Advanced Freq
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -499,8 +529,9 @@ ggplot(data_ev,
   geom_bar(position="stack") +
   coord_flip()
 ```
+:::
 
-## Diverging Bar {#diverging-bar}
+## Diverging Bar {#Diverging-Bar}
 
 Menunjukkan distribusi kategori dengan skala positif-negatif.
 
@@ -581,7 +612,7 @@ ggplot(data_survey_cleaned, aes(x = Question, y = Count, fill = Response.Text)) 
         legend.title = element_blank())  # Hilangkan judul legend
 ```
 
-## Dot Plot {#dot-plot}
+## Dot Plot {#Dot-Plot}
 
 Digunakan untuk menunjukkan distribusi atau perbandingan antar kategori.
 
@@ -619,19 +650,19 @@ ggplot(data_pisa_long, aes(x = Score, y = reorder(Country, Score), color = Subje
         axis.text.y = element_text(face = "bold"))
 ```
 
-## Marimekko and Mosaic Charts {#marimekko-mosaic}
+## Marimekko and Mosaic Charts {#Marimekko-and-Mosaic-Charts}
 
 Visualisasi untuk membandingkan proporsi dua variabel kategori.
 
 ![](images/clipboard-106419168.png){width="291"} ![](images/clipboard-3174332575.png){width="324"}
 
-## Unit, Isotype, and Waffle Charts {#unit-chart}
+## Unit, Isotype, and Waffle Charts {#Unit-Chart}
 
 Digunakan untuk menampilkan proporsi dalam bentuk ikon atau blok.
 
 ![](images/clipboard-3586682718.png){width="203"} ![](images/clipboard-2123779999.png){width="269"} ![](images/clipboard-1414171221.png){width="201"}
 
-### Unit Chart
+### Unit Chart {#unit-chart}
 
 ```{r fig.height=3.5, fig.width=10, dpi=300}
 # Buat dataset grid untuk tahun 2000 (100 kotak) dan tahun 2015 (57 kotak)
@@ -658,7 +689,7 @@ ggplot(unit_chart_data, aes(x = x, y = y, fill = Year)) +
   theme(legend.position = "none")  # Sembunyikan legend
 ```
 
-### Waffle Chart
+### Waffle Chart {#Waffle-Chart}
 
 ```{r fig.height=3.5, fig.width=10, dpi=300}
 # Buat data proporsi
@@ -671,7 +702,7 @@ waffle(poverty_data, rows = 10, colors = c("#E15759", "#F28E2B", "#BAB0AC")) +
   theme_minimal()
 ```
 
-## Heatmap {#heatmap}
+## Heatmap {#Heatmap}
 
 Visualisasi matriks yang menggunakan warna untuk mewakili nilai numerik.
 
@@ -744,7 +775,7 @@ calendR(year = 2024, month = 3,
         title = "March 2024")
 ```
 
-## Gauge and Bullet Charts {#gauge-bullet}
+## Gauge and Bullet Charts {#Gauge-and-Bullet-Charts}
 
 Menampilkan pengukuran dalam format indikator atau skala.
 
@@ -772,7 +803,7 @@ ggplot(bullet_data, aes(y = Category)) +
 
 ```
 
-## Bubble Comparison and Nested Bubbles {#bubble-chart}
+## Bubble Comparison and Nested Bubbles {#Bubble-Comparison-and-Nested-Bubbles}
 
 Digunakan untuk menunjukkan hierarki atau hubungan antar data.
 
@@ -803,7 +834,7 @@ ggplot(bubble_data, aes(x = Population, y = PovertyRate, size = Population, fill
   theme(legend.position = "none")
 ```
 
-## Sankey Diagram {#sankey}
+## Sankey Diagram {#Sankey-Diagram}
 
 Diagram aliran yang menunjukkan hubungan antar kategori.
 
@@ -836,14 +867,8 @@ ggplot(sankey_data, aes(axis1 = Source, axis2 = Target, y = Value)) +
   theme(legend.position = "none")
 ```
 
-## Waterfall Chart {#waterfall}
+## Waterfall Chart {#Waterfall-Chart}
 
 Menunjukkan perubahan nilai dalam urutan kumulatif.
 
 ![](images/clipboard-923421594.png){width="244"}
-
-## Conclusion
-
-Ringkasan konsep perbandingan kategori.
-
-------------------------------------------------------------------------
