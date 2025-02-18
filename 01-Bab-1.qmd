@@ -5,6 +5,26 @@
 opts_knit$set(root.dir = normalizePath("./"))
 ```
 
+Perbandingan antar kategori dalam data dapat divisualisasikan dengan berbagai jenis chart untuk mempermudah analisis dan interpretasi. **Bar Chart** adalah metode paling umum, sementara variasi seperti **Stacked Bar**, **Paired Bar**, dan **Diverging Bar** menawarkan pendekatan berbeda tergantung pada kebutuhan. Bab ini membahas berbagai chart untuk perbandingan kategori, beserta kondisi data yang sesuai, tujuan visualisasi, serta kelebihan dan kekurangannya.
+
+::: panel-tabset
+## Data {.unnumbered}
+
+-   [Placement Prediction Dataset](https://www.kaggle.com/datasets/ruchikakumbhar/placement-prediction-dataset)
+
+-   [Mobile Apps ScreenTime Analysis](https://www.kaggle.com/datasets/anandshaw2001/mobile-apps-screentime-analysis)
+
+-   [Electric Vehicle Population](https://www.kaggle.com/datasets/fatmanur12/electric-vehicle-population)
+
+-   [S&P 500, ETF, FX & Crypto (Daily updated)](https://www.kaggle.com/datasets/benjaminpo/s-and-p-500-with-dividends-and-splits-daily-updated?select=AAPL.csv)
+
+-   [Discover Perspectives: HR Analytics Employee](https://www.kaggle.com/datasets/agungpambudi/workforce-perspectives-hr-employee-survey-analysis?select=employee-survey-insights-analysis.csv)
+
+```{r}
+data_ev <- read.csv("Data/EV_Population.csv")
+data_survey <- read.csv("Data/employee-survey.csv", sep="|")
+```
+
 ## Ringkasan Chart {.unnumbered}
 
 | Jenis Chart | Kondisi Data | Tujuan Visualisasi | Kelebihan | Kekurangan |
@@ -23,23 +43,7 @@ opts_knit$set(root.dir = normalizePath("./"))
 | [Bubble Chart](#Bubble-Comparison-and-Nested-Bubbles) | Kategori + Numerik | Menampilkan hierarki atau hubungan | Mampu menunjukkan lebih dari dua dimensi | Sulit dibaca jika ada banyak data |
 | [Sankey Diagram](#Sankey-Diagram) | Kategori + Hubungan | Menampilkan aliran data antar kategori | Sangat efektif untuk alur proses | Sulit dibuat dan diinterpretasi |
 | [Waterfall Chart](#Waterfall-Chart) | Numerik | Menampilkan perubahan kumulatif | Bagus untuk analisis finansial | Tidak cocok untuk banyak kategori |
-
-## Data {.unnumbered}
-
--   [Placement Prediction Dataset](https://www.kaggle.com/datasets/ruchikakumbhar/placement-prediction-dataset)
-
--   [Mobile Apps ScreenTime Analysis](https://www.kaggle.com/datasets/anandshaw2001/mobile-apps-screentime-analysis)
-
--   [Electric Vehicle Population](https://www.kaggle.com/datasets/fatmanur12/electric-vehicle-population)
-
--   [S&P 500, ETF, FX & Crypto (Daily updated)](https://www.kaggle.com/datasets/benjaminpo/s-and-p-500-with-dividends-and-splits-daily-updated?select=AAPL.csv)
-
--   [Discover Perspectives: HR Analytics Employee](https://www.kaggle.com/datasets/agungpambudi/workforce-perspectives-hr-employee-survey-analysis?select=employee-survey-insights-analysis.csv)
-
-```{r}
-data_ev <- read.csv("Data/EV_Population.csv")
-data_survey <- read.csv("Data/employee-survey.csv", sep="|")
-```
+:::
 
 ## Bar Charts {#Bar-Chart .tabset}
 
@@ -658,7 +662,7 @@ Digunakan untuk menampilkan proporsi dalam bentuk ikon atau blok.
 
 ![](images/clipboard-3586682718.png){width="203"} ![](images/clipboard-2123779999.png){width="269"} ![](images/clipboard-1414171221.png){width="201"}
 
-### Unit Chart
+### Unit Chart {#unit-chart}
 
 ```{r fig.height=3.5, fig.width=10, dpi=300}
 # Buat dataset grid untuk tahun 2000 (100 kotak) dan tahun 2015 (57 kotak)
@@ -868,9 +872,3 @@ ggplot(sankey_data, aes(axis1 = Source, axis2 = Target, y = Value)) +
 Menunjukkan perubahan nilai dalam urutan kumulatif.
 
 ![](images/clipboard-923421594.png){width="244"}
-
-## Conclusion
-
-Ringkasan konsep perbandingan kategori.
-
-------------------------------------------------------------------------
