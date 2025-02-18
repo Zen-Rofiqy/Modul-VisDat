@@ -8,21 +8,21 @@ opts_knit$set(root.dir = normalizePath("./"))
 ## Ringkasan Chart {.unnumbered}
 
 | Jenis Chart | Kondisi Data | Tujuan Visualisasi | Kelebihan | Kekurangan |
-|----|----|----|----|----|
-| **Bar Chart** | Kategori | Perbandingan antar kategori | Mudah dipahami, fleksibel | Kurang efektif untuk banyak kategori |
-| **Lollipop Chart** | Kategori | Variasi dari bar chart, lebih ringan | Visual lebih bersih, menyoroti perbedaan kecil | Kurang dikenal, kurang informatif untuk data kompleks |
-| **Paired Bar** | Kategori | Membandingkan dua set kategori terkait | Memudahkan perbandingan langsung | Sulit dibaca jika terlalu banyak kategori |
-| **Stacked Bar** | Kategori + Numerik | Menampilkan komposisi dalam kategori | Menghemat ruang, menampilkan distribusi | Sulit membandingkan sub-kategori |
-| **Diverging Bar** | Kategori + Numerik | Distribusi dengan skala positif-negatif | Menampilkan keseimbangan atau perbedaan ekstrem | Sulit diinterpretasi jika terlalu banyak kategori |
-| **Dot Plot** | Kategori + Numerik | Distribusi atau perbandingan | Lebih ringkas dari bar chart, menyoroti perbedaan kecil | Kurang umum digunakan |
-| **Marimekko/Mosaic** | Dua Kategori | Proporsi dua variabel kategori | Efektif untuk melihat hubungan antar kategori | Sulit dibuat dan diinterpretasi |
-| **Unit Chart** | Kategori + Proporsi | Menampilkan proporsi dengan ikon | Menarik secara visual | Kurang akurat untuk proporsi kecil |
-| **Waffle Chart** | Kategori + Proporsi | Menampilkan proporsi dalam bentuk grid | Lebih estetis dari pie chart | Kurang akurat untuk nilai kecil |
-| **Heatmap** | Matriks (Kategori + Numerik) | Representasi warna dari nilai numerik | Sangat efektif untuk data besar | Sulit untuk interpretasi nilai absolut |
-| **Gauge/Bullet** | Numerik | Menampilkan indikator atau target | Bagus untuk KPI atau performa | Kurang efektif untuk perbandingan |
-| **Bubble Chart** | Kategori + Numerik | Menampilkan hierarki atau hubungan | Mampu menunjukkan lebih dari dua dimensi | Sulit dibaca jika ada banyak data |
-| **Sankey Diagram** | Kategori + Hubungan | Menampilkan aliran data antar kategori | Sangat efektif untuk alur proses | Sulit dibuat dan diinterpretasi |
-| **Waterfall Chart** | Numerik | Menampilkan perubahan kumulatif | Bagus untuk analisis finansial | Tidak cocok untuk banyak kategori |
+|---------------|---------------|---------------|---------------|---------------|
+| [Bar Chart](#Bar-Chart) | Kategori | Perbandingan antar kategori | Mudah dipahami, fleksibel | Kurang efektif untuk banyak kategori |
+| [Lollipop Chart](#Lollipop-Chart) | Kategori | Variasi dari bar chart, lebih ringan | Visual lebih bersih, menyoroti perbedaan kecil | Kurang dikenal, kurang informatif untuk data kompleks |
+| [Paired Bar](#Paired-Bar) | Kategori | Membandingkan dua set kategori terkait | Memudahkan perbandingan langsung | Sulit dibaca jika terlalu banyak kategori |
+| [Stacked Bar](#Stacked-Bar) | Kategori + Numerik | Menampilkan komposisi dalam kategori | Menghemat ruang, menampilkan distribusi | Sulit membandingkan sub-kategori |
+| [Diverging Bar](#Diverging-Bar) | Kategori + Numerik | Distribusi dengan skala positif-negatif | Menampilkan keseimbangan atau perbedaan ekstrem | Sulit diinterpretasi jika terlalu banyak kategori |
+| [Dot Plot](#Dot-Plot) | Kategori + Numerik | Distribusi atau perbandingan | Lebih ringkas dari bar chart, menyoroti perbedaan kecil | Kurang umum digunakan |
+| [Marimekko/Mosaic](#Marimekko-and-Mosaic-Charts) | Dua Kategori | Proporsi dua variabel kategori | Efektif untuk melihat hubungan antar kategori | Sulit dibuat dan diinterpretasi |
+| [Unit Chart](#Unit-Chart) | Kategori + Proporsi | Menampilkan proporsi dengan ikon | Menarik secara visual | Kurang akurat untuk proporsi kecil |
+| [Waffle Chart](#Waffle-Chart) | Kategori + Proporsi | Menampilkan proporsi dalam bentuk grid | Lebih estetis dari pie chart | Kurang akurat untuk nilai kecil |
+| [Heatmap](#Heatmap) | Matriks (Kategori + Numerik) | Representasi warna dari nilai numerik | Sangat efektif untuk data besar | Sulit untuk interpretasi nilai absolut |
+| [Gauge/Bullet](#Gauge-and-Bullet-Charts) | Numerik | Menampilkan indikator atau target | Bagus untuk KPI atau performa | Kurang efektif untuk perbandingan |
+| [Bubble Chart](#Bubble-Comparison-and-Nested-Bubbles) | Kategori + Numerik | Menampilkan hierarki atau hubungan | Mampu menunjukkan lebih dari dua dimensi | Sulit dibaca jika ada banyak data |
+| [Sankey Diagram](#Sankey-Diagram) | Kategori + Hubungan | Menampilkan aliran data antar kategori | Sangat efektif untuk alur proses | Sulit dibuat dan diinterpretasi |
+| [Waterfall Chart](#Waterfall-Chart) | Numerik | Menampilkan perubahan kumulatif | Bagus untuk analisis finansial | Tidak cocok untuk banyak kategori |
 
 ## Data {.unnumbered}
 
@@ -41,7 +41,7 @@ data_ev <- read.csv("Data/EV_Population.csv")
 data_survey <- read.csv("Data/employee-survey.csv", sep="|")
 ```
 
-## Bar Charts {#barchart .tabset}
+## Bar Charts {#Bar-Chart .tabset}
 
 Diagram batang digunakan untuk membandingkan kategori.
 
@@ -113,7 +113,7 @@ ggplot(data_ev_sorted,
 ```
 :::
 
-## Lolipop Chart {.tabset}
+## Lolipop Chart {#Lollipop-Chart .tabset}
 
 Variasi dari barchart
 
@@ -685,7 +685,7 @@ ggplot(unit_chart_data, aes(x = x, y = y, fill = Year)) +
   theme(legend.position = "none")  # Sembunyikan legend
 ```
 
-### Waffle Chart
+### Waffle Chart {#waffle-chart}
 
 ```{r fig.height=3.5, fig.width=10, dpi=300}
 # Buat data proporsi
