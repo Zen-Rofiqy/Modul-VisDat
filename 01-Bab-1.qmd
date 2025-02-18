@@ -238,7 +238,7 @@ chart
 ```
 :::
 
-## Paired Bar {#paired-bar .tabset}
+## Paired Bar {#Paired-Bar .tabset}
 
 Membandingkan dua set kategori yang terkait.
 
@@ -380,7 +380,7 @@ ggplot(data_ev,
 ```
 :::
 
-## Stacked Bar {#stacked-bar .tabset}
+## Stacked Bar {#Stacked-Bar .tabset}
 
 Menampilkan perbandingan komposisi antar kategori.
 
@@ -527,7 +527,7 @@ ggplot(data_ev,
 ```
 :::
 
-## Diverging Bar {#diverging-bar}
+## Diverging Bar {#Diverging-Bar}
 
 Menunjukkan distribusi kategori dengan skala positif-negatif.
 
@@ -608,7 +608,7 @@ ggplot(data_survey_cleaned, aes(x = Question, y = Count, fill = Response.Text)) 
         legend.title = element_blank())  # Hilangkan judul legend
 ```
 
-## Dot Plot {#dot-plot}
+## Dot Plot {#Dot-Plot}
 
 Digunakan untuk menunjukkan distribusi atau perbandingan antar kategori.
 
@@ -646,13 +646,13 @@ ggplot(data_pisa_long, aes(x = Score, y = reorder(Country, Score), color = Subje
         axis.text.y = element_text(face = "bold"))
 ```
 
-## Marimekko and Mosaic Charts {#marimekko-mosaic}
+## Marimekko and Mosaic Charts {#Marimekko-and-Mosaic-Charts}
 
 Visualisasi untuk membandingkan proporsi dua variabel kategori.
 
 ![](images/clipboard-106419168.png){width="291"} ![](images/clipboard-3174332575.png){width="324"}
 
-## Unit, Isotype, and Waffle Charts {#unit-chart}
+## Unit, Isotype, and Waffle Charts {#Unit-Chart}
 
 Digunakan untuk menampilkan proporsi dalam bentuk ikon atau blok.
 
@@ -685,7 +685,7 @@ ggplot(unit_chart_data, aes(x = x, y = y, fill = Year)) +
   theme(legend.position = "none")  # Sembunyikan legend
 ```
 
-### Waffle Chart {#waffle-chart}
+### Waffle Chart {#Waffle-Chart}
 
 ```{r fig.height=3.5, fig.width=10, dpi=300}
 # Buat data proporsi
@@ -698,7 +698,7 @@ waffle(poverty_data, rows = 10, colors = c("#E15759", "#F28E2B", "#BAB0AC")) +
   theme_minimal()
 ```
 
-## Heatmap {#heatmap}
+## Heatmap {#Heatmap}
 
 Visualisasi matriks yang menggunakan warna untuk mewakili nilai numerik.
 
@@ -771,7 +771,7 @@ calendR(year = 2024, month = 3,
         title = "March 2024")
 ```
 
-## Gauge and Bullet Charts {#gauge-bullet}
+## Gauge and Bullet Charts {#Gauge-and-Bullet-Charts}
 
 Menampilkan pengukuran dalam format indikator atau skala.
 
@@ -799,7 +799,7 @@ ggplot(bullet_data, aes(y = Category)) +
 
 ```
 
-## Bubble Comparison and Nested Bubbles {#bubble-chart}
+## Bubble Comparison and Nested Bubbles {#Bubble-Comparison-and-Nested-Bubbles}
 
 Digunakan untuk menunjukkan hierarki atau hubungan antar data.
 
@@ -830,7 +830,7 @@ ggplot(bubble_data, aes(x = Population, y = PovertyRate, size = Population, fill
   theme(legend.position = "none")
 ```
 
-## Sankey Diagram {#sankey}
+## Sankey Diagram {#Sankey-Diagram}
 
 Diagram aliran yang menunjukkan hubungan antar kategori.
 
@@ -863,7 +863,7 @@ ggplot(sankey_data, aes(axis1 = Source, axis2 = Target, y = Value)) +
   theme(legend.position = "none")
 ```
 
-## Waterfall Chart {#waterfall}
+## Waterfall Chart {#Waterfall-Chart}
 
 Menunjukkan perubahan nilai dalam urutan kumulatif.
 
