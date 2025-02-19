@@ -47,7 +47,7 @@ data_survey <- read.csv("Data/employee-survey.csv", sep="|")
 
 ## Bar Charts {#Bar-Chart .tabset}
 
-Diagram batang digunakan untuk membandingkan kategori.
+Bar chart (diagram batang) adalah salah satu teknik visualisasi data yang digunakan untuk **membandingkan jumlah kategori** berdasarkan ukuran tertentu. Dalam konteks ini, kita membandingkan **jumlah kendaraan listrik** dari berbagai **brand**.
 
 ![](images/clipboard-792151592.png){width="169"}
 
@@ -100,13 +100,19 @@ chart
 ggsave("Chart/01_Bar.png", chart, dpi = 300, height = 5, width = 10)
 ```
 
+Bar chart dalam **ggplot2** bisa dikustomisasi untuk menyoroti informasi tertentu, seperti **menampilkan top 3 brand, menambahkan frekuensi di ujung batang, atau mengubah warna kategori tertentu**. Misalnya, dalam visualisasi ini, Tesla didominasi dengan warna **biru**, sedangkan brand lain berwarna abu-abu.
+
 ### Sederhana
+
+Namun, dalam bentuk **sederhananya**, bar chart cukup dibuat dengan menambahkan `geom_bar()`.
 
 ```{r fig.height=5, fig.width=10, dpi=300}
 ggplot(data_ev, aes(x = Make)) +
   # Bar chart
   geom_bar(fill = "#f1bb68")
 ```
+
+Untuk membuatnya **horizontal**, cukup menambahkan `coord_flip()`.
 
 ```{r fig.height=5, fig.width=10, dpi=300}
 ggplot(data_ev_sorted, 
