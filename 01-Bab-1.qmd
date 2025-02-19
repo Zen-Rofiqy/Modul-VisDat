@@ -47,9 +47,9 @@ data_survey <- read.csv("Data/employee-survey.csv", sep="|")
 
 ## Bar Charts {#Bar-Chart .tabset}
 
-Bar chart (diagram batang) adalah salah satu teknik visualisasi data yang digunakan untuk **membandingkan jumlah kategori** berdasarkan ukuran tertentu. Dalam konteks ini, kita membandingkan **jumlah kendaraan listrik** dari berbagai **brand**.
-
 ![](images/clipboard-792151592.png){width="169"}
+
+Bar chart (diagram batang) adalah salah satu teknik visualisasi data yang digunakan untuk **membandingkan jumlah kategori** berdasarkan ukuran tertentu. Dalam konteks ini, kita membandingkan **jumlah kendaraan listrik** dari berbagai **brand**.
 
 ::: panel-tabset
 ### Advanced
@@ -125,7 +125,9 @@ ggplot(data_ev_sorted,
 
 ## Lolipop Chart {#Lollipop-Chart .tabset}
 
-Variasi dari barchart
+![](images/clipboard-305646622.png){width="183"}
+
+**Lolipop Chart** adalah variasi **bar chart** yang menggunakan **garis sebagai batang** dan **titik di ujungnya** untuk menyoroti nilai kategori. **Cocok digunakan** saat bar chart terasa terlalu tebal atau ingin menampilkan data dengan lebih rapi. Karena tampilannya **lebih elegan**, lolipop chart sering dipakai dalam **laporan atau presentasi**, terutama untuk jumlah kategori yang **tidak terlalu banyak**.
 
 ::: panel-tabset
 ### Advanced
@@ -185,6 +187,8 @@ chart
 ggsave("Chart/02_lolipop.png", chart, dpi = 300, height = 5, width = 10)
 ```
 
+Meneruskan kustomisasi bar chart seperti **highlight top 3**, lolipop chart juga dapat digunakan untuk memberikan tampilan yang lebih bersih dan minimalis. Namun, karena kepala lolipop cukup besar, saya menyaring data dengan hanya menampilkan **brand yang memiliki lebih dari 2000 kendaraan terdaftar** agar visualisasi tetap jelas dan tidak terlalu ramai.
+
 ### Size
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -229,6 +233,8 @@ chart
 ggsave("Chart/02_lolipop_var.png", chart, dpi = 300, height = 5, width = 10)
 ```
 
+Selain itu, lolipop chart juga bisa dibuat dengan **ukuran kepala yang bervariasi**, mencerminkan jumlah kendaraan setiap brand. Namun, dalam kasus ini, saya menghapus **label frekuensi** di dalam lingkaran karena posisinya kurang pas untuk beberapa nilai.
+
 ### Sederhana
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -246,6 +252,8 @@ chart <-
 
 chart
 ```
+
+Pondasi utama dari **lolipop chart** adalah **`geom_segment()`** yang membentuk garis sebagai batang lolipop dan **`geom_point()`** sebagai kepala lolipop.
 :::
 
 ## Paired Bar {#Paired-Bar .tabset}
