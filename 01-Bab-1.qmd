@@ -28,7 +28,7 @@ data_survey <- read.csv("Data/employee-survey.csv", sep="|")
 ## Ringkasan Chart {.unnumbered}
 
 | Jenis Chart | Kondisi Data | Tujuan Visualisasi | Kelebihan | Kekurangan |
-|---------------|---------------|---------------|---------------|---------------|
+|----|----|----|----|----|
 | [Bar Chart](#Bar-Chart) | Kategori | Perbandingan antar kategori | Mudah dipahami, fleksibel | Kurang efektif untuk banyak kategori |
 | [Lollipop Chart](#Lollipop-Chart) | Kategori | Variasi dari bar chart, lebih ringan | Visual lebih bersih, menyoroti perbedaan kecil | Kurang dikenal, kurang informatif untuk data kompleks |
 | [Paired Bar](#Paired-Bar) | Kategori | Membandingkan dua set kategori terkait | Memudahkan perbandingan langsung | Sulit dibaca jika terlalu banyak kategori |
