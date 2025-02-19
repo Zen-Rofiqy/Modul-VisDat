@@ -563,9 +563,9 @@ ggplot(data_ev,
 
 ## Diverging Bar {#Diverging-Bar}
 
-Menunjukkan distribusi kategori dengan skala positif-negatif.
-
 ![](images/clipboard-3452309680.png){width="216"}
+
+**Diverging Bar Chart** digunakan untuk **menampilkan distribusi kategori yang memiliki skala positif-negatif**, seperti **sentimen survei, tingkat kepuasan, atau opini publik**. Berbeda dari **Stacked Bar Chart**, **Diverging Bar Chart memusatkan kategori netral di tengah**, sehingga perbandingan antara **respons positif dan negatif** lebih jelas.
 
 ```{r}
 # Buat mapping unik untuk setiap pertanyaan
@@ -641,6 +641,8 @@ ggplot(data_survey_cleaned, aes(x = Question, y = Count, fill = Response.Text)) 
         legend.direction = "horizontal",
         legend.title = element_blank())  # Hilangkan judul legend
 ```
+
+Grafik ini memberikan gambaran **seberapa kuat kecenderungan sentimen responden terhadap setiap pertanyaan**, memungkinkan analisis lebih lanjut tentang **topik mana yang mendapatkan tanggapan positif atau negatif yang signifikan**.
 
 ## Dot Plot {#Dot-Plot}
 
