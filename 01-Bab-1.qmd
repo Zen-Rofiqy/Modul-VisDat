@@ -28,7 +28,7 @@ data_survey <- read.csv("Data/employee-survey.csv", sep="|")
 ## Ringkasan Chart {.unnumbered}
 
 | Jenis Chart | Kondisi Data | Tujuan Visualisasi | Kelebihan | Kekurangan |
-|----|----|----|----|----|
+|---------------|---------------|---------------|---------------|---------------|
 | [Bar Chart](#Bar-Chart) | Kategori | Perbandingan antar kategori | Mudah dipahami, fleksibel | Kurang efektif untuk banyak kategori |
 | [Lollipop Chart](#Lollipop-Chart) | Kategori | Variasi dari bar chart, lebih ringan | Visual lebih bersih, menyoroti perbedaan kecil | Kurang dikenal, kurang informatif untuk data kompleks |
 | [Paired Bar](#Paired-Bar) | Kategori | Membandingkan dua set kategori terkait | Memudahkan perbandingan langsung | Sulit dibaca jika terlalu banyak kategori |
@@ -408,9 +408,11 @@ Pondasi utama dari **paired bar chart** dalam **ggplot2** adalah **`geom_bar(pos
 
 ## Stacked Bar {#Stacked-Bar .tabset}
 
-Menampilkan perbandingan komposisi antar kategori.
-
 ![](images/clipboard-1485803542.png){width="174"}
+
+**Stacked Bar Chart** digunakan untuk **membandingkan komposisi antar kategori dalam satu grup**, seperti **kelayakan kendaraan listrik** dalam setiap merek. Berbeda dengan **Paired Bar Chart** yang menampilkan dua kategori berdampingan, Stacked Bar Chart menumpuk kategori dalam satu batang untuk menunjukkan **proporsi relatif setiap kategori dalam satu grup**.
+
+Jika fokus pada **perbandingan jumlah**, pilih **Paired Bar**, sedangkan jika ingin **melihat komposisi dalam satu grup**, gunakan **Stacked Bar**.
 
 ::: panel-tabset
 ### Advanced Freq
@@ -475,6 +477,8 @@ chart
 # Save Chart
 ggsave("Chart/01_Bar_Paired.png", chart, dpi = 300, height = 5, width = 10)
 ```
+
+**Stacked Bar berdasarkan Frekuensi Absolut** menampilkan **jumlah kendaraan dalam setiap kategori** (**Eligible vs Not Eligible**) per merek. Pada visualisasi ini, **Tesla mendominasi kategori Eligible**, menunjukkan bahwa hampir seluruh kendaraannya memenuhi syarat subsidi. Sementara itu, beberapa merek lain memiliki **distribusi yang lebih seimbang**, dengan porsi kendaraan Not Eligible yang lebih besar.
 
 ### Advanced %
 
@@ -542,7 +546,11 @@ chart
 ggsave("Chart/Stacked_Bar_Percentage.png", chart, dpi = 300, height = 5, width = 10)
 ```
 
+Sedangkan **Stacked Bar berdasarkan Persentase** menunjukkan **proporsi setiap kategori dalam satu merek**, sehingga memudahkan perbandingan antar merek tanpa dipengaruhi oleh perbedaan jumlah total kendaraan. **Tesla, Nissan, dan Chevrolet memiliki 100% kendaraan yang Eligible**, sedangkan merek seperti **BMW dan Audi memiliki lebih banyak kendaraan dalam kategori Not Eligible**.
+
 ### Sederhana
+
+**Versi sederhana dari Stacked Bar Chart** cukup dibuat dengan `geom_bar(position="stack")`.
 
 ```{r fig.height=5, fig.width=10, dpi=300}
 ggplot(data_ev, 
