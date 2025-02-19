@@ -648,9 +648,9 @@ Grafik ini memberikan gambaran **seberapa kuat kecenderungan sentimen responden 
 
 ![](images/clipboard-827714082.png){width="308"}
 
-Secara sederhana, **Dot Plot bisa dianggap sebagai Bar Chart yang ditumpuk**, tetapi **menggunakan titik** sebagai pengganti batang. Jika kita menggunakan **Bar Chart untuk membandingkan dua kategori dalam satu grup**, batang bisa saling menutupi atau sulit dibandingkan, terutama jika nilainya berdekatan. Dengan **Dot Plot**, setiap kategori diwakili oleh **satu titik**, dan **garis penghubung** antara titik-titik membantu menunjukkan perbedaannya dengan lebih jelas.
+**Dot plot** adalah versi lebih ringkas dan mudah dibaca dari **paired bar chart**. Jika paired bar chart menampilkan dua kategori sebagai batang berdampingan, dot plot menggantinya dengan **titik** dan **garis penghubung**. Garis ini menyoroti **perbedaan antar kategori dalam satu grup**, sehingga lebih jelas dibandingkan melihat dua batang terpisah.
 
-```{r fig.height=5, fig.width=10, dpi=300}
+```{r}
 # Buat dataset PISA
 data_pisa <- data.frame(
   Country = c("Japan", "Switzerland", "Denmark", "France", "Australia", 
@@ -665,11 +665,22 @@ data_pisa_long <- data_pisa %>%
 
 # Warna untuk kategori Math dan Reading
 color_palette <- c("Math" = "#1f77b4", "Reading" = "#d62728")
+```
 
+::: panel-tabset
+### Dot Plot {#dot-plot}
+
+Dalam **R (ggplot2)**, dot plot dibuat dengan kombinasi **`geom_point()`** untuk titik dan **`geom_line()`** untuk menghubungkan kategori dalam satu grup. Berikut adalah contoh dot plot yang membandingkan skor **PISA** dalam **Math** dan **Reading** di beberapa negara.
+
+Dalam **ggplot2**, dot plot dibuat menggunakan kombinasi:\
+🔹 **`geom_point()`** → Untuk menampilkan titik skor Math dan Reading.\
+🔹 **`geom_line()`** → Untuk menghubungkan kedua titik dalam satu negara, memudahkan analisis perbedaannya.
+
+```{r fig.height=5, fig.width=10, dpi=300}
 # Plot dot plot
 ggplot(data_pisa_long, aes(x = Score, y = reorder(Country, Score), color = Subject)) +
+  geom_line(aes(group = Country), color = "black") +  # Garis selisih
   geom_point(size = 4) +  # Titik
-  geom_line(aes(group = Country), color = "black") +  # Garis penghubung antara dua titik
   scale_color_manual(values = color_palette) +  # Warna kategori
   theme_minimal() +
   labs(title = "PISA Scores for Math and Reading among 10 OECD Countries",
@@ -682,15 +693,17 @@ ggplot(data_pisa_long, aes(x = Score, y = reorder(Country, Score), color = Subje
         axis.text.y = element_text(face = "bold"))
 ```
 
-Misalnya, dalam visualisasi ini, **Dot Plot menggambarkan perbandingan skor PISA untuk Math dan Reading di 10 negara OECD**. Jika menggunakan **Bar Chart**, kita akan mendapatkan **dua batang untuk setiap negara**, yang bisa membuat perbandingan antar kategori kurang intuitif. Dengan Dot Plot:
+Misalnya, dalam visualisasi ini, **dot plot** digunakan untuk membandingkan **skor PISA dalam Math dan Reading di 10 negara OECD**. Jika kita menggunakan **paired bar chart**, setiap negara akan memiliki dua batang (satu untuk Math, satu untuk Reading), yang bisa membuat perbandingan antar kategori kurang intuitif. Dengan dot plot:
 
--   **Setiap negara memiliki dua titik (satu untuk Math, satu untuk Reading)**.
+✅ **Setiap negara memiliki dua titik** (satu untuk Math, satu untuk Reading).\
+✅ **Garis penghubung antar titik menunjukkan perbedaan skor** dalam satu negara.\
+✅ **Jika titik Math lebih ke kanan**, berarti skor Math lebih tinggi dibanding Reading, dan sebaliknya.
 
--   **Garis penghubung antara titik membantu menunjukkan selisih antara kedua kategori** dalam satu negara.
+Dari grafik ini, kita bisa melihat bahwa beberapa negara seperti **Jepang dan Swiss** memiliki skor Math yang lebih tinggi dibandingkan Reading, sedangkan di beberapa negara seperti **Meksiko dan Chili**, skor Reading cenderung lebih rendah dari Math.
 
--   **Jika titik Math lebih ke kanan, berarti skor Math lebih tinggi dari Reading, dan sebaliknya**.
+### Paried Bar
 
-Jadi, **Dot Plot adalah alternatif dari Bar Chart ketika kita ingin membandingkan dua atau lebih kategori dalam satu grup tanpa risiko batang saling menutupi**, serta memberikan visualisasi yang lebih rapi dan mudah dipahami.
+Untuk membandingkan efektivitas visualisasi, berikut juga ditampilkan versi **paired bar chart** dari data yang sama. Dalam paired bar chart, perbedaan antar kategori bisa menjadi kurang terlihat, terutama jika selisihnya kecil atau jumlah kategori banyak.
 
 ```{r fig.height=5, fig.width=10, dpi=300}
 ggplot(data_pisa_long, aes(x = Score, y = reorder(Country, Score), fill = Subject)) +
@@ -701,6 +714,7 @@ ggplot(data_pisa_long, aes(x = Score, y = reorder(Country, Score), fill = Subjec
        x = "PISA Score", y = "", fill = "Subject") +
   coord_cartesian(xlim = c(400, NA))
 ```
+:::
 
 ## Marimekko and Mosaic Charts {#Marimekko-and-Mosaic-Charts}
 
