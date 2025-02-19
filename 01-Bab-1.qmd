@@ -28,7 +28,7 @@ data_survey <- read.csv("Data/employee-survey.csv", sep="|")
 ## Ringkasan Chart {.unnumbered}
 
 | Jenis Chart | Kondisi Data | Tujuan Visualisasi | Kelebihan | Kekurangan |
-|---------------|---------------|---------------|---------------|---------------|
+|----|----|----|----|----|
 | [Bar Chart](#Bar-Chart) | Kategori | Perbandingan antar kategori | Mudah dipahami, fleksibel | Kurang efektif untuk banyak kategori |
 | [Lollipop Chart](#Lollipop-Chart) | Kategori | Variasi dari bar chart, lebih ringan | Visual lebih bersih, menyoroti perbedaan kecil | Kurang dikenal, kurang informatif untuk data kompleks |
 | [Paired Bar](#Paired-Bar) | Kategori | Membandingkan dua set kategori terkait | Memudahkan perbandingan langsung | Sulit dibaca jika terlalu banyak kategori |
@@ -47,9 +47,9 @@ data_survey <- read.csv("Data/employee-survey.csv", sep="|")
 
 ## Bar Charts {#Bar-Chart .tabset}
 
-Diagram batang digunakan untuk membandingkan kategori.
-
 ![](images/clipboard-792151592.png){width="169"}
+
+Bar chart (diagram batang) adalah salah satu teknik visualisasi data yang digunakan untuk **membandingkan jumlah kategori** berdasarkan ukuran tertentu. Dalam konteks ini, kita membandingkan **jumlah kendaraan listrik** dari berbagai **brand**.
 
 ::: panel-tabset
 ### Advanced
@@ -100,13 +100,19 @@ chart
 ggsave("Chart/01_Bar.png", chart, dpi = 300, height = 5, width = 10)
 ```
 
+Bar chart dalam **ggplot2** bisa dikustomisasi untuk menyoroti informasi tertentu, seperti **menampilkan top 3 brand, menambahkan frekuensi di ujung batang, atau mengubah warna kategori tertentu**. Misalnya, dalam visualisasi ini, Tesla didominasi dengan warna **biru**, sedangkan brand lain berwarna abu-abu.
+
 ### Sederhana
+
+Namun, dalam bentuk **sederhananya**, bar chart cukup dibuat dengan menambahkan `geom_bar()`.
 
 ```{r fig.height=5, fig.width=10, dpi=300}
 ggplot(data_ev, aes(x = Make)) +
   # Bar chart
   geom_bar(fill = "#f1bb68")
 ```
+
+Untuk membuatnya **horizontal**, cukup menambahkan `coord_flip()`.
 
 ```{r fig.height=5, fig.width=10, dpi=300}
 ggplot(data_ev_sorted, 
@@ -119,7 +125,9 @@ ggplot(data_ev_sorted,
 
 ## Lolipop Chart {#Lollipop-Chart .tabset}
 
-Variasi dari barchart
+![](images/clipboard-305646622.png){width="183"}
+
+**Lolipop Chart** adalah variasi **bar chart** yang menggunakan **garis sebagai batang** dan **titik di ujungnya** untuk menyoroti nilai kategori. **Cocok digunakan** saat bar chart terasa terlalu tebal atau ingin menampilkan data dengan lebih rapi. Karena tampilannya **lebih elegan**, lolipop chart sering dipakai dalam **laporan atau presentasi**, terutama untuk jumlah kategori yang **tidak terlalu banyak**.
 
 ::: panel-tabset
 ### Advanced
@@ -179,6 +187,8 @@ chart
 ggsave("Chart/02_lolipop.png", chart, dpi = 300, height = 5, width = 10)
 ```
 
+Meneruskan kustomisasi bar chart seperti **highlight top 3**, lolipop chart juga dapat digunakan untuk memberikan tampilan yang lebih bersih dan minimalis. Namun, karena kepala lolipop cukup besar, saya menyaring data dengan hanya menampilkan **brand yang memiliki lebih dari 2000 kendaraan terdaftar** agar visualisasi tetap jelas dan tidak terlalu ramai.
+
 ### Size
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -223,6 +233,8 @@ chart
 ggsave("Chart/02_lolipop_var.png", chart, dpi = 300, height = 5, width = 10)
 ```
 
+Selain itu, lolipop chart juga bisa dibuat dengan **ukuran kepala yang bervariasi**, mencerminkan jumlah kendaraan setiap brand. Namun, dalam kasus ini, saya menghapus **label frekuensi** di dalam lingkaran karena posisinya kurang pas untuk beberapa nilai.
+
 ### Sederhana
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -240,13 +252,15 @@ chart <-
 
 chart
 ```
+
+Pondasi utama dari **lolipop chart** adalah **`geom_segment()`** yang membentuk garis sebagai batang lolipop dan **`geom_point()`** sebagai kepala lolipop.
 :::
 
 ## Paired Bar {#Paired-Bar .tabset}
 
-Membandingkan dua set kategori yang terkait.
-
 ![](images/clipboard-1762406163.png){width="170"}
+
+**Paired Bar Chart** digunakan untuk **membandingkan dua kategori dalam satu variabel**, misalnya jenis kendaraan listrik **BEV vs PHEV** atau **kelayakan subsidi kendaraan**. Dalam visualisasi ini, setiap merek memiliki **dua batang berdampingan** untuk menampilkan perbedaan jumlah pada setiap kategori.
 
 ::: panel-tabset
 ### Advanced 1
@@ -311,6 +325,8 @@ chart
 ggsave("Chart/01_Bar_Paired.png", chart, dpi = 300, height = 5, width = 10)
 ```
 
+Pada contoh ini, **saya hanya menampilkan merek dengan lebih dari 1000 kendaraan terdaftar** untuk menjaga visualisasi tetap fokus dan mudah dibaca. **Warna berbeda** digunakan untuk membedakan kategori, sehingga lebih jelas dalam melihat dominasi masing-masing jenis kendaraan dalam satu merek. **Tesla masih mendominasi pasar EV**, terutama dalam kategori **BEV**, sementara merek lain seperti **Toyota dan Jeep lebih banyak dalam kategori PHEV**.
+
 ### Advanced 2
 
 ```{r fig.height=5, fig.width=12, dpi=300}
@@ -373,6 +389,10 @@ chart
 ggsave("Chart/01_Bar_Paired.png", chart, dpi = 300, height = 5, width = 10)
 ```
 
+Grafik **Paired Bar Chart** ini membandingkan **kelayakan kendaraan listrik** dari berbagai merek, dibagi menjadi dua kategori: **"Eligible" (layak mendapatkan subsidi atau insentif)** dan **"Not Eligible" (tidak layak mendapatkan subsidi)**.
+
+Dari hasil visualisasi, **Tesla masih menjadi pemimpin dengan mayoritas kendaraannya termasuk dalam kategori "Eligible"**, menunjukkan bahwa banyak model Tesla memenuhi syarat untuk subsidi atau program insentif kendaraan listrik. Di sisi lain, beberapa merek seperti **Jeep dan Ford memiliki jumlah kendaraan "Not Eligible" yang cukup besar**, menunjukkan bahwa banyak model mereka tidak memenuhi syarat yang ditetapkan.
+
 ### Sederhana
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -382,6 +402,8 @@ ggplot(data_ev,
   geom_bar(position="dodge") +
   coord_flip()
 ```
+
+Pondasi utama dari **paired bar chart** dalam **ggplot2** adalah **`geom_bar(position = "dodge")`**, yang memastikan kedua kategori tampil **bersebelahan** dalam satu sumbu. Variasi ini cocok digunakan ketika ingin **menganalisis perbandingan kategori dalam satu kelompok**, seperti **jenis kendaraan, status kelayakan, atau perbedaan regional**.
 :::
 
 ## Stacked Bar {#Stacked-Bar .tabset}
