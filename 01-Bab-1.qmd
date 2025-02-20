@@ -745,12 +745,24 @@ poverty_data <- data.frame(
 
 # Urutkan dan hitung posisi, tapi reverse urutan x
 poverty_data <- poverty_data %>%
-  arrange(desc(poverty_rate)) %>%
   mutate(
     xmin = max(cumsum(population_share)) - cumsum(population_share),
     xmax = max(cumsum(population_share)) - c(0, head(cumsum(population_share), -1)),
     color_group = factor(country, levels = country) # Faktor untuk warna
-  )
+  ) %>%
+  # Mengasumsikan total populasi 1000 untuk visualisasi
+  mutate(
+    total_pop = round(population_share * 1000),
+    poor_pop = round(total_pop * poverty_rate / 100),
+    non_poor_pop = total_pop - poor_pop
+  ) %>%
+  tidyr::pivot_longer(
+    cols = c(poor_pop, non_poor_pop),
+    names_to = "status",
+    values_to = "count"
+  ) %>%
+  # Mengulang setiap baris sesuai dengan count
+  uncount(count) 
 ```
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -777,10 +789,16 @@ p1 + p2
 ```{r fig.height=5, fig.width=14, dpi=300}
 # Marimekko Chart
 ggplot(poverty_data) +
-  geom_rect(aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = poverty_rate, fill = color_group)) +
-  geom_text(aes(x = (xmin + xmax) / 2, y = poverty_rate / 2, label = country), size = 3.5) +
-  scale_x_continuous(labels = percent_format(scale = 1), breaks = seq(0, 60, 5), expand = c(0, 0)) +
-  scale_y_continuous(labels = percent_format(scale = 1), limits = c(0, 60), expand = c(0, 0)) +
+  geom_rect(aes(xmin = xmin, xmax = xmax, 
+                ymin = 0, ymax = poverty_rate, 
+                fill = color_group)) +
+  geom_text(aes(x = (xmin + xmax) / 2, 
+                y = poverty_rate / 2, 
+                label = country), size = 3.5) +
+  scale_x_continuous(labels = percent_format(scale = 1), 
+                     breaks = seq(0, 60, 5), expand = c(0, 0)) +
+  scale_y_continuous(labels = percent_format(scale = 1), 
+                     limits = c(0, 60), expand = c(0, 0)) +
   scale_fill_viridis_d(
     option = "inferno",
     begin = 0.3, end = 0.9, 
@@ -820,31 +838,23 @@ ggplot(poverty_data, aes(x = population_share, y = poverty_rate)) +
 ```
 
 ```{r fig.height=5, fig.width=10, dpi=300}
-# Menambahkan kategori tingkat kemiskinan
-poverty_data <- poverty_data %>%
-  mutate(
-    poverty_level = case_when(
-      poverty_rate >= 50 ~ "Less than $5.50/day",
-      poverty_rate >= 20 ~ "Less than $3.20/day",
-      TRUE ~ "Less than $1.90/day"
-    )
-  )
-
-# Mosaic Chart
-ggplot(poverty_data) +
-  geom_mosaic(aes(x = product(country, population_share), 
-                  fill = poverty_level)) +
-  scale_fill_manual(values = c("Less than $5.50/day" = "#F4A000",
-                               "Less than $3.20/day" = "#E1573C",
-                               "Less than $1.90/day" = "#377EB8")) +
-  labs(title = "High population, high poverty",
-       x = "Population as share of total",
-       y = "Country",
-       fill = "Poverty Level") +
+# Membuat mosaic plot
+ggplot(data = poverty_data) +
+  geom_mosaic(aes(x = product(country), fill = status)) +
+  scale_fill_manual(
+    values = c("poor_pop" = "#FF9999", "non_poor_pop" = "#99CC99"),
+    labels = c("Miskin", "Tidak Miskin"),
+    name = "Status"
+  ) +
+  labs(
+    title = "Distribusi Kemiskinan di Berbagai Negara",
+    x = "Negara",
+    y = "Proporsi"
+  ) +
   theme_minimal() +
   theme(
-    plot.title = element_text(size = 14, face = "bold"),
-    legend.position = "right"
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.title = element_text(hjust = 0.5)
   )
 ```
 
