@@ -43,3 +43,5 @@ library(circlize)
 # Cara install
 # devtools::install_github("garretrc/ggvoronoi")
 library(ggvoronoi)
+
+library(ggmosaic)
