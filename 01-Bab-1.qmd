@@ -741,28 +741,6 @@ poverty_data <- data.frame(
   # Persentase populasi dunia 
   population_share = c(18, 20, 4, 3, 3, 3, 2, 2, 5, 2)  
 )
-
-
-# Urutkan dan hitung posisi, tapi reverse urutan x
-poverty_data <- poverty_data %>%
-  mutate(
-    xmin = max(cumsum(population_share)) - cumsum(population_share),
-    xmax = max(cumsum(population_share)) - c(0, head(cumsum(population_share), -1)),
-    color_group = factor(country, levels = country) # Faktor untuk warna
-  ) %>%
-  # Mengasumsikan total populasi 1000 untuk visualisasi
-  mutate(
-    total_pop = round(population_share * 1000),
-    poor_pop = round(total_pop * poverty_rate / 100),
-    non_poor_pop = total_pop - poor_pop
-  ) %>%
-  tidyr::pivot_longer(
-    cols = c(poor_pop, non_poor_pop),
-    names_to = "status",
-    values_to = "count"
-  ) %>%
-  # Mengulang setiap baris sesuai dengan count
-  uncount(count) 
 ```
 
 ```{r fig.height=5, fig.width=10, dpi=300}
@@ -786,9 +764,20 @@ p2 <- ggplot(poverty_data,
 p1 + p2
 ```
 
+```{r}
+# Urutkan dan hitung posisi, tapi reverse urutan x
+poverty_mari <- poverty_data %>%
+  arrange(desc(poverty_rate)) %>%
+  mutate(
+    xmin = max(cumsum(population_share)) - cumsum(population_share),
+    xmax = max(cumsum(population_share)) - c(0, head(cumsum(population_share), -1)),
+    color_group = factor(country, levels = country) # Faktor untuk warna
+  )
+```
+
 ```{r fig.height=5, fig.width=14, dpi=300}
 # Marimekko Chart
-ggplot(poverty_data) +
+ggplot(poverty_mari) +
   geom_rect(aes(xmin = xmin, xmax = xmax, 
                 ymin = 0, ymax = poverty_rate, 
                 fill = color_group)) +
@@ -837,9 +826,29 @@ ggplot(poverty_data, aes(x = population_share, y = poverty_rate)) +
   )
 ```
 
+```{r}
+# Data
+poverty_long <- poverty_data %>%
+  # Mengasumsikan total populasi 1000 untuk visualisasi
+  mutate(
+    total_pop = round(population_share * 1000),
+    poor_pop = round(total_pop * poverty_rate / 100),
+    non_poor_pop = total_pop - poor_pop
+  ) %>%
+  select(country, poor_pop, non_poor_pop) %>%
+  tidyr::pivot_longer(
+    cols = c(poor_pop, non_poor_pop),
+    names_to = "status",
+    values_to = "count"
+  ) %>%
+  # Mengulang setiap baris sesuai dengan count
+  uncount(count) %>% 
+  mutate(country = factor(country, levels = rev(unique((country))) )) 
+```
+
 ```{r fig.height=5, fig.width=10, dpi=300}
 # Membuat mosaic plot
-ggplot(data = poverty_data) +
+ggplot(data = poverty_long) +
   geom_mosaic(aes(x = product(country), fill = status)) +
   scale_fill_manual(
     values = c("poor_pop" = "#FF9999", "non_poor_pop" = "#99CC99"),
