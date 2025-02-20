@@ -667,14 +667,14 @@ data_pisa_long <- data_pisa %>%
 color_palette <- c("Math" = "#1f77b4", "Reading" = "#d62728")
 ```
 
-::: panel-tabset
-### Dot Plot {#dot-plot}
-
 Dalam **R (ggplot2)**, dot plot dibuat dengan kombinasi **`geom_point()`** untuk titik dan **`geom_line()`** untuk menghubungkan kategori dalam satu grup. Berikut adalah contoh dot plot yang membandingkan skor **PISA** dalam **Math** dan **Reading** di beberapa negara.
 
 Dalam **ggplot2**, dot plot dibuat menggunakan kombinasi:\
 🔹 **`geom_point()`** → Untuk menampilkan titik skor Math dan Reading.\
 🔹 **`geom_line()`** → Untuk menghubungkan kedua titik dalam satu negara, memudahkan analisis perbedaannya.
+
+::: panel-tabset
+### Dot Plot {#dot-plot}
 
 ```{r fig.height=5, fig.width=10, dpi=300}
 # Plot dot plot
@@ -703,8 +703,6 @@ Dari grafik ini, kita bisa melihat bahwa beberapa negara seperti **Jepang dan Sw
 
 ### Paried Bar
 
-Untuk membandingkan efektivitas visualisasi, berikut juga ditampilkan versi **paired bar chart** dari data yang sama. Dalam paired bar chart, perbedaan antar kategori bisa menjadi kurang terlihat, terutama jika selisihnya kecil atau jumlah kategori banyak.
-
 ```{r fig.height=5, fig.width=10, dpi=300}
 ggplot(data_pisa_long, aes(x = Score, y = reorder(Country, Score), fill = Subject)) +
   geom_bar(stat = "identity", position = "dodge") +
@@ -714,13 +712,125 @@ ggplot(data_pisa_long, aes(x = Score, y = reorder(Country, Score), fill = Subjec
        x = "PISA Score", y = "", fill = "Subject") +
   coord_cartesian(xlim = c(400, NA))
 ```
+
+Untuk membandingkan efektivitas visualisasi, berikut juga ditampilkan versi paired bar chart dari data yang sama. Dalam paired bar chart, perbedaan antar kategori bisa menjadi kurang terlihat, terutama jika selisihnya kecil atau jumlah kategori banyak.
 :::
 
 ## Marimekko and Mosaic Charts {#Marimekko-and-Mosaic-Charts}
 
-Visualisasi untuk membandingkan proporsi dua variabel kategori.
-
 ![](images/clipboard-106419168.png){width="291"} ![](images/clipboard-3174332575.png){width="324"}
+
+> **Perbedaan Utama**
+
+| **Aspek** | **Marimekko Chart** | **Mosaic Chart** |
+|-----------------|---------------------------|---------------------------|
+| **Skala** | Tidak selalu 100% | Selalu 100% |
+| **Lebar Batang** | Berdasarkan proporsi variabel kedua | Berdasarkan total data per kategori |
+| **Tinggi Batang** | Sesuai nilai variabel pertama | Dinormalisasi ke 100% |
+| **Kegunaan** | Analisis hubungan dua variabel yang berbeda | Menampilkan proporsi dari keseluruhan dataset |
+
+Secara sederhana, **Marimekko chart cocok untuk analisis distribusi nilai absolut antar kategori**, sementara **Mosaic chart lebih cocok untuk perbandingan proporsi dalam satu grup**.
+
+### Marimekko chart
+
+Marimekko chart adalah ekstensi dari **bar chart** yang tidak hanya menampilkan satu variabel pada sumbu vertikal tetapi juga menyesuaikan lebar setiap batang sesuai dengan nilai variabel kedua. Ini sangat berguna untuk membandingkan dua variabel sekaligus, misalnya **persentase populasi dengan pendapatan rendah per negara** serta **proporsi populasi total negara tersebut**.
+
+Dalam Marimekko chart:
+
+-   **Tinggi batang** mewakili satu variabel, seperti persentase orang dengan pendapatan di bawah \$5,20/hari.
+
+-   **Lebar batang** disesuaikan dengan total populasi negara tersebut.
+
+-   Hasilnya, kita mendapatkan gambaran menyeluruh tentang **bagaimana setiap kategori berkontribusi terhadap total**.
+
+Marimekko sering digunakan dalam **analisis pasar, demografi, dan distribusi populasi**, di mana hubungan antar variabel perlu ditampilkan dengan jelas.
+
+```{r}
+# Membuat dataset
+df <- data.frame(
+  segment = c("A", "B", "C", "D"),
+  segpct = c(40, 30, 20, 10),  # Proporsi segment
+  Alpha = c(60, 40, 30, 25),
+  Beta = c(25, 30, 30, 25),
+  Gamma = c(10, 20, 20, 25),
+  Delta = c(5, 10, 20, 25)
+)
+
+# Menghitung batas kiri dan kanan untuk lebar batang
+df <- df %>%
+  mutate(xmax = cumsum(segpct),
+         xmin = xmax - segpct) %>%
+  select(-segpct)  # Hapus segpct setelah digunakan
+
+# Ubah ke format long agar kompatibel dengan ggplot2
+df_long <- df %>%
+  pivot_longer(cols = -c(segment, xmin, xmax),
+               names_to = "variable", values_to = "value")
+
+# Menghitung batas bawah dan atas untuk tinggi batang
+df_long <- df_long %>%
+  group_by(segment) %>%
+  mutate(ymax = cumsum(value),
+         ymin = ymax - value) %>%
+  ungroup()
+
+# Menentukan posisi teks di tengah batang
+df_long <- df_long %>%
+  mutate(xtext = xmin + (xmax - xmin) / 2,
+         ytext = ymin + (ymax - ymin) / 2)
+```
+
+```{r fig.height=5, fig.width=10, dpi=300}
+# Warna untuk kategori
+color_palette <- c("Alpha" = "#1f77b4", "Beta" = "#ff7f0e",
+                   "Gamma" = "#2ca02c", "Delta" = "#d62728")
+
+# Plot Marimekko Chart
+ggplot(df_long, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = variable)) +
+  geom_rect(color = "white") +  # Membuat kotak-kotak dengan batas putih
+  geom_text(aes(x = xtext, y = ytext, label = paste(value, "%")), size = 4, color = "white") +
+  geom_text(aes(x = xtext, y = 105, label = paste("Seg", segment)), size = 5) +  # Label segmen
+  scale_fill_manual(values = color_palette) +  # Gunakan palet warna
+  theme_minimal() +
+  labs(title = "Marimekko Chart - Market Segmentation",
+       x = NULL, y = NULL, fill = "Category") +
+  theme(legend.position = "top",
+        panel.grid = element_blank())  # Hapus grid agar lebih bersih
+```
+
+### Mosaic Chart
+
+Mosaic chart adalah variasi dari Marimekko chart, tetapi dengan perbedaan bahwa **baik tinggi maupun lebar batang dinormalisasi agar totalnya menjadi 100%**. Ini memberikan perspektif **part-to-whole** yang lebih jelas untuk data yang memiliki beberapa kategori.
+
+Dalam Mosaic chart:
+
+-   **Lebar batang** mewakili satu variabel, seperti proporsi populasi negara.
+
+-   **Tinggi batang** mewakili kategori lain, seperti berbagai tingkat kemiskinan dalam populasi.
+
+-   Keseluruhan grafik mencerminkan **100% dari dataset**, mirip dengan **stacked bar chart**, tetapi dengan lebar yang bervariasi sesuai dengan distribusi variabel lainnya.
+
+Mosaic chart sering digunakan dalam **analisis kategori seperti hubungan demografi, distribusi pendapatan, atau segmentasi pelanggan**.
+
+```{r}
+# Membuat dataset contoh
+df_mosaic <- data.frame(
+  Gender = c("Male", "Male", "Male", "Female", "Female", "Female"),
+  Product = c("A", "B", "C", "A", "B", "C"),
+  Count = c(50, 30, 20, 40, 35, 25)  # Jumlah pelanggan di setiap kategori
+)
+```
+
+```{r fig.height=5, fig.width=10, dpi=300}
+ggplot(df_mosaic) +
+  geom_mosaic(aes(weight = Count, x = product(Gender, Product), fill = Product)) +
+  theme_minimal() +
+  labs(title = "Mosaic Chart - Gender vs Product Preference",
+       x = "Gender", y = "Product Distribution", fill = "Product") +
+  theme(legend.position = "top",
+        panel.grid = element_blank(),
+        axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
 ## Unit, Isotype, and Waffle Charts {#Unit-Chart}
 
