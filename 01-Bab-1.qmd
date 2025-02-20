@@ -799,6 +799,55 @@ ggplot(poverty_data) +
   )
 ```
 
+```{r fig.height=5, fig.width=10, dpi=300}
+# Scatterplot
+ggplot(poverty_data, aes(x = population_share, y = poverty_rate)) +
+  geom_point(size = 4, color = "#FF6600") +  # Warna oranye sesuai gambar
+  geom_text(aes(label = country), hjust = -0.2, vjust = -0.5, size = 4) +  # Label negara
+  scale_x_continuous(labels = scales::percent_format(scale = 1), limits = c(0, 35)) +  
+  scale_y_continuous(labels = scales::percent_format(scale = 1), limits = c(0, 60)) +  
+  labs(title = "High population, high poverty",
+       x = "Population as share of total",
+       y = "Percent of people with less than $5.20/day") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    panel.grid.major = element_line(color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+```
+
+```{r fig.height=5, fig.width=10, dpi=300}
+# Menambahkan kategori tingkat kemiskinan
+poverty_data <- poverty_data %>%
+  mutate(
+    poverty_level = case_when(
+      poverty_rate >= 50 ~ "Less than $5.50/day",
+      poverty_rate >= 20 ~ "Less than $3.20/day",
+      TRUE ~ "Less than $1.90/day"
+    )
+  )
+
+# Mosaic Chart
+ggplot(poverty_data) +
+  geom_mosaic(aes(x = product(country, population_share), 
+                  fill = poverty_level)) +
+  scale_fill_manual(values = c("Less than $5.50/day" = "#F4A000",
+                               "Less than $3.20/day" = "#E1573C",
+                               "Less than $1.90/day" = "#377EB8")) +
+  labs(title = "High population, high poverty",
+       x = "Population as share of total",
+       y = "Country",
+       fill = "Poverty Level") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    legend.position = "right"
+  )
+```
+
 ### Marimekko chart
 
 Marimekko chart adalah ekstensi dari **bar chart** yang tidak hanya menampilkan satu variabel pada sumbu vertikal tetapi juga menyesuaikan lebar setiap batang sesuai dengan nilai variabel kedua. Ini sangat berguna untuk membandingkan dua variabel sekaligus, misalnya **persentase populasi dengan pendapatan rendah per negara** serta **proporsi populasi total negara tersebut**.
