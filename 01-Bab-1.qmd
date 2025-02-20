@@ -814,36 +814,37 @@ ggplot(poverty_data) +
   )
 ```
 
-```{r fig.height=5, fig.width=12, dpi=300}
+```{r fig.height=5, fig.width=14, dpi=300}
 # Data
 poverty_data <- data.frame(
   country = c("India", "China", "Nigeria", "Bangladesh", "Indonesia",
               "Pakistan", "Brazil", "Mexico", "United States", "Russia"),
-  population_share = c(18, 17, 4, 3, 3, 3, 2, 2, 5, 2),  # Persentase total populasi dunia
-  poverty_rate = c(55, 15, 30, 25, 20, 22, 10, 5, 3, 5)  # Persentase penduduk miskin
+  # Persentase total populasi dunia
+  population_share = c(18, 17, 4, 3, 3, 3, 2, 2, 5, 2),  
+  # Persentase penduduk miskin
+  poverty_rate = c(55, 15, 30, 25, 20, 22, 10, 5, 3, 5)  
 )
 
-# Urutkan berdasarkan poverty_rate agar lebih mirip contoh
+# Urutkan dan hitung posisi, tapi reverse urutan x
 poverty_data <- poverty_data %>%
   arrange(desc(poverty_rate)) %>%
   mutate(
-    xmin = c(0, head(cumsum(population_share), -1)),
-    xmax = cumsum(population_share),
-    color_group = factor(country, levels = rev(country)) # Faktor untuk warna berbeda
+    xmin = max(cumsum(population_share)) - cumsum(population_share),
+    xmax = max(cumsum(population_share)) - c(0, head(cumsum(population_share), -1)),
+    color_group = factor(country, levels = country) # Faktor untuk warna
   )
-
-# Warna khusus untuk tiap negara
-color_palette <- c("India" = "#FFD27D", "China" = "#FFC34A", "Nigeria" = "#FFA500",
-                   "Bangladesh" = "#FF8C00", "Indonesia" = "#FF7F50", "Pakistan" = "#FF6B00",
-                   "Brazil" = "#FF4500", "Mexico" = "#E63900", "United States" = "#CC3300", "Russia" = "#B22222")
 
 # Marimekko Chart
 ggplot(poverty_data) +
   geom_rect(aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = poverty_rate, fill = color_group)) +
   geom_text(aes(x = (xmin + xmax) / 2, y = poverty_rate / 2, label = country), size = 3.5) +
-  scale_x_continuous(labels = percent_format(scale = 1), breaks = seq(0, 20, 5), expand = c(0, 0)) +
+  scale_x_continuous(labels = percent_format(scale = 1), breaks = seq(0, 60, 5), expand = c(0, 0)) +
   scale_y_continuous(labels = percent_format(scale = 1), limits = c(0, 60), expand = c(0, 0)) +
-  scale_fill_manual(values = color_palette) +
+  scale_fill_viridis_d(
+    option = "inferno",
+    begin = 0.3, end = 0.9, 
+    direction = -1
+  ) +
   labs(title = "High population, high poverty",
        x = "Population as share of total",
        y = "Percent of people with less than $5.20/day") +
@@ -855,7 +856,6 @@ ggplot(poverty_data) +
     axis.title = element_text(size = 10),
     legend.position = "none"
   )
-
 ```
 
 ```{r fig.height=5, fig.width=10, dpi=300}
