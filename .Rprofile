@@ -45,3 +45,5 @@ library(circlize)
 library(ggvoronoi)
 
 library(ggmosaic)
+
+library(patchwork) # untuk menggabungkan chart ggplot
