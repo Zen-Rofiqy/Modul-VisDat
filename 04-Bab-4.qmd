@@ -4,3 +4,29 @@
 # Set Working Directory
 opts_knit$set(root.dir = normalizePath("./"))
 ```
+
+### Persiapan Data
+
+```{r}
+data_bgr <- rio::import("https://raw.githubusercontent.com/farhanabdillahh/Regresi-Spasial/main/Data/Data_KabBogor.csv")
+data_bgr
+```
+
+Untuk menggunakan geospatial diperlukan data wilayah serta shp file untuk membentuk peta geografis yang diinginkan. Data tersebut dapat diakses dari website [ini](https://drive.google.com/drive/folders/1arzJ_APPmu0Lft2-MbYl-AM7I3fVdyxW?usp=sharing) menggunakan library sf yang digunakan untuk memanggil fungsi st_read()
+
+```{r}
+library(sf)
+library(dplyr)
+library(ggplot2)
+library(leaflet)
+```
+
+selanjutnya akan digunakan beberapa package dengan tujuan untuk menggabungkan data wilayah dan map_shp serta package yang digunakan untuk memvisualisasikan peta geografis yang diinginkan, pada bagian ini akan divisualisasikan mengenai map kota/kabupaten Bogor.
+
+```{r}
+st_drivers()
+```
+
+```{r}
+map_idn <- st_read("Data/ADMINISTRASI_LN_25K.shp", quiet = FALSE)
+```
