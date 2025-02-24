@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -228,7 +228,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">3.1</span> Data</a></li>
-  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">3.2</span> Histogram</a></li>
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">3.2</span> Histogram</a>
+  <ul class="collapse">
+  <li><a href="#penjelasan-kode" id="toc-penjelasan-kode" class="nav-link" data-scroll-target="#penjelasan-kode"><span class="header-section-number">3.2.1</span> Penjelasan Kode:</a></li>
+  </ul></li>
   <li><a href="#pyramid-chart" id="toc-pyramid-chart" class="nav-link" data-scroll-target="#pyramid-chart"><span class="header-section-number">3.3</span> Pyramid Chart</a></li>
   <li><a href="#statistical-uncertainty" id="toc-statistical-uncertainty" class="nav-link" data-scroll-target="#statistical-uncertainty"><span class="header-section-number">3.4</span> <strong>Visualizing Statistical Uncertainty with Charts</strong></a>
   <ul class="collapse">
@@ -237,7 +240,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#gradient-chart" id="toc-gradient-chart" class="nav-link" data-scroll-target="#gradient-chart"><span class="header-section-number">3.4.3</span> Gradient Chart</a></li>
   <li><a href="#fan-charts" id="toc-fan-charts" class="nav-link" data-scroll-target="#fan-charts"><span class="header-section-number">3.4.4</span> Fan Charts</a></li>
   </ul></li>
-  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><span class="header-section-number">3.5</span> Box-and-Whisker Plot</a></li>
+  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><span class="header-section-number">3.5</span> Box-and-Whisker Plot</a>
+  <ul class="collapse">
+  <li><a href="#penjelasan-grafik-boxplot" id="toc-penjelasan-grafik-boxplot" class="nav-link" data-scroll-target="#penjelasan-grafik-boxplot"><span class="header-section-number">3.5.1</span> Penjelasan Grafik Boxplot:</a></li>
+  </ul></li>
   <li><a href="#candlestick-chart" id="toc-candlestick-chart" class="nav-link" data-scroll-target="#candlestick-chart"><span class="header-section-number">3.6</span> Candlestick Chart</a></li>
   <li><a href="#violin-chart" id="toc-violin-chart" class="nav-link" data-scroll-target="#violin-chart"><span class="header-section-number">3.7</span> Violin Chart</a></li>
   <li><a href="#ridgeline-plot" id="toc-ridgeline-plot" class="nav-link" data-scroll-target="#ridgeline-plot"><span class="header-section-number">3.8</span> Ridgeline Plot</a></li>
@@ -304,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="histogram" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="histogram"><span class="header-section-number">3.2</span> Histogram</h2>
-<p>Visualisasi distribusi data berbasis frekuensi dalam bentuk batang.</p>
+<p>Histogram adalah grafik yang digunakan untuk menunjukkan distribusi data berdasarkan frekuensi kemunculannya dalam interval tertentu. Visualisasi ini menggunakan batang untuk mewakili jumlah atau frekuensi data yang berada dalam setiap interval atau bin. Histogram berguna untuk melihat pola distribusi data, apakah data cenderung terpusat di satu titik, tersebar merata, atau membentuk distribusi tertentu (misalnya normal atau skewed).</p>
 <p><img src="images/clipboard-1238374112.png" class="img-fluid" width="202"></p>
 <div class="cell">
 <details class="code-fold">
@@ -329,79 +335,107 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<section id="penjelasan-kode" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="penjelasan-kode"><span class="header-section-number">3.2.1</span> Penjelasan Kode:</h3>
+<ol type="1">
+<li><p><code>set.seed(123)</code>: Fungsi ini memastikan bahwa data yang dihasilkan dapat direproduksi pada setiap eksekusi kode.</p></li>
+<li><p><code>rnorm(1000, mean = 80, sd = 5)</code>: Membuat 1000 sampel data yang terdistribusi normal dengan rata-rata 80 dan simpangan baku 5.</p></li>
+<li><p><code>ggplot(data_hist, aes(x = Value))</code>: Membuat plot menggunakan paket <code>ggplot2</code>, dengan data yang diambil dari <code>data_hist</code> dan kolom <code>Value</code> sebagai sumbu x.</p></li>
+<li><p><code>geom_histogram(binwidth = 2, fill = "red", color = "white")</code>: Menambahkan elemen histogram dengan lebar bin 2, warna batang merah, dan garis batas putih.</p></li>
+<li><p><code>labs(title = "Histogram Distribusi Data", x = "Nilai", y = "Frekuensi")</code>: Memberikan judul pada grafik dan label pada sumbu x dan y.</p></li>
+<li><p><code>theme_minimal()</code>: Mengatur tema plot menjadi minimal, menghilangkan elemen-elemen visual yang tidak perlu.</p></li>
+</ol>
+</section>
 </section>
 <section id="pyramid-chart" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="pyramid-chart"><span class="header-section-number">3.3</span> Pyramid Chart</h2>
-<p>Digunakan untuk membandingkan distribusi kategori dua arah (misalnya populasi pria vs wanita).</p>
+<p>Pyramid Chart digunakan untuk membandingkan distribusi dua kategori yang saling berlawanan, misalnya populasi pria dan wanita. Grafik ini berguna untuk menunjukkan perbedaan ukuran atau proporsi dua kelompok dalam cara yang mudah dipahami.</p>
 <p><img src="images/clipboard-4158192479.png" class="img-fluid" width="198"></p>
 </section>
 <section id="statistical-uncertainty" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="statistical-uncertainty"><span class="header-section-number">3.4</span> <strong>Visualizing Statistical Uncertainty with Charts</strong></h2>
-<p>Metode visualisasi ketidakpastian statistik dalam data.</p>
+<p>Pada bagian ini, kita akan membahas beberapa metode untuk memvisualisasikan ketidakpastian dalam data menggunakan berbagai jenis grafik.</p>
 <section id="error-bars" class="level3" data-number="3.4.1">
 <h3 data-number="3.4.1" class="anchored" data-anchor-id="error-bars"><span class="header-section-number">3.4.1</span> Error Bars</h3>
+<p>Error bars digunakan untuk menunjukkan rentang ketidakpastian atau variasi dalam data. Mereka menggambarkan margin kesalahan, yang menunjukkan sejauh mana nilai dalam data dapat bervariasi.</p>
 <p><img src="images/clipboard-955379841.png" class="img-fluid" width="172"></p>
 </section>
 <section id="confidence-interval" class="level3" data-number="3.4.2">
 <h3 data-number="3.4.2" class="anchored" data-anchor-id="confidence-interval"><span class="header-section-number">3.4.2</span> Confidence Interval</h3>
+<p>Confidence Interval (CI) adalah rentang nilai yang kemungkinan besar mengandung nilai sebenarnya dari parameter yang diukur. CI biasanya digambarkan dalam bentuk garis atau area di sekitar nilai rata-rata.</p>
 <p><img src="images/clipboard-1134882823.png" class="img-fluid" width="229"></p>
 </section>
 <section id="gradient-chart" class="level3" data-number="3.4.3">
 <h3 data-number="3.4.3" class="anchored" data-anchor-id="gradient-chart"><span class="header-section-number">3.4.3</span> Gradient Chart</h3>
+<p>Gradient Chart digunakan untuk menggambarkan perubahan bertahap dalam data, biasanya digunakan untuk menggambarkan data yang berkelanjutan dengan menggunakan gradasi warna untuk menunjukkan intensitas atau nilai.</p>
 <p><img src="images/clipboard-1119979853.png" class="img-fluid" width="293"></p>
 </section>
 <section id="fan-charts" class="level3" data-number="3.4.4">
 <h3 data-number="3.4.4" class="anchored" data-anchor-id="fan-charts"><span class="header-section-number">3.4.4</span> Fan Charts</h3>
+<p>Fan Chart adalah jenis visualisasi yang digunakan untuk menunjukkan ketidakpastian dalam perkiraan masa depan. Rentang yang lebih lebar menunjukkan ketidakpastian yang lebih besar.</p>
 <p><img src="images/clipboard-673330419.png" width="254" height="201"></p>
 </section>
 </section>
 <section id="boxplot" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="boxplot"><span class="header-section-number">3.5</span> Box-and-Whisker Plot</h2>
-<p>Menampilkan lima ringkasan data: minimum, Q1, median, Q3, dan maksimum.</p>
+<p>Box-and-Whisker Plot (atau boxplot) adalah grafik yang digunakan untuk menggambarkan sebaran data melalui lima nilai statistik utama: minimum, kuartil pertama (Q1), median, kuartil ketiga (Q3), dan maksimum. Boxplot memudahkan untuk mengidentifikasi outlier dan melihat distribusi data.</p>
 <p><img src="images/clipboard-3133313176.png" class="img-fluid" width="222"></p>
+<section id="penjelasan-grafik-boxplot" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="penjelasan-grafik-boxplot"><span class="header-section-number">3.5.1</span> Penjelasan Grafik Boxplot:</h3>
+<ul>
+<li><p>Kotak di tengah menunjukkan rentang antara Q1 dan Q3, dengan garis horizontal di dalam kotak menunjukkan nilai median.</p></li>
+<li><p>Garis vertikal (whisker) di luar kotak menunjukkan nilai terendah dan tertinggi dalam data (selama masih dalam batas normal).</p></li>
+<li><p>Titik di luar whisker menunjukkan outlier.</p></li>
+</ul>
+</section>
 </section>
 <section id="candlestick-chart" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="candlestick-chart"><span class="header-section-number">3.6</span> Candlestick Chart</h2>
-<p>Digunakan dalam analisis keuangan untuk menunjukkan harga tertinggi, terendah, pembukaan, dan penutupan.</p>
+<p>Candlestick Chart adalah grafik yang sering digunakan dalam analisis keuangan, terutama untuk menganalisis pergerakan harga saham. Setiap “lilin” pada grafik ini menunjukkan empat harga penting dalam suatu periode: harga pembukaan, harga penutupan, harga tertinggi, dan harga terendah.</p>
 <p><img src="images/clipboard-52418158.png" class="img-fluid" width="318"></p>
 </section>
 <section id="violin-chart" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="violin-chart"><span class="header-section-number">3.7</span> Violin Chart</h2>
-<p>Kombinasi antara boxplot dan density plot untuk memahami distribusi data.</p>
+<p>Violin Chart adalah kombinasi antara Boxplot dan Density Plot. Grafik ini memperlihatkan distribusi data dan memberikan gambaran yang lebih jelas mengenai kepadatan data pada berbagai nilai. Setiap sisi dari “biola” menunjukkan distribusi data secara simetris.</p>
 <p><img src="images/clipboard-3558018633.png" width="194" height="194"></p>
 </section>
 <section id="ridgeline-plot" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="ridgeline-plot"><span class="header-section-number">3.8</span> Ridgeline Plot</h2>
-<p>Menunjukkan distribusi data yang saling tumpang tindih dalam satu grafik.</p>
+<p>Ridgeline Plot digunakan untuk memvisualisasikan distribusi data yang tumpang tindih dalam satu grafik. Grafik ini berguna untuk menunjukkan bagaimana distribusi dari beberapa kelompok data saling berinteraksi atau berbeda.</p>
 <p><img src="images/clipboard-3261482838.png" class="img-fluid" width="283"></p>
 </section>
 <section id="uncertainty" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="uncertainty"><span class="header-section-number">3.9</span> <strong>Showing the Data</strong></h2>
+<p>Bagian ini menjelaskan beberapa cara untuk menampilkan data dalam bentuk yang lebih terperinci.</p>
 <section id="strip-plot" class="level3" data-number="3.9.1">
 <h3 data-number="3.9.1" class="anchored" data-anchor-id="strip-plot"><span class="header-section-number">3.9.1</span> Strip Plot</h3>
+<p>Strip Plot adalah jenis visualisasi yang menampilkan data dalam bentuk titik-titik yang terpisah, memungkinkan kita untuk melihat distribusi dan pola data lebih detail, terutama untuk dataset yang lebih kecil.</p>
 <p><img src="images/clipboard-2235031614.png" class="img-fluid" width="177"></p>
 </section>
 <section id="beeswarm-plot" class="level3" data-number="3.9.2">
 <h3 data-number="3.9.2" class="anchored" data-anchor-id="beeswarm-plot"><span class="header-section-number">3.9.2</span> Beeswarm Plot</h3>
+<p>Beeswarm Plot adalah variasi dari Strip Plot di mana titik-titik data akan “tergeser” untuk menghindari tumpang tindih, memberikan gambaran yang lebih jelas tentang kepadatan data.</p>
 <p><img src="images/clipboard-1465558755.png" class="img-fluid" width="177"> <img src="images/clipboard-812578471.png" class="img-fluid" width="227"></p>
 </section>
 <section id="wilkinson-dot-plots-and-wheat-plot" class="level3" data-number="3.9.3">
 <h3 data-number="3.9.3" class="anchored" data-anchor-id="wilkinson-dot-plots-and-wheat-plot"><span class="header-section-number">3.9.3</span> Wilkinson Dot Plots and Wheat Plot</h3>
+<p>Dot Plots dan Wheat Plot adalah metode untuk memvisualisasikan data kategorikal dan numerik. Mereka menampilkan titik-titik atau simbol untuk setiap nilai dalam dataset, dengan fokus pada distribusi dan kesenjangan dalam data.</p>
 <p><img src="images/clipboard-2521164228.png" width="161" height="89"> <img src="images/clipboard-2082311084.png" class="img-fluid" width="315"></p>
 </section>
 <section id="raincloud-plot" class="level3" data-number="3.9.4">
 <h3 data-number="3.9.4" class="anchored" data-anchor-id="raincloud-plot"><span class="header-section-number">3.9.4</span> Raincloud Plot</h3>
+<p>Raincloud Plot adalah gabungan antara Boxplot, Density Plot, dan Strip Plot yang memberi kita gambaran visual yang kaya tentang distribusi data, menggabungkan elemen-elemen tersebut untuk memberikan informasi lebih lengkap.</p>
 <p><img src="images/clipboard-67481014.png" class="img-fluid" width="327"></p>
 </section>
 </section>
 <section id="stem-leaf" class="level2" data-number="3.10">
 <h2 data-number="3.10" class="anchored" data-anchor-id="stem-leaf"><span class="header-section-number">3.10</span> Stem-and-Leaf Plot</h2>
-<p>Digunakan untuk menampilkan distribusi angka dengan tetap mempertahankan nilai aslinya.</p>
+<p>Stem-and-Leaf Plot adalah cara untuk menggambarkan distribusi data sambil mempertahankan nilai asli data. Ini adalah alternatif dari histogram yang menunjukkan distribusi data secara lebih tepat, dengan menggambarkan setiap nilai dalam dataset.</p>
 <p><img src="images/clipboard-1702212809.png" class="img-fluid"></p>
 </section>
 <section id="conclusion" class="level2" data-number="3.11">
 <h2 data-number="3.11" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">3.11</span> Conclusion</h2>
-<p>Ringkasan konsep visualisasi distribusi data.</p>
+<p>Visualisasi distribusi data sangat penting untuk membantu kita memahami struktur dan pola dalam data. Setiap jenis grafik atau plot yang telah dibahas memiliki kegunaan dan kelebihan masing-masing, tergantung pada jenis data dan tujuan analisis yang dilakukan.</p>
 
 
 <!-- -->
@@ -1053,7 +1087,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Histogram {#histogram}</span></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>Visualisasi distribusi data berbasis frekuensi dalam bentuk batang.</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>Histogram adalah grafik yang digunakan untuk menunjukkan distribusi data berdasarkan frekuensi kemunculannya dalam interval tertentu. Visualisasi ini menggunakan batang untuk mewakili jumlah atau frekuensi data yang berada dalam setiap interval atau bin. Histogram berguna untuk melihat pola distribusi data, apakah data cenderung terpusat di satu titik, tersebar merata, atau membentuk distribusi tertentu (misalnya normal atau skewed).</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1238374112.png)</span>{width="202"}</span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -1072,83 +1106,123 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pyramid Chart {#pyramid-chart}</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### Penjelasan Kode:</span></span>
 <span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>Digunakan untuk membandingkan distribusi kategori dua arah (misalnya populasi pria vs wanita).</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span><span class="in">`set.seed(123)`</span>: Fungsi ini memastikan bahwa data yang dihasilkan dapat direproduksi pada setiap eksekusi kode.</span>
 <span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-4158192479.png)</span>{width="198"}</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span><span class="in">`rnorm(1000, mean = 80, sd = 5)`</span>: Membuat 1000 sampel data yang terdistribusi normal dengan rata-rata 80 dan simpangan baku 5.</span>
 <span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Visualizing Statistical Uncertainty with Charts** {#statistical-uncertainty}</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span><span class="in">`ggplot(data_hist, aes(x = Value))`</span>: Membuat plot menggunakan paket <span class="in">`ggplot2`</span>, dengan data yang diambil dari <span class="in">`data_hist`</span> dan kolom <span class="in">`Value`</span> sebagai sumbu x.</span>
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>Metode visualisasi ketidakpastian statistik dalam data.</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span><span class="in">`geom_histogram(binwidth = 2, fill = "red", color = "white")`</span>: Menambahkan elemen histogram dengan lebar bin 2, warna batang merah, dan garis batas putih.</span>
 <span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Error Bars</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span><span class="in">`labs(title = "Histogram Distribusi Data", x = "Nilai", y = "Frekuensi")`</span>: Memberikan judul pada grafik dan label pada sumbu x dan y.</span>
 <span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-955379841.png)</span>{width="172"}</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span><span class="in">`theme_minimal()`</span>: Mengatur tema plot menjadi minimal, menghilangkan elemen-elemen visual yang tidak perlu.</span>
 <span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Confidence Interval</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pyramid Chart {#pyramid-chart}</span></span>
 <span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1134882823.png)</span>{width="229"}</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>Pyramid Chart digunakan untuk membandingkan distribusi dua kategori yang saling berlawanan, misalnya populasi pria dan wanita. Grafik ini berguna untuk menunjukkan perbedaan ukuran atau proporsi dua kelompok dalam cara yang mudah dipahami.</span>
 <span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Gradient Chart</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-4158192479.png)</span>{width="198"}</span>
 <span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1119979853.png)</span>{width="293"}</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Visualizing Statistical Uncertainty with Charts** {#statistical-uncertainty}</span></span>
 <span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fan Charts</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>Pada bagian ini, kita akan membahas beberapa metode untuk memvisualisasikan ketidakpastian dalam data menggunakan berbagai jenis grafik.</span>
 <span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-673330419.png)</span>{width="254" height="201"}</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="fu">### Error Bars</span></span>
 <span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Box-and-Whisker Plot {#boxplot}</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>Error bars digunakan untuk menunjukkan rentang ketidakpastian atau variasi dalam data. Mereka menggambarkan margin kesalahan, yang menunjukkan sejauh mana nilai dalam data dapat bervariasi.</span>
 <span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>Menampilkan lima ringkasan data: minimum, Q1, median, Q3, dan maksimum.</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-955379841.png)</span>{width="172"}</span>
 <span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-3133313176.png)</span>{width="222"}</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="fu">### Confidence Interval</span></span>
 <span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Candlestick Chart {#candlestick-chart}</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>Confidence Interval (CI) adalah rentang nilai yang kemungkinan besar mengandung nilai sebenarnya dari parameter yang diukur. CI biasanya digambarkan dalam bentuk garis atau area di sekitar nilai rata-rata.</span>
 <span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>Digunakan dalam analisis keuangan untuk menunjukkan harga tertinggi, terendah, pembukaan, dan penutupan.</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1134882823.png)</span>{width="229"}</span>
 <span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-52418158.png)</span>{width="318"}</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="fu">### Gradient Chart</span></span>
 <span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="fu">## Violin Chart {#violin-chart}</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>Gradient Chart digunakan untuk menggambarkan perubahan bertahap dalam data, biasanya digunakan untuk menggambarkan data yang berkelanjutan dengan menggunakan gradasi warna untuk menunjukkan intensitas atau nilai.</span>
 <span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>Kombinasi antara boxplot dan density plot untuk memahami distribusi data.</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1119979853.png)</span>{width="293"}</span>
 <span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-3558018633.png)</span>{width="194" height="194"}</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fan Charts</span></span>
 <span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ridgeline Plot {#ridgeline-plot}</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>Fan Chart adalah jenis visualisasi yang digunakan untuk menunjukkan ketidakpastian dalam perkiraan masa depan. Rentang yang lebih lebar menunjukkan ketidakpastian yang lebih besar.</span>
 <span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>Menunjukkan distribusi data yang saling tumpang tindih dalam satu grafik.</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-673330419.png)</span>{width="254" height="201"}</span>
 <span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-3261482838.png)</span>{width="283"}</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="fu">## Box-and-Whisker Plot {#boxplot}</span></span>
 <span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Showing the Data** {#uncertainty}</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>Box-and-Whisker Plot (atau boxplot) adalah grafik yang digunakan untuk menggambarkan sebaran data melalui lima nilai statistik utama: minimum, kuartil pertama (Q1), median, kuartil ketiga (Q3), dan maksimum. Boxplot memudahkan untuk mengidentifikasi outlier dan melihat distribusi data.</span>
 <span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="fu">### Strip Plot</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-3133313176.png)</span>{width="222"}</span>
 <span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-2235031614.png)</span>{width="177"}</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="fu">### Penjelasan Grafik Boxplot:</span></span>
 <span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="fu">### Beeswarm Plot</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Kotak di tengah menunjukkan rentang antara Q1 dan Q3, dengan garis horizontal di dalam kotak menunjukkan nilai median.</span>
 <span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1465558755.png)</span>{width="177"} <span class="al">![](images/clipboard-812578471.png)</span>{width="227"}</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Garis vertikal (whisker) di luar kotak menunjukkan nilai terendah dan tertinggi dalam data (selama masih dalam batas normal).</span>
 <span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="fu">### Wilkinson Dot Plots and Wheat Plot</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Titik di luar whisker menunjukkan outlier.</span>
 <span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-2521164228.png)</span>{width="161" height="89"} <span class="al">![](images/clipboard-2082311084.png)</span>{width="315"}</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Candlestick Chart {#candlestick-chart}</span></span>
 <span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="fu">### Raincloud Plot</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>Candlestick Chart adalah grafik yang sering digunakan dalam analisis keuangan, terutama untuk menganalisis pergerakan harga saham. Setiap "lilin" pada grafik ini menunjukkan empat harga penting dalam suatu periode: harga pembukaan, harga penutupan, harga tertinggi, dan harga terendah.</span>
 <span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-67481014.png)</span>{width="327"}</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-52418158.png)</span>{width="318"}</span>
 <span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stem-and-Leaf Plot {#stem-leaf}</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## Violin Chart {#violin-chart}</span></span>
 <span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>Digunakan untuk menampilkan distribusi angka dengan tetap mempertahankan nilai aslinya.</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>Violin Chart adalah kombinasi antara Boxplot dan Density Plot. Grafik ini memperlihatkan distribusi data dan memberikan gambaran yang lebih jelas mengenai kepadatan data pada berbagai nilai. Setiap sisi dari "biola" menunjukkan distribusi data secara simetris.</span>
 <span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1702212809.png)</span></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-3558018633.png)</span>{width="194" height="194"}</span>
 <span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ridgeline Plot {#ridgeline-plot}</span></span>
 <span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>Ringkasan konsep visualisasi distribusi data.</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>Ridgeline Plot digunakan untuk memvisualisasikan distribusi data yang tumpang tindih dalam satu grafik. Grafik ini berguna untuk menunjukkan bagaimana distribusi dari beberapa kelompok data saling berinteraksi atau berbeda.</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-3261482838.png)</span>{width="283"}</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Showing the Data** {#uncertainty}</span></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>Bagian ini menjelaskan beberapa cara untuk menampilkan data dalam bentuk yang lebih terperinci.</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="fu">### Strip Plot</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>Strip Plot adalah jenis visualisasi yang menampilkan data dalam bentuk titik-titik yang terpisah, memungkinkan kita untuk melihat distribusi dan pola data lebih detail, terutama untuk dataset yang lebih kecil.</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-2235031614.png)</span>{width="177"}</span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="fu">### Beeswarm Plot</span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>Beeswarm Plot adalah variasi dari Strip Plot di mana titik-titik data akan "tergeser" untuk menghindari tumpang tindih, memberikan gambaran yang lebih jelas tentang kepadatan data.</span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1465558755.png)</span>{width="177"} <span class="al">![](images/clipboard-812578471.png)</span>{width="227"}</span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="fu">### Wilkinson Dot Plots and Wheat Plot</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>Dot Plots dan Wheat Plot adalah metode untuk memvisualisasikan data kategorikal dan numerik. Mereka menampilkan titik-titik atau simbol untuk setiap nilai dalam dataset, dengan fokus pada distribusi dan kesenjangan dalam data.</span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-2521164228.png)</span>{width="161" height="89"} <span class="al">![](images/clipboard-2082311084.png)</span>{width="315"}</span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### Raincloud Plot</span></span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a>Raincloud Plot adalah gabungan antara Boxplot, Density Plot, dan Strip Plot yang memberi kita gambaran visual yang kaya tentang distribusi data, menggabungkan elemen-elemen tersebut untuk memberikan informasi lebih lengkap.</span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-67481014.png)</span>{width="327"}</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stem-and-Leaf Plot {#stem-leaf}</span></span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>Stem-and-Leaf Plot adalah cara untuk menggambarkan distribusi data sambil mempertahankan nilai asli data. Ini adalah alternatif dari histogram yang menunjukkan distribusi data secara lebih tepat, dengan menggambarkan setiap nilai dalam dataset.</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/clipboard-1702212809.png)</span></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>Visualisasi distribusi data sangat penting untuk membantu kita memahami struktur dan pola dalam data. Setiap jenis grafik atau plot yang telah dibahas memiliki kegunaan dan kelebihan masing-masing, tergantung pada jenis data dan tujuan analisis yang dilakukan.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

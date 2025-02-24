@@ -374,7 +374,7 @@
     "href": "03-Bab-3.html#histogram",
     "title": "3  Distribusi",
     "section": "3.2 Histogram",
-    "text": "3.2 Histogram\nVisualisasi distribusi data berbasis frekuensi dalam bentuk batang.\n\n\n\nCode\n# Buat data simulasi\nset.seed(123)  # Untuk reproduksibilitas\ndata_hist &lt;- data.frame(\n  Value = rnorm(1000, mean = 80, sd = 5)  # 1000 sampel dengan distribusi normal\n)\n\n# Buat Histogram\nggplot(data_hist, aes(x = Value)) +\n  geom_histogram(binwidth = 2, fill = \"red\", color = \"white\") +  # Batang histogram\n  labs(title = \"Histogram Distribusi Data\", x = \"Nilai\", y = \"Frekuensi\") +\n  theme_minimal()",
+    "text": "3.2 Histogram\nHistogram adalah grafik yang digunakan untuk menunjukkan distribusi data berdasarkan frekuensi kemunculannya dalam interval tertentu. Visualisasi ini menggunakan batang untuk mewakili jumlah atau frekuensi data yang berada dalam setiap interval atau bin. Histogram berguna untuk melihat pola distribusi data, apakah data cenderung terpusat di satu titik, tersebar merata, atau membentuk distribusi tertentu (misalnya normal atau skewed).\n\n\n\nCode\n# Buat data simulasi\nset.seed(123)  # Untuk reproduksibilitas\ndata_hist &lt;- data.frame(\n  Value = rnorm(1000, mean = 80, sd = 5)  # 1000 sampel dengan distribusi normal\n)\n\n# Buat Histogram\nggplot(data_hist, aes(x = Value)) +\n  geom_histogram(binwidth = 2, fill = \"red\", color = \"white\") +  # Batang histogram\n  labs(title = \"Histogram Distribusi Data\", x = \"Nilai\", y = \"Frekuensi\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n3.2.1 Penjelasan Kode:\n\nset.seed(123): Fungsi ini memastikan bahwa data yang dihasilkan dapat direproduksi pada setiap eksekusi kode.\nrnorm(1000, mean = 80, sd = 5): Membuat 1000 sampel data yang terdistribusi normal dengan rata-rata 80 dan simpangan baku 5.\nggplot(data_hist, aes(x = Value)): Membuat plot menggunakan paket ggplot2, dengan data yang diambil dari data_hist dan kolom Value sebagai sumbu x.\ngeom_histogram(binwidth = 2, fill = \"red\", color = \"white\"): Menambahkan elemen histogram dengan lebar bin 2, warna batang merah, dan garis batas putih.\nlabs(title = \"Histogram Distribusi Data\", x = \"Nilai\", y = \"Frekuensi\"): Memberikan judul pada grafik dan label pada sumbu x dan y.\ntheme_minimal(): Mengatur tema plot menjadi minimal, menghilangkan elemen-elemen visual yang tidak perlu.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
     ]
@@ -384,7 +384,7 @@
     "href": "03-Bab-3.html#pyramid-chart",
     "title": "3  Distribusi",
     "section": "3.3 Pyramid Chart",
-    "text": "3.3 Pyramid Chart\nDigunakan untuk membandingkan distribusi kategori dua arah (misalnya populasi pria vs wanita).",
+    "text": "3.3 Pyramid Chart\nPyramid Chart digunakan untuk membandingkan distribusi dua kategori yang saling berlawanan, misalnya populasi pria dan wanita. Grafik ini berguna untuk menunjukkan perbedaan ukuran atau proporsi dua kelompok dalam cara yang mudah dipahami.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
     ]
@@ -394,7 +394,7 @@
     "href": "03-Bab-3.html#statistical-uncertainty",
     "title": "3  Distribusi",
     "section": "3.4 Visualizing Statistical Uncertainty with Charts",
-    "text": "3.4 Visualizing Statistical Uncertainty with Charts\nMetode visualisasi ketidakpastian statistik dalam data.\n\n3.4.1 Error Bars\n\n\n\n3.4.2 Confidence Interval\n\n\n\n3.4.3 Gradient Chart\n\n\n\n3.4.4 Fan Charts",
+    "text": "3.4 Visualizing Statistical Uncertainty with Charts\nPada bagian ini, kita akan membahas beberapa metode untuk memvisualisasikan ketidakpastian dalam data menggunakan berbagai jenis grafik.\n\n3.4.1 Error Bars\nError bars digunakan untuk menunjukkan rentang ketidakpastian atau variasi dalam data. Mereka menggambarkan margin kesalahan, yang menunjukkan sejauh mana nilai dalam data dapat bervariasi.\n\n\n\n3.4.2 Confidence Interval\nConfidence Interval (CI) adalah rentang nilai yang kemungkinan besar mengandung nilai sebenarnya dari parameter yang diukur. CI biasanya digambarkan dalam bentuk garis atau area di sekitar nilai rata-rata.\n\n\n\n3.4.3 Gradient Chart\nGradient Chart digunakan untuk menggambarkan perubahan bertahap dalam data, biasanya digunakan untuk menggambarkan data yang berkelanjutan dengan menggunakan gradasi warna untuk menunjukkan intensitas atau nilai.\n\n\n\n3.4.4 Fan Charts\nFan Chart adalah jenis visualisasi yang digunakan untuk menunjukkan ketidakpastian dalam perkiraan masa depan. Rentang yang lebih lebar menunjukkan ketidakpastian yang lebih besar.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
     ]
@@ -404,7 +404,7 @@
     "href": "03-Bab-3.html#boxplot",
     "title": "3  Distribusi",
     "section": "3.5 Box-and-Whisker Plot",
-    "text": "3.5 Box-and-Whisker Plot\nMenampilkan lima ringkasan data: minimum, Q1, median, Q3, dan maksimum.",
+    "text": "3.5 Box-and-Whisker Plot\nBox-and-Whisker Plot (atau boxplot) adalah grafik yang digunakan untuk menggambarkan sebaran data melalui lima nilai statistik utama: minimum, kuartil pertama (Q1), median, kuartil ketiga (Q3), dan maksimum. Boxplot memudahkan untuk mengidentifikasi outlier dan melihat distribusi data.\n\n\n3.5.1 Penjelasan Grafik Boxplot:\n\nKotak di tengah menunjukkan rentang antara Q1 dan Q3, dengan garis horizontal di dalam kotak menunjukkan nilai median.\nGaris vertikal (whisker) di luar kotak menunjukkan nilai terendah dan tertinggi dalam data (selama masih dalam batas normal).\nTitik di luar whisker menunjukkan outlier.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
     ]
@@ -414,7 +414,7 @@
     "href": "03-Bab-3.html#candlestick-chart",
     "title": "3  Distribusi",
     "section": "3.6 Candlestick Chart",
-    "text": "3.6 Candlestick Chart\nDigunakan dalam analisis keuangan untuk menunjukkan harga tertinggi, terendah, pembukaan, dan penutupan.",
+    "text": "3.6 Candlestick Chart\nCandlestick Chart adalah grafik yang sering digunakan dalam analisis keuangan, terutama untuk menganalisis pergerakan harga saham. Setiap “lilin” pada grafik ini menunjukkan empat harga penting dalam suatu periode: harga pembukaan, harga penutupan, harga tertinggi, dan harga terendah.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
     ]
@@ -424,7 +424,7 @@
     "href": "03-Bab-3.html#violin-chart",
     "title": "3  Distribusi",
     "section": "3.7 Violin Chart",
-    "text": "3.7 Violin Chart\nKombinasi antara boxplot dan density plot untuk memahami distribusi data.",
+    "text": "3.7 Violin Chart\nViolin Chart adalah kombinasi antara Boxplot dan Density Plot. Grafik ini memperlihatkan distribusi data dan memberikan gambaran yang lebih jelas mengenai kepadatan data pada berbagai nilai. Setiap sisi dari “biola” menunjukkan distribusi data secara simetris.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
     ]
@@ -434,7 +434,7 @@
     "href": "03-Bab-3.html#ridgeline-plot",
     "title": "3  Distribusi",
     "section": "3.8 Ridgeline Plot",
-    "text": "3.8 Ridgeline Plot\nMenunjukkan distribusi data yang saling tumpang tindih dalam satu grafik.",
+    "text": "3.8 Ridgeline Plot\nRidgeline Plot digunakan untuk memvisualisasikan distribusi data yang tumpang tindih dalam satu grafik. Grafik ini berguna untuk menunjukkan bagaimana distribusi dari beberapa kelompok data saling berinteraksi atau berbeda.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
     ]
@@ -444,7 +444,7 @@
     "href": "03-Bab-3.html#uncertainty",
     "title": "3  Distribusi",
     "section": "3.9 Showing the Data",
-    "text": "3.9 Showing the Data\n\n3.9.1 Strip Plot\n\n\n\n3.9.2 Beeswarm Plot\n \n\n\n3.9.3 Wilkinson Dot Plots and Wheat Plot\n \n\n\n3.9.4 Raincloud Plot",
+    "text": "3.9 Showing the Data\nBagian ini menjelaskan beberapa cara untuk menampilkan data dalam bentuk yang lebih terperinci.\n\n3.9.1 Strip Plot\nStrip Plot adalah jenis visualisasi yang menampilkan data dalam bentuk titik-titik yang terpisah, memungkinkan kita untuk melihat distribusi dan pola data lebih detail, terutama untuk dataset yang lebih kecil.\n\n\n\n3.9.2 Beeswarm Plot\nBeeswarm Plot adalah variasi dari Strip Plot di mana titik-titik data akan “tergeser” untuk menghindari tumpang tindih, memberikan gambaran yang lebih jelas tentang kepadatan data.\n \n\n\n3.9.3 Wilkinson Dot Plots and Wheat Plot\nDot Plots dan Wheat Plot adalah metode untuk memvisualisasikan data kategorikal dan numerik. Mereka menampilkan titik-titik atau simbol untuk setiap nilai dalam dataset, dengan fokus pada distribusi dan kesenjangan dalam data.\n \n\n\n3.9.4 Raincloud Plot\nRaincloud Plot adalah gabungan antara Boxplot, Density Plot, dan Strip Plot yang memberi kita gambaran visual yang kaya tentang distribusi data, menggabungkan elemen-elemen tersebut untuk memberikan informasi lebih lengkap.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
     ]
@@ -454,7 +454,7 @@
     "href": "03-Bab-3.html#stem-leaf",
     "title": "3  Distribusi",
     "section": "3.10 Stem-and-Leaf Plot",
-    "text": "3.10 Stem-and-Leaf Plot\nDigunakan untuk menampilkan distribusi angka dengan tetap mempertahankan nilai aslinya.",
+    "text": "3.10 Stem-and-Leaf Plot\nStem-and-Leaf Plot adalah cara untuk menggambarkan distribusi data sambil mempertahankan nilai asli data. Ini adalah alternatif dari histogram yang menunjukkan distribusi data secara lebih tepat, dengan menggambarkan setiap nilai dalam dataset.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
     ]
@@ -464,7 +464,7 @@
     "href": "03-Bab-3.html#conclusion",
     "title": "3  Distribusi",
     "section": "3.11 Conclusion",
-    "text": "3.11 Conclusion\nRingkasan konsep visualisasi distribusi data.",
+    "text": "3.11 Conclusion\nVisualisasi distribusi data sangat penting untuk membantu kita memahami struktur dan pola dalam data. Setiap jenis grafik atau plot yang telah dibahas memiliki kegunaan dan kelebihan masing-masing, tergantung pada jenis data dan tujuan analisis yang dilakukan.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>**Distribusi**</span>"
     ]
